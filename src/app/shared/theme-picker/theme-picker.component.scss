@@ -1,0 +1,25 @@
+.view-source-code {
+    margin: 0 15px;
+}
+
+.clear-menu-item-padding {
+    padding: 0;
+}
+
+//  36 + 6 * 2 = 48, the height in .mat-menu-item is 48px
+.theme-picker-swatch {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    margin: 6px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.theme-picker-chosen-icon {
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

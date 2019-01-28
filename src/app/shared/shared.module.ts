@@ -12,6 +12,7 @@ import {
   MatRippleModule,
   MatGridListModule
 } from '@angular/material';
+import { ThemePickerModule } from './theme-picker/theme-picker.module';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -31,12 +32,14 @@ const MATERIAL_MODULES = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ThemePickerModule,
     ...MATERIAL_MODULES,
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ThemePickerModule,
     ...MATERIAL_MODULES,
   ],
 })
