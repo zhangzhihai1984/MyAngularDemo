@@ -1,20 +1,22 @@
 <div [class]="choosenTheme">
-  <mat-toolbar color="primary" style="position: relative; z-index: 8;">
-    <!-- <mat-toolbar-row> -->
-    <span>My Angualr Demo</span>
-    <span class="fill-spacer"></span>
-    <theme-picker (themeChoosen)="chooseTheme($event)"></theme-picker>
-    <a mat-mini-fab color="accent" matTooltip="View source code" href="https://github.com/zhangzhihai1984/MyAngularDemo"
-      target="_blank">
-      <mat-icon>code</mat-icon>
-    </a>
-  </mat-toolbar>
+  <mat-sidenav-container>
+    <!-- <mat-sidenav mode="push" opened>Sidenav content</mat-sidenav> -->
+
+    <mat-toolbar color="primary" class="mat-elevation-z6" style="position: fixed; top: 0; z-index: 2;">
+      <!-- <mat-toolbar-row> -->
+      <span>My Angualr Demo</span>
+      <span class="fill-spacer"></span>
+      <theme-picker (themeChoosen)="chooseTheme($event)"></theme-picker>
+      <a mat-mini-fab color="accent" matTooltip="View source code" href="https://github.com/zhangzhihai1984/MyAngularDemo"
+        target="_blank">
+        <mat-icon>code</mat-icon>
+      </a>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-container>
 </div>
 
-<mat-list class="custom_list">
-  <mat-list-item>Item 1</mat-list-item>
-  <button mat-list-item>Item2</button>
-</mat-list>
+
 
 <div style="width: 100px; height: 100px;" matRipple matRippleCentered=true matRippleRadius=50>Hi</div>
 

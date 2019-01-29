@@ -11,6 +11,7 @@ export class ThemePickerComponent implements OnInit {
   constructor(private overlayContainer: OverlayContainer) { }
 
   ngOnInit() {
+    this.chooseTheme(this.choosenTheme);
   }
 
   themes: ThemeInfo[] = [

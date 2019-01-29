@@ -10,7 +10,8 @@ import {
   MatButtonModule,
   MatMenuModule,
   MatRippleModule,
-  MatGridListModule
+  MatGridListModule,
+  MatSidenavModule
 } from '@angular/material';
 import { ThemePickerModule } from './theme-picker/theme-picker.module';
 
@@ -21,6 +22,7 @@ const MATERIAL_MODULES = [
   MatListModule,
   MatMenuModule,
   MatRippleModule,
+  MatSidenavModule,
   MatToolbarModule,
   MatTooltipModule,
   MatTableModule,

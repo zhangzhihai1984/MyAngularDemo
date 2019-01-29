@@ -45,20 +45,46 @@ $purple-green-primary: mat-palette($mat-purple);
 $purple-green-accent:  mat-palette($mat-green, A200, A100, A400);
 $purple-green-theme: mat-dark-theme($purple-green-primary, $purple-green-accent);
 
+@mixin app-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .app-background {
+        // background: mat-color($background, background);
+        background: map-get($map: $background, $key: background);
+    }
+}
+
 .deeppurple-amber-theme {
     @include angular-material-theme($deeppurple-amber-theme);
+    @include app-theme($deeppurple-amber-theme);
 }
 
 .indigo-pink-theme {
     @include angular-material-theme($indigo-pink-theme);
+    @include app-theme($indigo-pink-theme);
 }
 
 .pink-bluegrey-theme {
     @include angular-material-theme($pink-bluegrey-theme);
+    @include app-theme($pink-bluegrey-theme);
 }
 
 .purple-green-theme {
     @include angular-material-theme($purple-green-theme);
+    @include app-theme($purple-green-theme);
+}
+
+app-root {
+    position: absolute;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
 }
 
 body, html {
