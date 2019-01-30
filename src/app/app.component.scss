@@ -1,19 +1,39 @@
-.home-toolbar {
+.app-theme-wrapper {
+    height: 100%;
+}
+
+mat-sidenav-container {
+    width: 100%;
+    height: 100%;
+}
+
+.app-sidenav-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app-toolbar {
     position: fixed;
     top: 0;
     z-index: 2;
+    flex: none;
 }
-.home-title {
+.app-title {
     font-size: 20px;
     margin-left: 15px;
 }
 
-.view-source-code {
+theme-picker {
     margin: 0 15px 0 0;
 }
 
-theme-picker {
-    margin: 0 15px 0 0;
+.app-outlet-wrapper {
+    flex: auto;
+}
+
+.app-footer {
+    flex: none;
 }
 
 @mixin custom_list_width($width) {

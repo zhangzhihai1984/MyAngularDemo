@@ -1,23 +1,28 @@
-<div [class]="choosenTheme">
+<div class="{{choosenTheme}} app-theme-wrapper">
   <mat-sidenav-container>
-    <!-- <mat-sidenav mode="push" opened>Sidenav content</mat-sidenav> -->
+    <div class="app-sidenav-content-wrapper">
+      <mat-toolbar color="primary" class="mat-elevation-z6 app-toolbar">
+        <!-- <mat-toolbar-row> -->
+        <a mat-button routerLink="/">
+          <mat-icon>home</mat-icon>
+          <span class="app-title">My Angualr Demo</span>
+        </a>
+        <span class="fill-spacer"></span>
+        <theme-picker (themeChoosen)="chooseTheme($event)"></theme-picker>
+        <a mat-mini-fab color="accent" matTooltip="View source code" href="https://github.com/zhangzhihai1984/MyAngularDemo"
+          target="_blank">
+          <mat-icon>code</mat-icon>
+        </a>
+      </mat-toolbar>
+      <div class="app-outlet-wrapper">
+        <router-outlet></router-outlet>
+      </div>
 
-    <mat-toolbar color="primary" class="mat-elevation-z6 home-toolbar">
-      <!-- <mat-toolbar-row> -->
-      <a mat-button routerLink="">
-        <mat-icon>home</mat-icon>
-        <span class="home-title">My Angualr Demo</span>
-      </a>
-      <span class="fill-spacer"></span>
-      <theme-picker (themeChoosen)="chooseTheme($event)"></theme-picker>
-      <a mat-mini-fab color="accent" matTooltip="View source code" href="https://github.com/zhangzhihai1984/MyAngularDemo"
-        target="_blank">
-        <mat-icon>code</mat-icon>
-      </a>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
 
-    <div [routerLink]="['zzh', 'demo']" routerLinkActive="active" style="width: 100px; height: 100px;" matRipple matRippleCentered=true matRippleRadius=50>Hi</div>
+      <div class="app-footer" [routerLink]="['zzh', 'demo']" routerLinkActive="active" style="width: 100px; height: 100px;"
+        matRipple matRippleCentered=true matRippleRadius=50>Hi</div>
+    </div>
+
   </mat-sidenav-container>
 </div>
 
@@ -25,7 +30,7 @@
 
 
 
-<mat-grid-list cols="4" rowHeight="100px">
+<!-- <mat-grid-list cols="4" rowHeight="100px">
   <mat-grid-tile *ngFor="let title of titles" [colspan]="title.cols" [rowspan]="title.rows" [style.background]="title.color">
     {{title.text}}
   </mat-grid-tile>
@@ -33,7 +38,7 @@
 
 <div style="width: 100px; height: 100px; background: orange; margin: 20px; border-radius: 50%; position: relative;">
   <mat-icon style="color: white; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">check_circle</mat-icon>
-</div>
+</div> -->
 
 <!--The content below is only a placeholder and can be replaced.-->
 <!-- <div style="text-align:center">
