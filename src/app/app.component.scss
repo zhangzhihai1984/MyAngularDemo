@@ -1,5 +1,19 @@
+.home-toolbar {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+.home-title {
+    font-size: 20px;
+    margin-left: 15px;
+}
+
 .view-source-code {
-    margin: 0 15px;
+    margin: 0 15px 0 0;
+}
+
+theme-picker {
+    margin: 0 15px 0 0;
 }
 
 @mixin custom_list_width($width) {
@@ -9,4 +23,8 @@
 .custom_list {
     background: red;
     @include custom_list_width(50%);
+}
+
+.active {
+    background: purple;
 }

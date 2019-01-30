@@ -1,17 +1,17 @@
-.view-source-code {
-    margin: 0 15px;
-}
+$theme-picker-cell-size: 48px;
+$theme-picker-swatch-size: 36px;
 
-.clear-menu-item-padding {
+//default padding: 0 16px;
+[mat-menu-item] {
     padding: 0;
 }
 
 //  36 + 6 * 2 = 48, the height in .mat-menu-item is 48px
 .theme-picker-swatch {
     position: relative;
-    width: 36px;
-    height: 36px;
-    margin: 6px;
+    width: $theme-picker-swatch-size;
+    height: $theme-picker-swatch-size;
+    margin: ($theme-picker-cell-size - $theme-picker-swatch-size) / 2;
     border-radius: 50%;
     overflow: hidden;
 }

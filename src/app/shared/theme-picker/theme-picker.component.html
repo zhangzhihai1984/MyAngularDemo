@@ -5,7 +5,7 @@
 <mat-menu #themeMenu="matMenu">
   <mat-grid-list cols="2">
     <mat-grid-tile *ngFor="let theme of themes" colspan="1" rowspan="1" (click)="chooseTheme(theme.name)">
-      <div mat-menu-item class="clear-menu-item-padding">
+      <div mat-menu-item>
         <div class="theme-picker-swatch" [style.background]="theme.color">
           <mat-icon class="theme-picker-chosen-icon" *ngIf="choosenTheme == theme.name" style="color: white;">check_circle</mat-icon>
         </div>

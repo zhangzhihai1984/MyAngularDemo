@@ -2,9 +2,12 @@
   <mat-sidenav-container>
     <!-- <mat-sidenav mode="push" opened>Sidenav content</mat-sidenav> -->
 
-    <mat-toolbar color="primary" class="mat-elevation-z6" style="position: fixed; top: 0; z-index: 2;">
+    <mat-toolbar color="primary" class="mat-elevation-z6 home-toolbar">
       <!-- <mat-toolbar-row> -->
-      <span>My Angualr Demo</span>
+      <a mat-button routerLink="">
+        <mat-icon>home</mat-icon>
+        <span class="home-title">My Angualr Demo</span>
+      </a>
       <span class="fill-spacer"></span>
       <theme-picker (themeChoosen)="chooseTheme($event)"></theme-picker>
       <a mat-mini-fab color="accent" matTooltip="View source code" href="https://github.com/zhangzhihai1984/MyAngularDemo"
@@ -13,12 +16,14 @@
       </a>
     </mat-toolbar>
     <router-outlet></router-outlet>
+
+    <div [routerLink]="['zzh', 'demo']" routerLinkActive="active" style="width: 100px; height: 100px;" matRipple matRippleCentered=true matRippleRadius=50>Hi</div>
   </mat-sidenav-container>
 </div>
 
 
 
-<div style="width: 100px; height: 100px;" matRipple matRippleCentered=true matRippleRadius=50>Hi</div>
+
 
 <mat-grid-list cols="4" rowHeight="100px">
   <mat-grid-tile *ngFor="let title of titles" [colspan]="title.cols" [rowspan]="title.rows" [style.background]="title.color">
