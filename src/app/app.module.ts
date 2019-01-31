@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomePageModule } from './pages/home-page';
-import { TableModule } from './pages/table/table.module';
+import { TableModule } from './pages/table';
 
 @NgModule({
   imports: [

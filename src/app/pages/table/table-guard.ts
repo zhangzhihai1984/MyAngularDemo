@@ -13,7 +13,7 @@ export class TableGuard implements CanActivate {
     constructor(private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        console.log('<Guard>', route)
+        console.log('<Guard>', route.url)
         return true;
     }
 
