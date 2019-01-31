@@ -13,8 +13,8 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
   }
 
-  onTableClicked() {
-    this.router.navigate(['/table']);
+  onItemClicked(path: string) {
+    this.router.navigate([path]);
   }
 
 }

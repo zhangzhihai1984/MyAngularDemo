@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomePageModule } from './pages/home-page';
 import { TableModule } from './pages/table';
+import { AnimationModule } from './pages/animation';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { TableModule } from './pages/table';
     SharedModule,
     HomePageModule,
     TableModule,
+    AnimationModule
   ],
   declarations: [
     AppComponent

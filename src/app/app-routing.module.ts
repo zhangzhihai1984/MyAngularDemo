@@ -4,6 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TableComponent } from './pages/table/table.component';
 import { TableGuard } from './pages/table/table-guard';
 import { TableModule } from './pages/table';
+import { AnimationModule } from './pages/animation';
 
 const routes: Routes = [
   {
@@ -16,13 +17,17 @@ const routes: Routes = [
     // loadChildren: './pages/table#TableModule',
     loadChildren: () => TableModule,
     pathMatch: 'full'
-
+  },
+  {
+    path: 'animation',
+    loadChildren: () => AnimationModule,
+    pathMatch: 'full'
   },
   {
     path: ':haha/demo',
     canActivate: [TableGuard],
     component: TableComponent,
-    data: {key: 'value'}
+    data: { key: 'value' }
   },
   {
     path: '**',
