@@ -5,6 +5,7 @@ import { TableComponent } from './pages/table/table.component';
 import { TableGuard } from './pages/table/table-guard';
 import { TableModule } from './pages/table';
 import { AnimationModule } from './pages/animation';
+import { GridModule } from './pages/grid/grid.module';
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'animation',
     loadChildren: () => AnimationModule,
+    pathMatch: 'full'
+  },
+  {
+    path: 'grid',
+    loadChildren: () => GridModule,
     pathMatch: 'full'
   },
   {

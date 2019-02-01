@@ -1,0 +1,11 @@
+@mixin grid-theme($theme) {
+    $primary: map-get($map: $theme, $key: primary);
+    $accent: map-get($map: $theme, $key: accent);
+
+    .grid-list-1 {
+        background: mat-color($accent);
+        mat-grid-tile {
+            background: mat-color($primary);
+        }
+    }
+}

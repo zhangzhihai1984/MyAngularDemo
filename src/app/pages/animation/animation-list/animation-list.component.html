@@ -1,3 +1,13 @@
-<p>
-  animation-list works!
-</p>
+<div [@openClose]="currentState" style="width: 60%; height: 100px; display: flex; flex-direction: column; align-content: center; align-items: center">
+  <div style="flex: auto;">animation-list works!</div>
+  <span style="flex: auto;">animation-list works!</span>
+</div>
+<button mat-button (click)="toggle()">Toggle</button>
+
+<div @insertRemove *ngIf="showSecond" style="background: greenyellow; width: 50%; height: 30px;">
+  The box is inserted
+</div>
+<button mat-button (click)="toggle2()">Toggle2</button>
+
+<div [@openClose2]="showThird" style="background: cadetblue; margin-top: 20px; width: 40%; text-align: center">Open or close</div>
+<button mat-button (click)="toggle3()">Toggle3</button>

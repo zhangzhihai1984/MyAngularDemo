@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { HomePageModule } from './pages/home-page';
 import { TableModule } from './pages/table';
 import { AnimationModule } from './pages/animation';
+import { GridModule } from './pages/grid/grid.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { AnimationModule } from './pages/animation';
     SharedModule,
     HomePageModule,
     TableModule,
-    AnimationModule
+    AnimationModule,
+    GridModule,
   ],
   declarations: [
     AppComponent
