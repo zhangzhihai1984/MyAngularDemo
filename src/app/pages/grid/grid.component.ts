@@ -13,19 +13,18 @@ export class GridComponent implements OnInit {
   }
 
   tiles: Tile[] = [
-    {
-      text: '1',
-    },
-    {
-      text: '2',
-    },
-    {
-      text: '3',
-    },
-    {
-      text: '4',
-    },
+    { text: '1' },
+    { text: '2' },
+    { text: '3' },
+    { text: '4' },
   ];
+
+  tiles2: Tile[] = [
+    { text: '1' },
+    { text: '2', cols: 2 },
+    { text: '3', rows: 2 },
+    { text: '4' },
+  ]
 }
 
 export interface Tile {

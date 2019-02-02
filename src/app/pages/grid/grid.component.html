@@ -11,27 +11,15 @@
  -->
 <mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile>
-    <mat-grid-list matTooltip="rowHeight=6:1" class="grid-list-1" cols="2" rowHeight="6:1">
-      <mat-grid-tile *ngFor="let tile of tiles">{{tile.text}}</mat-grid-tile>
-    </mat-grid-list>
+    <app-grid-item [tiles]="tiles" cols="2" rowHeight="4:1" tooltip="rowHeight=4:1"></app-grid-item>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-grid-list matTooltip="rowHeight=40px" class="grid-list-1" cols="2" rowHeight="50px">
-      <mat-grid-tile *ngFor="let tile of tiles">{{tile.text}}</mat-grid-tile>
-    </mat-grid-list>
+    <app-grid-item [tiles]="tiles" cols="3" rowHeight="50px" tooltip="rowHeight=50px"></app-grid-item>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-grid-list matTooltip="rowHeight=fit & height: 100px" class="grid-list-1" style="height: 100px;" rowHeight="fit"
-      cols="2">
-      <mat-grid-tile *ngFor="let tile of tiles">{{tile.text}}</mat-grid-tile>
-    </mat-grid-list>
+    <app-grid-item [tiles]="tiles" rowHeight="fit" height="100px" tooltip="rowHeight=fit & height: 100px"></app-grid-item>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-grid-list matTooltip="" class="grid-list-1" cols="2" rowHeight="50px">
-      <mat-grid-tile>1</mat-grid-tile>
-      <mat-grid-tile colspan="2">2</mat-grid-tile>
-      <mat-grid-tile rowspan="2">3</mat-grid-tile>
-      <mat-grid-tile>4</mat-grid-tile>
-    </mat-grid-list>
+    <app-grid-item [tiles]="tiles2" rowHeight="50px"></app-grid-item>
   </mat-grid-tile>
 </mat-grid-list>
