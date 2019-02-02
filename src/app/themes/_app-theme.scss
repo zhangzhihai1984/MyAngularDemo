@@ -1,0 +1,16 @@
+@import './grid-theme';
+
+@mixin app-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    .app-background {
+        // background: mat-color($background, background);
+        background: map-get($map: $background, $key: background);
+    }
+
+    @include grid-demo-theme($theme);
+}

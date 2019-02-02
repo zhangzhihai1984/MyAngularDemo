@@ -1,4 +1,4 @@
-<mat-grid-list class="grid-list-1" [matTooltip]="tooltip" [ngStyle]="{'height': height || 'inherit'}" [cols]="cols"
+<mat-grid-list class="grid-theme" [matTooltip]="tooltip" [ngStyle]="{'height': height || 'inherit'}" [cols]="cols"
   [rowHeight]="rowHeight">
   <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols || 1" [rowspan]="tile.rows || 1">{{tile.text}}</mat-grid-tile>
 </mat-grid-list>
