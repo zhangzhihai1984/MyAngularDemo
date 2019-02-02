@@ -12,10 +12,7 @@ export class GridItemComponent implements OnInit {
   @Input() cols: number = 2;
   @Input() rowHeight: string = "1:1";
   @Input() tooltip: string;
-  @Input() height: string;
-  rowspan: number = 1;
-  // @Input() colspan: number = 1;
-  // @Input() rowspan: number = 1;
+  @Input('gridHeight') height: string; //Must be set while rowHeight is 'fit'
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
 

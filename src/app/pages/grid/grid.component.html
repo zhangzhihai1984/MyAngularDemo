@@ -11,15 +11,15 @@
  -->
 <mat-grid-list cols="2" rowHeight="2:1">
   <mat-grid-tile>
-    <app-grid-item [tiles]="tiles" cols="2" rowHeight="4:1" tooltip="rowHeight=4:1"></app-grid-item>
+    <app-grid-item class="grid-theme" [tiles]="tiles" cols="2" rowHeight="4:1" tooltip="rowHeight=4:1"></app-grid-item>
   </mat-grid-tile>
   <mat-grid-tile>
-    <app-grid-item [tiles]="tiles" cols="3" rowHeight="50px" tooltip="rowHeight=50px"></app-grid-item>
+    <app-grid-item class="grid-theme" [tiles]="tiles" cols="3" rowHeight="50px" tooltip="rowHeight=50px"></app-grid-item>
   </mat-grid-tile>
   <mat-grid-tile>
-    <app-grid-item [tiles]="tiles" rowHeight="fit" height="100px" tooltip="rowHeight=fit & height: 100px"></app-grid-item>
+    <app-grid-item class="grid-theme" [tiles]="tiles" rowHeight="fit" gridHeight="100px" tooltip="rowHeight=fit & height: 100px"></app-grid-item>
   </mat-grid-tile>
   <mat-grid-tile>
-    <app-grid-item [tiles]="tiles2" rowHeight="50px"></app-grid-item>
+    <app-grid-item class="grid-theme" [tiles]="tiles2" rowHeight="50px"></app-grid-item>
   </mat-grid-tile>
 </mat-grid-list>
