@@ -13,10 +13,11 @@ export class GridItemComponent implements OnInit {
   @Input() rowHeight: string = "1:1";
   @Input() tooltip: string;
   @Input('gridHeight') height: string; //Must be set while rowHeight is 'fit'
+  @Input() gutterSize: string = "1px";
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
+    constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
 
-  ngOnInit() {
-  }
+ngOnInit() {
+}
 
 }
