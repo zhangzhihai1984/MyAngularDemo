@@ -27,12 +27,11 @@ export class AppComponent {
   }
 
   prepareRoute(outlet: RouterOutlet) {
-    // console.log('<Outlet>', outlet.isActivated);
     if (outlet.isActivated) {
-      console.log('<Outlet>', window.location.pathname);
+      // console.log('<Outlet>', window.location.pathname);
     }
-    console.log('<Outlet>', outlet && outlet.isActivated && outlet.activatedRouteData['animState']);
-    return outlet && outlet.isActivated && outlet.component;
+    console.log('<Outlet>', outlet && outlet.activatedRouteData && outlet.activatedRouteData['animState']);
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animState'];
   }
 }
 

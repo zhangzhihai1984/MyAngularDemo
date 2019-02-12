@@ -47,7 +47,7 @@ export const insertRemoveAnim = trigger('insertRemove', [
 ]);
 
 export const openCloseAnim2 = trigger('openClose2', [
-    state('true', style({ height: '60px' })),
+    state('true', style({ height: '*' })),
     state('false', style({ height: '0px' })),
     transition('true <=> false', animate(500))
 ]);

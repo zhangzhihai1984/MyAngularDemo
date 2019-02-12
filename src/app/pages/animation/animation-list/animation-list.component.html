@@ -1,4 +1,5 @@
-<div [@openClose]="currentState" style="width: 60%; height: 100px; display: flex; flex-direction: column; align-content: center; align-items: center">
+<div [@openClose]="currentState"
+  style="width: 60%; height: 100px; display: flex; flex-direction: column; align-content: center; align-items: center">
   <div style="flex: auto;">animation-list works!</div>
   <span style="flex: auto;">animation-list works!</span>
 </div>
@@ -9,5 +10,6 @@
 </div>
 <button mat-button (click)="toggle2()">Toggle2</button>
 
-<div [@openClose2]="showThird" style="background: cadetblue; margin-top: 20px; width: 40%; text-align: center">Open or close</div>
+<div [@openClose2]="showThird" class="test-height"
+  style="background: cadetblue; margin-top: 20px; width: 40%; text-align: center;">Open or close</div>
 <button mat-button (click)="toggle3()">Toggle3</button>
