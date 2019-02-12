@@ -5,7 +5,8 @@ import { GridComponent } from './grid.component';
 const routes: Routes = [
   {
     path: '',
-    component: GridComponent
+    component: GridComponent,
+    data: { animState: 'GridPage' }
   }
 ];
 

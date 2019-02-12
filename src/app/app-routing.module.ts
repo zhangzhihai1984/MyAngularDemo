@@ -11,7 +11,8 @@ const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: {animState: 'HomePage'}
   },
   {
     path: 'table',

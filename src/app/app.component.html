@@ -14,8 +14,8 @@
           <mat-icon>code</mat-icon>
         </a>
       </mat-toolbar>
-      <div class="app-outlet-wrapper">
-        <router-outlet></router-outlet>
+      <div [@routeAnimation]="prepareRoute(outlet)" class="app-outlet-wrapper">
+        <router-outlet #outlet="outlet"></router-outlet>
       </div>
 
 

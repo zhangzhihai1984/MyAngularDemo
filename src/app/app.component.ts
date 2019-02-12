@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { routeAnimation } from './core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [routeAnimation]
 })
 export class AppComponent {
   choosenTheme: string = 'deeppurple-amber-theme';
@@ -21,6 +24,15 @@ export class AppComponent {
 
   chooseTheme(theme: string) {
     this.choosenTheme = theme;
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    // console.log('<Outlet>', outlet.isActivated);
+    if (outlet.isActivated) {
+      console.log('<Outlet>', window.location.pathname);
+    }
+    console.log('<Outlet>', outlet && outlet.isActivated && outlet.activatedRouteData['animState']);
+    return outlet && outlet.isActivated && outlet.component;
   }
 }
 

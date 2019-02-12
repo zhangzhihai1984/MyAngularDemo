@@ -15,9 +15,9 @@ export class GridItemComponent implements OnInit {
   @Input('gridHeight') height: string; //Must be set while rowHeight is 'fit'
   @Input() gutterSize: string = "1px";
 
-    constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
 
-ngOnInit() {
-}
+  ngOnInit() {
+  }
 
 }

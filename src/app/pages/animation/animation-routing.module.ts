@@ -5,7 +5,8 @@ import { AnimationListComponent } from './animation-list/animation-list.componen
 const routes: Routes = [
   {
     path: '',
-    component: AnimationListComponent
+    component: AnimationListComponent,
+    data: { animState: 'AnimationPage' }
   }
 ];
 

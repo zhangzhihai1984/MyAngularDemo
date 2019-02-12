@@ -2,12 +2,12 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 
 export const openCloseAnim = trigger('openClose', [
     state('open', style({
-        height: '200px',
+        // height: '200px',
         opacity: 1,
         backgroundColor: 'yellow'
     })),
     state('close', style({
-        height: '100px',
+        // height: '100px',
         opacity: 0.5,
         backgroundColor: 'green'
     })),
