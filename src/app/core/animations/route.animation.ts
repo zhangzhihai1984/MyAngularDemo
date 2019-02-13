@@ -53,14 +53,15 @@ export const routeAnimation = trigger('routeAnimation', [
             })
         ], { optional: true }),
         query(':enter', style({ left: '-100%' }), { optional: true }),
-        query(':enter', animateChild(), { optional: true }),
+        query(':leave', animateChild(), { optional: true }),
         group([
-            query(':enter', [
-                animate('.3s', style({ left: '0%' }))
-            ], { optional: true }),
             query(':leave', [
-                animate('.3s', style({ left: '100%' }))
-            ], { optional: true })
-        ])
+                animate('.3s ease-out', style({ left: '100%' }))
+            ], { optional: true }),
+            query(':enter', [
+                animate('.3s ease-out', style({ left: '0%' }))
+            ], { optional: true }),
+        ]),
+        query(':enter', animateChild(), { optional: true }),
     ])
 ]);

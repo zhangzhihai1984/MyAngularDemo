@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
+import { pageAnimation } from './home-page.animation';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
+  animations: [pageAnimation]
 })
 export class HomePageComponent implements OnInit {
 
@@ -12,6 +14,8 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @HostBinding('@pageAnimation') animatePage = true;
 
   onItemClicked(path: string) {
     this.router.navigate([path]);
