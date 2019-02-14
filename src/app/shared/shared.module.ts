@@ -12,7 +12,8 @@ import {
   MatRippleModule,
   MatGridListModule,
   MatSidenavModule,
-  MatCardModule
+  MatCardModule,
+  MatPaginatorModule
 } from '@angular/material';
 import { ThemePickerModule } from './theme-picker/theme-picker.module';
 
@@ -28,6 +29,7 @@ const MATERIAL_MODULES = [
   MatToolbarModule,
   MatTooltipModule,
   MatTableModule,
+  MatPaginatorModule
 ]
 
 @NgModule({

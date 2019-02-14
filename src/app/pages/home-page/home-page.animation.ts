@@ -15,7 +15,7 @@ export const pageAnimation = trigger('pageAnimation', [
                 transform: 'translateY(-100px)'
             }),
             stagger(-30, [
-                animate('0.5s', style({
+                animate('0.3s', style({
                     opacity: 1,
                     transform: 'none'
                 }))
