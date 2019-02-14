@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { PeriodicElement } from '../table.model';
 import { Observable, Subscription, of } from 'rxjs';
+import { TableColumnConfig } from '../table.config';
 
 @Component({
   selector: 'app-awesome-table',
@@ -11,9 +12,11 @@ import { Observable, Subscription, of } from 'rxjs';
 export class AwesomeTableComponent implements OnInit, OnDestroy {
   // @Input() data: PeriodicElement[];
   // @Input() displayedColumns: string[];
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[];
 
   @Input() data$: Observable<PeriodicElement[]>;
+  @Input() columnConfigs: TableColumnConfig[];
+
   dataSource: MatTableDataSource<PeriodicElement> = new MatTableDataSource();
 
   private subscription = new Subscription();
@@ -26,6 +29,9 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
         this.dataSource.data = data;
       })
     );
+
+    this.displayedColumns = this.columnConfigs.map(columnConfig => columnConfig.name);
+    this.displayedColumns = this.displayedColumns.filter(v => v !== 'symbol');
   }
 
   ngOnDestroy() {

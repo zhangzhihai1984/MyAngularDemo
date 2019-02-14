@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { PeriodicElement } from './table.model';
 import { Observable, of } from 'rxjs';
+import { TableColumnConfig } from './table.config';
 
 @Component({
   selector: 'app-table',
@@ -16,7 +17,14 @@ export class TableComponent implements OnInit {
   data$: Observable<PeriodicElement[]> = of(ELEMENT_DATA);
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-@ViewChild(MatPaginator) paginator: MatPaginator;
+  columnConfigs: TableColumnConfig[] = [
+    { name: 'position', header: 'ID' },
+    { name: 'name', header: 'Name' },
+    { name: 'weight', header: 'Weight' },
+    { name: 'symbol', header: 'Symbol' }
+  ]
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.pipe(map(p => p))
