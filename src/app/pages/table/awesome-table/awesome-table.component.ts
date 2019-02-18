@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
-import { PeriodicElement } from '../table.model';
+import { Component, OnInit, Input, OnDestroy, ViewChild, Output, EventEmitter } from '@angular/core';
+import { MatTableDataSource, MatPaginator, PageEvent } from '@angular/material';
+import { TableCellModel } from '../table.model';
 import { Observable, Subscription, of } from 'rxjs';
 import { TableColumnConfig } from '../table.config';
 
@@ -10,14 +10,20 @@ import { TableColumnConfig } from '../table.config';
   styleUrls: ['./awesome-table.component.scss']
 })
 export class AwesomeTableComponent implements OnInit, OnDestroy {
-  // @Input() data: PeriodicElement[];
-  // @Input() displayedColumns: string[];
-  displayedColumns: string[];
 
-  @Input() data$: Observable<PeriodicElement[]>;
+  @Input() data$: Observable<TableCellModel[]>;
   @Input() columnConfigs: TableColumnConfig[];
 
-  dataSource: MatTableDataSource<PeriodicElement> = new MatTableDataSource();
+  @Input() showPaginator = true;
+  @Input() pageSize = 5;
+  @Input() pageSizeOptions = [5, 10, 20];
+
+  @Output() pageChanaged = new EventEmitter<PageEvent>();
+
+  dataSource: MatTableDataSource<TableCellModel> = new MatTableDataSource();
+  displayedColumns: string[];
+
+  @ViewChild('paginator') paginator: MatPaginator;
 
   private subscription = new Subscription();
 
@@ -31,7 +37,10 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
     );
 
     this.displayedColumns = this.columnConfigs.map(columnConfig => columnConfig.name);
-    this.displayedColumns = this.displayedColumns.filter(v => v !== 'symbol');
+    // this.displayedColumns = this.displayedColumns.filter(v => v !== 'symbol');
+
+    if (this.showPaginator)
+      this.dataSource.paginator = this.paginator;
   }
 
   ngOnDestroy() {
@@ -39,5 +48,9 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
     this.subscription = Subscription.EMPTY;
+  }
+
+  onPageChanged(ev: PageEvent) {
+    this.pageChanaged.emit(ev);
   }
 }

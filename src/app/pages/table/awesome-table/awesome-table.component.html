@@ -6,3 +6,6 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-paginator #paginator [ngStyle]="{'display': showPaginator ? 'inherit' : 'none'}" [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
+</mat-paginator>
