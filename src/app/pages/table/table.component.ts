@@ -18,10 +18,10 @@ export class TableComponent implements OnInit {
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   columnConfigs: TableColumnConfig[] = [
-    { name: 'position', header: 'ID' },
-    { name: 'name', header: 'Name' },
-    { name: 'weight', header: 'Weight' },
-    { name: 'symbol', header: 'Symbol' }
+    { name: 'position', header: 'ID', sortable: true },
+    { name: 'name', header: 'Name', sortable: true },
+    { name: 'weight', header: 'Weight', sortable: true },
+    { name: 'symbol', header: 'Symbol', sortable: true }
   ]
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

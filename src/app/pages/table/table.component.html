@@ -1,14 +1,27 @@
-<div class="mat-elevation-z8 table-demo-item-wrapper">
-  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [showPaginator]="false">
-  </app-awesome-table>
-</div>
 <div class="table-demo-item-wrapper">
   <div class="table-demo-item-title">Basic Table</div>
+  <div class="table-demo-item-table-wrapper">
+    <div class="mat-elevation-z8">
+      <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [showPaginator]="false">
+      </app-awesome-table>
+    </div>
+  </div>
+</div>
+<div class="table-demo-item-wrapper">
+  <div class="table-demo-item-title">Table With Paginator</div>
   <div class="table-demo-item-table-wrapper">
     <div class="mat-elevation-z8">
       <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]">
       </app-awesome-table>
     </div>
-
   </div>
 </div>
+<div class="table-demo-item-wrapper">
+    <div class="table-demo-item-title">Table With Sorting</div>
+    <div class="table-demo-item-table-wrapper">
+      <div class="mat-elevation-z8">
+        <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]" sortable="true">
+        </app-awesome-table>
+      </div>
+    </div>
+  </div>
