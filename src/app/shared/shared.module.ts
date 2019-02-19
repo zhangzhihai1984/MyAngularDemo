@@ -14,7 +14,8 @@ import {
   MatSidenavModule,
   MatCardModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatInputModule
 } from '@angular/material';
 import { ThemePickerModule } from './theme-picker/theme-picker.module';
 
@@ -31,7 +32,8 @@ const MATERIAL_MODULES = [
   MatTooltipModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatInputModule
 ]
 
 @NgModule({

@@ -34,7 +34,12 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
 
   @Input() sortable = false;
 
+  @Input() set filterValue(filter: string) {
+    this.dataSource.filter = filter;
+  }
+
   @Output() pageChanaged = new EventEmitter<PageEvent>();
+  @Output() sortChanged = new EventEmitter<Sort>();
 
   dataSource: MatTableDataSource<TableCellModel> = new MatTableDataSource();
   displayedColumns: string[];
@@ -93,8 +98,9 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
     this.pageChanaged.emit(ev);
   }
 
-  onSortChanged(ev: Sort) {
-    console.log('<Sort>', ev.active + ' ' + ev.direction);
+  onSortChanged(sort: Sort) {
+    console.log('<Sort>', sort.active + ' ' + sort.direction);
+    this.sortChanged.emit(sort);
   }
 }
 
