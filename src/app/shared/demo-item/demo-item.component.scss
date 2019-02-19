@@ -1,0 +1,19 @@
+:host {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app-demo-item-wrapper {
+    width: 80%;
+    margin-top: 20px;
+}
+
+.app-demo-item-title {
+    padding: 20px;
+}
+
+.app-demo-item-content-wrapper {
+    padding: 30px;
+}
