@@ -1,24 +1,25 @@
-<div class="table-demo-item-wrapper">
-  <div class="table-demo-item-title">Basic Table</div>
-  <div class="table-demo-item-table-wrapper">
+<app-demo-item></app-demo-item>
+<div class="app-demo-item-wrapper">
+  <div class="app-demo-item-title">Basic Table</div>
+  <div class="app-demo-item-table-wrapper">
     <div class="mat-elevation-z8">
       <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [showPaginator]="false">
       </app-awesome-table>
     </div>
   </div>
 </div>
-<div class="table-demo-item-wrapper">
-  <div class="table-demo-item-title">Table With Paginator</div>
-  <div class="table-demo-item-table-wrapper">
+<div class="app-demo-item-wrapper">
+  <div class="app-demo-item-title">Table With Paginator</div>
+  <div class="app-demo-item-table-wrapper">
     <div class="mat-elevation-z8">
       <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]">
       </app-awesome-table>
     </div>
   </div>
 </div>
-<div class="table-demo-item-wrapper">
-  <div class="table-demo-item-title">Table With Sorting</div>
-  <div class="table-demo-item-table-wrapper">
+<div class="app-demo-item-wrapper">
+  <div class="app-demo-item-title">Table With Sorting</div>
+  <div class="app-demo-item-table-wrapper">
     <div class="mat-elevation-z8">
       <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]"
         sortable="true">
@@ -26,9 +27,9 @@
     </div>
   </div>
 </div>
-<div class="table-demo-item-wrapper">
-  <div class="table-demo-item-title">Table With Filter</div>
-  <div class="table-demo-item-table-wrapper">
+<div class="app-demo-item-wrapper">
+  <div class="app-demo-item-title">Table With Filter</div>
+  <div class="app-demo-item-table-wrapper">
     <mat-form-field>
       <input matInput placeholder="filter" [(ngModel)]="filterValue">
     </mat-form-field>

@@ -15,9 +15,11 @@ import {
   MatCardModule,
   MatPaginatorModule,
   MatSortModule,
-  MatInputModule
+  MatInputModule,
+  MatDialogModule
 } from '@angular/material';
-import { ThemePickerModule } from './theme-picker/theme-picker.module';
+import { DemoItemModule } from './demo-item';
+import { ThemePickerModule } from './theme-picker';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -33,16 +35,17 @@ const MATERIAL_MODULES = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
-  MatInputModule
+  MatInputModule,
+  MatDialogModule
 ]
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ThemePickerModule,
+    DemoItemModule,
     ...MATERIAL_MODULES,
   ],
   exports: [
@@ -50,6 +53,7 @@ const MATERIAL_MODULES = [
     FormsModule,
     ReactiveFormsModule,
     ThemePickerModule,
+    DemoItemModule,
     ...MATERIAL_MODULES,
   ],
 })

@@ -13,6 +13,16 @@
         background: map-get($map: $background, $key: background);
     }
 
+    .app-demo-item-wrapper {
+        border: 1px solid rgba(mat-color($foreground, secondary-text), 0.03);
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .app-demo-item-title {
+        color: mat-color($foreground, secondary-text);
+        background: rgba(mat-color($foreground, secondary-text), 0.03);
+    }
+
     @include grid-demo-theme($theme);
     @include table-demo-theme($theme);
 }

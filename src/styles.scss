@@ -72,3 +72,17 @@ body, html {
 .fill-spacer {
     flex: 1 1 auto;
 }
+
+.app-demo-item-wrapper {
+    width: 80%;
+    margin-top: 20px;
+    // border: 1px solid rgba(0,0,0,.03);
+}
+
+.app-demo-item-title {
+    padding: 20px;
+}
+
+.app-demo-item-table-wrapper {
+    padding: 30px;
+}
