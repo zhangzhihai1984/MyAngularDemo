@@ -16,7 +16,8 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDividerModule
 } from '@angular/material';
 import { DemoItemModule } from './demo-item';
 import { ThemePickerModule } from './theme-picker';
@@ -36,7 +37,8 @@ const MATERIAL_MODULES = [
   MatPaginatorModule,
   MatSortModule,
   MatInputModule,
-  MatDialogModule
+  MatDialogModule,
+  MatDividerModule
 ]
 
 @NgModule({
