@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { Tile } from '../grid.component';
+import { Tile } from '../grid-list/grid-list.component';
 
 @Component({
   selector: 'app-grid-item',

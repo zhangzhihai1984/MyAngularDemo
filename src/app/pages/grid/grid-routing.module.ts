@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GridComponent } from './grid.component';
+import { GridListComponent } from './grid-list/grid-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: GridComponent,
+    component: GridListComponent,
     data: { animState: 'GridPage' }
   }
 ];
