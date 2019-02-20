@@ -1,0 +1,8 @@
+<div mat-dialog-title>Edit Your Name</div>
+<mat-form-field>
+  <input matInput [(ngModel)]="name">
+</mat-form-field>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="name">Confirm</button>
+</mat-dialog-actions>

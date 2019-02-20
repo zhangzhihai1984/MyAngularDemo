@@ -2,5 +2,14 @@
   <button mat-raised-button (click)="openDialog1()">Click Me</button>
 </app-demo-item>
 <app-demo-item title="Dialog with different align in acitons">
-    <button mat-raised-button (click)="openDialog2()">Click Me</button>
-  </app-demo-item>
+  <button mat-raised-button (click)="openDialog2()">Click Me</button>
+</app-demo-item>
+<app-demo-item title="Dialog with sharing data">
+  <mat-form-field>
+    <input matInput placeholder="input your name" [(ngModel)]="name">
+  </mat-form-field>
+  <div>
+    <button mat-raised-button (click)="openDialog3()">Click Me</button>
+  </div>
+
+</app-demo-item>
