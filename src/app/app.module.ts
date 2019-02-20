@@ -10,6 +10,7 @@ import { HomePageModule } from './pages/home-page';
 import { TableModule } from './pages/table';
 import { AnimationModule } from './pages/animation';
 import { GridModule } from './pages/grid';
+import { DialogModule } from './pages/dialog';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { GridModule } from './pages/grid';
     TableModule,
     AnimationModule,
     GridModule,
+    DialogModule
   ],
   declarations: [
     AppComponent

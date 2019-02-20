@@ -5,14 +5,15 @@ import { TableComponent } from './pages/table/table.component';
 import { TableGuard } from './pages/table/table-guard';
 import { TableModule } from './pages/table';
 import { AnimationModule } from './pages/animation';
-import { GridModule } from './pages/grid/grid.module';
+import { GridModule } from './pages/grid';
+import { DialogModule } from './pages/dialog';
 
 const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
     pathMatch: 'full',
-    data: {animState: 'HomePage'}
+    data: { animState: 'HomePage' }
   },
   {
     path: 'table',
@@ -28,6 +29,11 @@ const routes: Routes = [
   {
     path: 'grid',
     loadChildren: () => GridModule,
+    pathMatch: 'full'
+  },
+  {
+    path: 'dialog',
+    loadChildren: () => DialogModule,
     pathMatch: 'full'
   },
   {
