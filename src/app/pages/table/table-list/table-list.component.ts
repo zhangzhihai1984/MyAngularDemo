@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { PeriodicElement, ELEMENT_DATA } from './table.model';
+import { PeriodicElement, ELEMENT_DATA } from '../table.model';
 import { Observable, of } from 'rxjs';
-import { TableColumnConfig } from './table.config';
+import { TableColumnConfig } from '../table.config';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: 'app-table-list',
+  templateUrl: './table-list.component.html',
+  styleUrls: ['./table-list.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableListComponent implements OnInit {
   data$: Observable<PeriodicElement[]> = of(ELEMENT_DATA);
 
   columnConfigs: TableColumnConfig[] = [
