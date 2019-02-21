@@ -9,7 +9,7 @@ import { RouterOutlet } from '@angular/router';
   animations: [routeAnimation]
 })
 export class AppComponent {
-  choosenTheme: string = 'deeppurple-amber-theme';
+  choosenTheme: string = 'indigo-pink-theme';
 
   constructor() {
   }

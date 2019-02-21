@@ -20,7 +20,7 @@ export class ThemePickerComponent implements OnInit {
     { name: 'pink-bluegrey-theme', color: '#E91E63' },
     { name: 'purple-green-theme', color: '#9C27B0' },
   ]
-  choosenTheme: string = 'deeppurple-amber-theme';
+  choosenTheme: string = 'indigo-pink-theme';
 
   chooseTheme(theme: string) {
     this.choosenTheme = theme;

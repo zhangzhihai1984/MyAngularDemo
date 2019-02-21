@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatMenu } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-menu-list',
@@ -8,12 +7,13 @@ import { MatMenu } from '@angular/material';
 })
 export class MenuListComponent implements OnInit {
 
-  @ViewChild(MatMenu) matMenu: MatMenu;
+  xPosition = 'after';
+  yPosition = 'below';
+  overlapTrigger = false;
+
 
   constructor() { }
 
   ngOnInit() {
-    this.matMenu.yPosition = 'above';
   }
-
 }

@@ -1,3 +1,26 @@
+<app-demo-item title="Config Menu Position">
+  <mat-list>
+    <mat-list-item>
+      xPosition:
+      <mat-radio-group [(ngModel)]="xPosition">
+        <mat-radio-button value="before">before</mat-radio-button>
+        <mat-radio-button value="after">after</mat-radio-button>
+      </mat-radio-group>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      yPosition:
+      <mat-radio-group [(ngModel)]="yPosition">
+        <mat-radio-button value="above">above</mat-radio-button>
+        <mat-radio-button value="below">below</mat-radio-button>
+      </mat-radio-group>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-checkbox labelPosition="before" [(ngModel)]="overlapTrigger">Overlap Trigger</mat-checkbox>
+    </mat-list-item>
+  </mat-list>
+</app-demo-item>
 <app-demo-item title="Basic Menu">
   <button mat-button [matMenuTriggerFor]="basicMenu">Menu</button>
   <button mat-icon-button [matMenuTriggerFor]="basicMenu">
@@ -7,7 +30,7 @@
 
 <app-demo-item></app-demo-item>
 
-<mat-menu #basicMenu="matMenu" xPosition="before" [overlapTrigger]="true">
+<mat-menu #basicMenu="matMenu" [xPosition]="xPosition" [yPosition]="yPosition" [overlapTrigger]="overlapTrigger">
   <button mat-menu-item>Item1</button>
   <button mat-menu-item>Item2</button>
   <button mat-menu-item disabled>Item3</button>
