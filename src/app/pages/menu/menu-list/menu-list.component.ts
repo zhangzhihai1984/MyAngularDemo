@@ -11,6 +11,19 @@ export class MenuListComponent implements OnInit {
   yPosition = 'below';
   overlapTrigger = false;
 
+  menuData1 = {
+    $implicit: 'Dialog1',
+    items: [
+      { name: 'Item1' },
+      { name: 'Item2' },
+      { name: 'Item3' }
+    ]
+  }
+
+  menuData2 = {
+    ...this.menuData1,
+    $implicit: 'Dialog2'
+  }
 
   constructor() { }
 

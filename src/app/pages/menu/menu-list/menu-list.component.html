@@ -27,11 +27,27 @@
     <mat-icon>more_vert</mat-icon>
   </button>
 </app-demo-item>
-
-<app-demo-item></app-demo-item>
+<app-demo-item title="Menu With Data">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-subtitle>
+        Data of Menu1:
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>{{menuData1 | json}}</mat-card-content>
+  </mat-card>
+  <button mat-button [matMenuTriggerFor]="dataMenu" [matMenuTriggerData]="menuData1">Menu1</button>
+  <button mat-button [matMenuTriggerFor]="dataMenu" [matMenuTriggerData]="menuData2">Menu2</button>
+</app-demo-item>
 
 <mat-menu #basicMenu="matMenu" [xPosition]="xPosition" [yPosition]="yPosition" [overlapTrigger]="overlapTrigger">
   <button mat-menu-item>Item1</button>
   <button mat-menu-item>Item2</button>
   <button mat-menu-item disabled>Item3</button>
+</mat-menu>
+
+<mat-menu #dataMenu="matMenu" [xPosition]="xPosition" [yPosition]="yPosition" [overlapTrigger]="overlapTrigger">
+  <ng-template matMenuContent let-prefix let-items="items">
+    <button *ngFor="let item of items" mat-menu-item>{{item.name}} of {{prefix}}</button>
+  </ng-template>
 </mat-menu>
