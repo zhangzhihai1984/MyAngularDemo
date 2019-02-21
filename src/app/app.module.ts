@@ -11,6 +11,7 @@ import { TableModule } from './pages/table';
 import { AnimationModule } from './pages/animation';
 import { GridModule } from './pages/grid';
 import { DialogModule } from './pages/dialog';
+import { MenuModule } from './pages/menu';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { DialogModule } from './pages/dialog';
     TableModule,
     AnimationModule,
     GridModule,
-    DialogModule
+    DialogModule,
+    MenuModule
   ],
   declarations: [
     AppComponent

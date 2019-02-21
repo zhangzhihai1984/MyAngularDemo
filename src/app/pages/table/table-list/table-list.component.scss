@@ -5,5 +5,16 @@
 }
 
 mat-form-field {
-    width: 100%;
+    flex: 1;
+}
+
+.table-filter-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.table-filter-button {
+    margin-left: 20px;
+    margin-right: 5px;
 }

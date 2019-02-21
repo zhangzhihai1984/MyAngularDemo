@@ -17,12 +17,20 @@
   </div>
 </app-demo-item>
 <app-demo-item title="Table With Filter">
-  <mat-form-field>
-    <input matInput placeholder="filter" [(ngModel)]="filterValue">
-  </mat-form-field>
+  <div class="table-filter-wrapper">
+    <mat-form-field>
+      <input matInput placeholder="filter" [(ngModel)]="filterValue">
+    </mat-form-field>
+    <button mat-stroked-button class="table-filter-button" [matMenuTriggerFor]="filterMenu">ALL</button>
+  </div>
+
   <div class="mat-elevation-z8">
     <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]"
       [filterValue]="filterValue" sortable="true">
     </app-awesome-table>
   </div>
 </app-demo-item>
+
+<mat-menu #filterMenu="matMenu" [overlapTrigger]="true">
+  <button mat-menu-item *ngFor="let columnConfig of columnConfigs">{{columnConfig.header}}</button>
+</mat-menu>

@@ -38,7 +38,8 @@ const MATERIAL_MODULES = [
   MatSortModule,
   MatInputModule,
   MatDialogModule,
-  MatDividerModule
+  MatDividerModule,
+  MatMenuModule
 ]
 
 @NgModule({

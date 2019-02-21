@@ -1,0 +1,14 @@
+<app-demo-item title="Basic Menu">
+  <button mat-button [matMenuTriggerFor]="basicMenu">Menu</button>
+  <button mat-icon-button [matMenuTriggerFor]="basicMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</app-demo-item>
+
+<app-demo-item></app-demo-item>
+
+<mat-menu #basicMenu="matMenu" xPosition="before" [overlapTrigger]="true">
+  <button mat-menu-item>Item1</button>
+  <button mat-menu-item>Item2</button>
+  <button mat-menu-item disabled>Item3</button>
+</mat-menu>

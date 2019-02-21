@@ -7,6 +7,7 @@ import { TableModule } from './pages/table';
 import { AnimationModule } from './pages/animation';
 import { GridModule } from './pages/grid';
 import { DialogModule } from './pages/dialog';
+import { MenuModule } from './pages/menu';
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'dialog',
     loadChildren: () => DialogModule,
+    pathMatch: 'full'
+  },
+  {
+    path: 'menu',
+    loadChildren: () => MenuModule,
     pathMatch: 'full'
   },
   {

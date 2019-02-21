@@ -75,6 +75,13 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
         return data['name'];
       return data[sortHeaderId];
     }
+
+    // this.dataSource.filterPredicate = (data, filter: string) => {
+    //   console.log('<Filter>', JSON.stringify(data));
+    //   if (JSON.stringify(data).includes('H'))
+    //     return true;
+    //   return false;
+    // }
   }
 
   private checkConfig() {
