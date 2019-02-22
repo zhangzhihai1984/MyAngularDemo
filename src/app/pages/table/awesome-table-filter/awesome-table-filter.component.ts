@@ -13,14 +13,23 @@ import { AwesomeTableComponent } from '../awesome-table/awesome-table.component'
 export class AwesomeTableFilterComponent implements OnInit, OnDestroy {
 
   @Input() placeholder: string;
-  @Input() columnConfigs: TableColumnConfig[];
+  @Input()
+  get columnConfigs(): TableColumnConfig[] {
+    return this._columnConfigs;
+  }
+
+  set columnConfigs(configs: TableColumnConfig[]) {
+    this._columnConfigs = configs.filter(config => config.filterable);
+  }
+
   @Input() filterFor: AwesomeTableComponent;
 
-  buttonText = 'ALL';
-
   form: FormGroup;
-  private filter$: Observable<string>;
+  buttonText: string;
+  readonly FILTER_ALL_TEXT = 'ALL';
 
+  private _columnConfigs: TableColumnConfig[];
+  private filter$: Observable<string>;
   private subscription = new Subscription();
 
   constructor(private fb: FormBuilder) {
@@ -33,7 +42,7 @@ export class AwesomeTableFilterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (!this.filterFor) {
-      throw Error('Input property filterFor must be provided');
+      throw Error('Input property filterFor (AwesomeTableComponent instance) must be provided');
     }
 
     this.subscription.add(this.filter$.pipe(
@@ -41,10 +50,12 @@ export class AwesomeTableFilterComponent implements OnInit, OnDestroy {
       distinctUntilChanged()
     )
       .subscribe(filterValue => {
-        console.log('<Filter>', filterValue);
         this.filterFor.filterValue = filterValue;
       })
     );
+
+    this.buttonText = this.FILTER_ALL_TEXT;
+    this.filterFor.filterProperty = '';
   }
 
   ngOnDestroy() {
@@ -61,10 +72,10 @@ export class AwesomeTableFilterComponent implements OnInit, OnDestroy {
   switchFilter(columnConfig: TableColumnConfig) {
     if (!columnConfig) {
       this.buttonText = 'ALL';
-      console.log('<Filter>', 'ALL');
+      this.filterFor.filterProperty = '';
     } else {
       this.buttonText = columnConfig.header || columnConfig.name;
-      console.log('<Filter>', columnConfig.header);
+      this.filterFor.filterProperty = columnConfig.name;
     }
   }
 }

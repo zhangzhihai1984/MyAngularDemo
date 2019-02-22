@@ -14,13 +14,11 @@ export class TableListComponent implements OnInit {
   data$: Observable<PeriodicElement[]> = of(ELEMENT_DATA);
 
   columnConfigs: TableColumnConfig[] = [
-    { name: 'position', header: 'ID', sortable: true },
-    { name: 'name', header: 'Name', sortable: true },
-    { name: 'weight', header: 'Weight', sortable: true },
-    { name: 'symbol', header: 'Symbol', sortable: true }
+    { name: 'position', header: 'ID', sortable: true, filterable: true },
+    { name: 'name', header: 'Name', sortable: true, filterable: true },
+    { name: 'weight', header: 'Weight', sortable: true, filterable: true },
+    { name: 'symbol', header: 'Symbol', sortable: false, filterable: false }
   ];
-
-  filterValue: string;
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.pipe(map(p => p))

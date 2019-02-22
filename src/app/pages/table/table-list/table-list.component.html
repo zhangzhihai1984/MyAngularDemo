@@ -1,27 +1,17 @@
 <app-demo-item title="Basic Table">
-  <div class="mat-elevation-z8">
-    <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [showPaginator]="false">
-    </app-awesome-table>
-  </div>
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [showPaginator]="false">
+  </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Table With Paginator">
-  <div class="mat-elevation-z8">
-    <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]">
-    </app-awesome-table>
-  </div>
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]">
+  </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Table With Sorting">
-  <div class="mat-elevation-z8">
-    <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]" sortable="true">
-    </app-awesome-table>
-  </div>
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]" sortable="true">
+  </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Table With Filter">
-  <app-awesome-table-filter [filterFor]="table" [columnConfigs]="columnConfigs" placeholder="Input your filter value">
-  </app-awesome-table-filter>
-  <div class="mat-elevation-z8">
-    <app-awesome-table #table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]"
-      [filterValue]="filterValue" sortable="true">
-    </app-awesome-table>
-  </div>
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]" sortable="true"
+    filterable="true">
+  </app-awesome-table>
 </app-demo-item>

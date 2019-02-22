@@ -25,6 +25,8 @@ import { TableColumnConfig } from '../table.config';
 })
 export class AwesomeTableComponent implements OnInit, OnDestroy {
 
+  @Input() tableClasses: string = "mat-elevation-z8";
+
   @Input() data$: Observable<TableCellModel[]>;
   @Input() columnConfigs: TableColumnConfig[];
 
@@ -33,10 +35,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @Input() pageSizeOptions = [5, 10, 20];
 
   @Input() sortable = false;
-
-  @Input() set filterValue(filter: string) {
-    this.dataSource.filter = filter;
-  }
+  @Input() filterable = false;
 
   @Output() pageChanaged = new EventEmitter<PageEvent>();
   @Output() sortChanged = new EventEmitter<Sort>();
@@ -44,15 +43,45 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<TableCellModel> = new MatTableDataSource();
   displayedColumns: string[];
 
+  awesomeTable: AwesomeTableComponent;
+
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   private subscription = new Subscription();
 
+  set filterValue(value: string) {
+    this.dataSource.filter = value;
+  }
+
+  get filterValue(): string {
+    return this.dataSource.filter;
+  }
+
+  set filterProperty(property: string) {
+    this.dataSource.filterPredicate = (data, filter: string) => {
+      const transformedFilter = filter.trim().toLowerCase();
+
+      if (!property) {
+        const dataStr: string = Object.keys(data)
+          .reduce((acc: string, key: string) => acc + data[key], '')
+          .toLowerCase();
+
+        return dataStr.indexOf(transformedFilter) != -1;
+      }
+
+      return (data[property] + '').toLowerCase().indexOf(transformedFilter) != -1;
+    }
+
+    this.dataSource.filter = this.filterValue;
+  }
+
   constructor() { }
 
   ngOnInit() {
     this.checkConfig();
+
+    this.awesomeTable = this;
 
     this.subscription.add(
       this.data$.subscribe(data => {
@@ -61,7 +90,6 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
     );
 
     this.displayedColumns = this.columnConfigs.map(columnConfig => columnConfig.name);
-    // this.displayedColumns = this.displayedColumns.filter(v => v !== 'symbol');
     this.displayedColumns = [...this.displayedColumns, 'testID']
 
     if (this.showPaginator)
@@ -76,12 +104,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
       return data[sortHeaderId];
     }
 
-    // this.dataSource.filterPredicate = (data, filter: string) => {
-    //   console.log('<Filter>', JSON.stringify(data));
-    //   if (JSON.stringify(data).includes('H'))
-    //     return true;
-    //   return false;
-    // }
+
   }
 
   private checkConfig() {

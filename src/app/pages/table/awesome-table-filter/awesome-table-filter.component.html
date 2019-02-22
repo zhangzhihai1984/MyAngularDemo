@@ -11,7 +11,7 @@
 </form>
 
 <mat-menu #filterMenu="matMenu">
-  <button mat-menu-item (click)="switchFilter()">ALL</button>
+  <button mat-menu-item (click)="switchFilter()">{{FILTER_ALL_TEXT}}</button>
   <button mat-menu-item *ngFor="let columnConfig of columnConfigs"
     (click)="switchFilter(columnConfig)">{{columnConfig.header || columnConfig.name}}</button>
 </mat-menu>
