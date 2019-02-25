@@ -25,7 +25,8 @@ import { TableColumnConfig } from '../table.config';
 })
 export class AwesomeTableComponent implements OnInit, OnDestroy {
 
-  @Input() tableClasses: string = "mat-elevation-z8";
+  BUILT_IN_CONTAINER_CLASSES = "mat-elevation-z8 table-container";
+  @Input() containerClasses: string = this.BUILT_IN_CONTAINER_CLASSES;
 
   @Input() data$: Observable<TableCellModel[]>;
   @Input() columnConfigs: TableColumnConfig[];
@@ -36,6 +37,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
 
   @Input() sortable = false;
   @Input() filterable = false;
+  @Input() filterPlaceholder: string;
 
   @Output() pageChanaged = new EventEmitter<PageEvent>();
   @Output() sortChanged = new EventEmitter<Sort>();
