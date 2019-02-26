@@ -7,17 +7,21 @@
   </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Table With Sorting">
-  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]" sortable="true">
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" sortable="true">
   </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Table With Filter">
-  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]" sortable="true"
-    filterable="true" filterPlaceholder="Input your filter value">
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" sortable="true" filterable="true"
+    filterPlaceholder="Input your filter value">
   </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Table With Sticker">
   <app-awesome-table class="height-limitation" filterable="true" [data$]="data$" [columnConfigs]="columnConfigs"
     [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+  </app-awesome-table>
+</app-demo-item>
+<app-demo-item title="Table With Content Align">
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" contentAlign="center">
   </app-awesome-table>
 </app-demo-item>
 

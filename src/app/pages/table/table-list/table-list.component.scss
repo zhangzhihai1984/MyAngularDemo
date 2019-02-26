@@ -4,13 +4,10 @@
     align-items: center;
 }
 
-.table-container {
-    width: 100%;
-    max-height: 500px;
-    display: flex;
-    flex-direction: column;
-}
-
 .height-limitation {
     max-height: 500px;
+}
+
+mat-radio-button {
+    margin-left: 15px;
 }

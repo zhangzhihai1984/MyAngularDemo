@@ -32,3 +32,49 @@ mat-paginator {
     flex: none;
     align-self: flex-end;
 }
+
+@mixin content-align($align, $justify) {
+    ::ng-deep .mat-sort-header-container { justify-content: $justify; }
+    .mat-cell { text-align: $align; }
+}
+
+.content-align-start {
+    @include content-align(start, flex-start);
+}
+
+.content-align-center {
+    @include content-align(center, center);
+}
+
+.content-align-end {
+    @include content-align(end, flex-end);
+}
+
+// ::ng-deep .mat-table-sticky {
+//     background: cadetblue !important;
+// }
+
+//   .mat-header-cell {
+//       border-right-width: 1px;
+//       border-right-style: solid;
+//       border-right-color: #e0e0e0;
+//   }
+
+//   th.mat-column-name, td.mat-column-name {
+//   }
+
+//   .mat-cell {
+//     border-right-width: 1px;
+//       border-right-style: solid;
+//       border-right-color: #e0e0e0;
+//   }
+
+
+
+  .mat-table-sticky:first-child {
+    // border-right: 1px solid #e0e0e0;
+  }
+
+  .mat-table-sticky:last-child {
+    // border-left: 1px solid #e0e0e0;
+  }

@@ -35,6 +35,8 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @Input() pageSize = 5;
   @Input() pageSizeOptions = [5, 10, 20];
 
+  @Input() contentAlign: 'start' | 'center' | 'end' = 'start';
+
   @Input() sortable = false;
   @Input() filterable = false;
   @Input() filterPlaceholder: string;
@@ -51,6 +53,14 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
 
   private subscription = new Subscription();
+
+  get contentAlignClass() {
+    return {
+      'content-align-start': this.contentAlign === 'start',
+      'content-align-center': this.contentAlign === 'center',
+      'content-align-end': this.contentAlign === 'end'
+    };
+  }
 
   set filterValue(value: string) {
     this.dataSource.filter = value;
@@ -92,7 +102,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
     );
 
     this.displayedColumns = this.columnConfigs.map(columnConfig => columnConfig.name);
-    this.displayedColumns = [...this.displayedColumns, 'testID']
+    // this.displayedColumns = [...this.displayedColumns, 'testID']
 
     if (this.showPaginator)
       this.dataSource.paginator = this.paginator;

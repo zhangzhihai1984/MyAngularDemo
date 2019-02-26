@@ -3,4 +3,6 @@ export class TableColumnConfig {
     header?: string;
     sortable?: boolean;
     filterable?: boolean;
+    stickyStart?: boolean;
+    stickyEnd?: boolean;
 }
