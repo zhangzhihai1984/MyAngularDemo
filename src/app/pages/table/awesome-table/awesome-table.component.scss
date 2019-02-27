@@ -28,9 +28,8 @@ table {
     width: 100%;
 }
 
-mat-paginator {
-    flex: none;
-    align-self: flex-end;
+.pagnimator-wrapper {
+    width: 100%;
 }
 
 @mixin content-align($align, $justify) {

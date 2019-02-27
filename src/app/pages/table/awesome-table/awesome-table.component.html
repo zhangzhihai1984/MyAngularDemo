@@ -3,8 +3,8 @@
 </app-awesome-table-filter>
 <div [class]="containerClasses">
   <div class="table-wrapper">
-    <table class="table-theme" [ngClass]="tableAdditionalClasses" [ngClass]="borderClass" mat-table
-      [dataSource]="dataSource" matSort [matSortDisabled]="!sortable" (matSortChange)="onSortChanged($event)">
+    <table mat-table class="table-theme" [ngClass]="tableAdditionalClasses" [dataSource]="dataSource" matSort
+      [matSortDisabled]="!sortable" (matSortChange)="onSortChanged($event)">
       <ng-container *ngFor="let columnConfig of columnConfigs" matColumnDef={{columnConfig.name}}
         [sticky]="columnConfig.stickyStart" [stickyEnd]="columnConfig.stickyEnd">
         <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!columnConfig.sortable">
@@ -24,7 +24,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-  <mat-paginator #paginator [ngStyle]="{'display': showPaginator ? 'inherit' : 'none'}" [pageSize]="pageSize"
-    [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
-  </mat-paginator>
+  <div class="pagnimator-wrapper">
+    <mat-paginator #paginator [ngStyle]="{'display': showPaginator ? 'inherit' : 'none'}" [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
+    </mat-paginator>
+  </div>
 </div>
