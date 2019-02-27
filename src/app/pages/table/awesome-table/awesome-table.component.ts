@@ -36,6 +36,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @Input() pageSizeOptions = [5, 10, 20];
 
   @Input() contentAlign: 'start' | 'center' | 'end' = 'start';
+  @Input() border: 'none' | 'vertical' | 'horizontal' | 'all' = 'horizontal';
 
   @Input() sortable = false;
   @Input() filterable = false;
@@ -54,12 +55,24 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
 
   private subscription = new Subscription();
 
-  get contentAlignClass() {
-    return {
+  get tableAdditionalClasses() {
+    const contentAlignClass = {
       'content-align-start': this.contentAlign === 'start',
       'content-align-center': this.contentAlign === 'center',
       'content-align-end': this.contentAlign === 'end'
     };
+
+    const borderClass = {
+      'border-none': this.border === 'none',
+      'border-vertical': this.border === 'vertical',
+      // 'border-horizontal': this.border === 'horizontal',
+      'border-all': this.border === 'all'
+    };
+
+    return {
+      ...contentAlignClass,
+      ...borderClass,
+    }
   }
 
   set filterValue(value: string) {

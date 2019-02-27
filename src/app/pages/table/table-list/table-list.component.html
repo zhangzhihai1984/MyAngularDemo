@@ -20,8 +20,28 @@
     [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
   </app-awesome-table>
 </app-demo-item>
-<app-demo-item title="Table With Content Align">
-  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" contentAlign="center">
+<app-demo-item title="Table With Content Align & Border">
+  <mat-list>
+    <mat-list-item>
+      Content Align:
+      <mat-radio-group [(ngModel)]="contentAlign">
+        <mat-radio-button value="start">start</mat-radio-button>
+        <mat-radio-button value="center">center</mat-radio-button>
+        <mat-radio-button value="end">end</mat-radio-button>
+      </mat-radio-group>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      Border:
+      <mat-radio-group [(ngModel)]="border">
+        <mat-radio-button value="none">none</mat-radio-button>
+        <mat-radio-button value="vertical">vertical</mat-radio-button>
+        <mat-radio-button value="horizontal">horizontal</mat-radio-button>
+        <mat-radio-button value="all">all</mat-radio-button>
+      </mat-radio-group>
+    </mat-list-item>
+  </mat-list>
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [contentAlign]="contentAlign" [border]="border">
   </app-awesome-table>
 </app-demo-item>
 

@@ -20,6 +20,9 @@ export class TableListComponent implements OnInit {
     { name: 'symbol', header: 'Symbol', sortable: false, filterable: false, stickyEnd: false }
   ];
 
+  contentAlign = 'center';
+  border = 'all';
+
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.pipe(map(p => p))
       .subscribe(v => console.log('<Route>', '<Param>', v));

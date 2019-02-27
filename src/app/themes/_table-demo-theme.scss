@@ -4,4 +4,10 @@
     $warn: map-get($theme, warn);
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
+
+    .table-theme {
+        .mat-header-cell, .mat-cell {
+            border-right-color: mat-color($foreground, divider);
+        }
+    }
 }
