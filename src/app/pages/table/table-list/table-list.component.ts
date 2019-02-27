@@ -22,6 +22,7 @@ export class TableListComponent implements OnInit {
 
   contentAlign = 'center';
   border = 'all';
+  elevation = 8;
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.pipe(map(p => p))

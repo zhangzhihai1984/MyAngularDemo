@@ -25,9 +25,6 @@ import { TableColumnConfig } from '../table.config';
 })
 export class AwesomeTableComponent implements OnInit, OnDestroy {
 
-  BUILT_IN_CONTAINER_CLASSES = "mat-elevation-z8 table-container";
-  @Input() containerClasses: string = this.BUILT_IN_CONTAINER_CLASSES;
-
   @Input() data$: Observable<TableCellModel[]>;
   @Input() columnConfigs: TableColumnConfig[];
 
@@ -35,6 +32,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @Input() pageSize = 5;
   @Input() pageSizeOptions = [5, 10, 20];
 
+  @Input() elevation: number = 8;
   @Input() contentAlign: 'start' | 'center' | 'end' = 'start';
   @Input() border: 'none' | 'vertical' | 'horizontal' | 'all' = 'horizontal';
 

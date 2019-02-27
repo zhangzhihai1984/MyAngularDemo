@@ -1,7 +1,7 @@
 <app-awesome-table-filter *ngIf="filterable" [filterFor]="awesomeTable" [columnConfigs]="columnConfigs"
   [placeholder]="filterPlaceholder">
 </app-awesome-table-filter>
-<div [class]="containerClasses">
+<div class="table-container mat-elevation-z{{elevation}} ">
   <div class="table-wrapper">
     <table mat-table class="table-theme" [ngClass]="tableAdditionalClasses" [dataSource]="dataSource" matSort
       [matSortDisabled]="!sortable" (matSortChange)="onSortChanged($event)">

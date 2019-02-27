@@ -19,7 +19,8 @@ import {
   MatDialogModule,
   MatDividerModule,
   MatRadioModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSliderModule
 } from '@angular/material';
 import { DemoItemModule } from './demo-item';
 import { ThemePickerModule } from './theme-picker';
@@ -43,7 +44,8 @@ const MATERIAL_MODULES = [
   MatDividerModule,
   MatMenuModule,
   MatRadioModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSliderModule
 ]
 
 @NgModule({

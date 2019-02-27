@@ -44,6 +44,12 @@
   <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [contentAlign]="contentAlign" [border]="border">
   </app-awesome-table>
 </app-demo-item>
+<app-demo-item title="Table With Elevation">
+  <mat-slider thumbLabel max="24" min="0" [(ngModel)]="elevation"></mat-slider>
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [pageSizeOptions]="[5, 10, 20]"
+    [elevation]="elevation">
+  </app-awesome-table>
+</app-demo-item>
 
 <!-- <div style="width: 30%; height: 200px; background: cadetblue; display: flex; flex-direction: column;">
     <div style="flex: none; height: 50px; background: burlywood">1</div>
