@@ -20,3 +20,16 @@ mat-slider {
     width: 50%;
     margin-bottom: 15px;
 }
+
+.sort-column-selector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // justify-content: space-around;
+    margin-bottom: 15px;
+
+    mat-checkbox:not(:first-child) {
+        margin-left: 25px;
+    }
+}
+

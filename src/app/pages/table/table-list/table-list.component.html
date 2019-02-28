@@ -7,7 +7,15 @@
   </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Table With Sorting">
-  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" sortable="true">
+  <div class="sort-column-selector">
+    <mat-checkbox [(ngModel)]="sortDisabled">Disabled</mat-checkbox>
+  </div>
+  <div class="sort-column-selector" *ngIf="!sortDisabled">
+    <mat-checkbox *ngFor="let columnConfig of columnConfigs" [(ngModel)]="columnConfig.sortable">
+      {{columnConfig.header}}
+    </mat-checkbox>
+  </div>
+  <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [sortable]="!sortDisabled">
   </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Table With Filter">

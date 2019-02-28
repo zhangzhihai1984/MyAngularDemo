@@ -20,6 +20,7 @@ export class TableListComponent implements OnInit {
     { name: 'symbol', header: 'Symbol', sortable: false, filterable: false, stickyEnd: false }
   ];
 
+  sortDisabled = false;
   contentAlign = 'center';
   border = 'all';
   elevation = 8;
