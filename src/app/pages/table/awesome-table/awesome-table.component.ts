@@ -69,14 +69,9 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
       'border-all': this.border === 'all'
     };
 
-    const stickyClass = {
-      'column-sticky': this.columnConfigs.filter(config => config.stickyStart),
-    };
-
     return {
       ...contentAlignClass,
       ...borderClass,
-      ...stickyClass
     }
   }
 
@@ -106,6 +101,16 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
     this.dataSource.filter = this.filterValue;
   }
 
+  get stickyColumnClass(): string {
+    const start = this.columnConfigs.map(config => config.stickyStart).lastIndexOf(true);
+    const end = this.columnConfigs.map(config => config.stickyEnd).indexOf(true);
+
+    const startClass = start >= 0 ? `sticky-column-start-${start + 1}` : '';
+    const endClass = end > 0 ? `sticky-column-end-${this.columnConfigs.length - end}` : '';
+
+    return `${startClass} ${endClass}`.trim();
+  }
+
   constructor() { }
 
   ngOnInit() {
@@ -119,7 +124,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
       })
     );
 
-    this.displayedColumns = this.columnConfigs.map(columnConfig => columnConfig.name);
+    this.displayedColumns = this.columnConfigs.map(config => config.name);
     // this.displayedColumns = [...this.displayedColumns, 'testID']
     // this.displayedColumns.length = 12;
     // this.displayedColumns.fill('filler');

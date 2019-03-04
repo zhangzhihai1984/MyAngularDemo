@@ -1,6 +1,6 @@
 <app-demo-item title="Table With Sticker">
   <mat-checkbox [(ngModel)]="stickyHeader">Sticky Header</mat-checkbox>
-  <app-awesome-table class="height-limitation" [data$]="data$" [columnConfigs]="columnConfigs" [pageSize]="10"
+  <app-awesome-table class="size-limitation" [data$]="data$" [columnConfigs]="columnConfigs" [pageSize]="10"
     [pageSizeOptions]="[5, 10, 20]" filterable="true" contentAlign="center" border="horizontal"
     [stickyHeader]="stickyHeader">
   </app-awesome-table>

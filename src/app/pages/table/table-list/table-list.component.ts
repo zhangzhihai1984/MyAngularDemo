@@ -14,10 +14,12 @@ export class TableListComponent implements OnInit {
   data$: Observable<PeriodicElement[]> = of(ELEMENT_DATA);
 
   columnConfigs: TableColumnConfig[] = [
-    { name: 'position', header: 'ID', sortable: true, filterable: true, stickyStart: false },
+    { name: 'position', header: 'ID', sortable: true, filterable: true, stickyStart: true },
     { name: 'name', header: 'Name', sortable: true, filterable: true, stickyStart: false },
-    { name: 'weight', header: 'Weight', sortable: true, filterable: true, stickyEnd: false  },
-    { name: 'symbol', header: 'Symbol', sortable: false, filterable: false, stickyEnd: false }
+    { name: 'zh', header: 'ZH', sortable: true, filterable: true, stickyStart: false },
+    { name: 'weight', header: 'Weight', sortable: true, filterable: true, stickyEnd: false },
+    { name: 'symbol', header: 'Symbol', sortable: false, filterable: false, stickyEnd: false },
+    { name: 'discoverer', header: 'Discoverer', sortable: false, filterable: false, stickyEnd: false }
   ];
 
   sortDisabled = false;

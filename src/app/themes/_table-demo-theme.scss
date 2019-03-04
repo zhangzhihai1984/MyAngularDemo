@@ -7,6 +7,7 @@
 
     .table-theme {
         .mat-header-cell, .mat-cell {
+            border-left-color: mat-color($foreground, divider);
             border-right-color: mat-color($foreground, divider);
         }
     }
