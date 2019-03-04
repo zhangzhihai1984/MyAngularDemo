@@ -36,6 +36,8 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @Input() contentAlign: 'start' | 'center' | 'end' = 'start';
   @Input() border: 'none' | 'vertical' | 'horizontal' | 'all' = 'horizontal';
 
+  @Input() stickyHeader = false;
+
   @Input() sortable = false;
   @Input() filterable = false;
   @Input() filterPlaceholder: string;
@@ -44,7 +46,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @Output() sortChanged = new EventEmitter<Sort>();
 
   dataSource: MatTableDataSource<TableCellModel> = new MatTableDataSource();
-  displayedColumns: string[];
+  displayedColumns: string[] = [];
 
   awesomeTable: AwesomeTableComponent;
 
@@ -67,9 +69,14 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
       'border-all': this.border === 'all'
     };
 
+    const stickyClass = {
+      'column-sticky': this.columnConfigs.filter(config => config.stickyStart),
+    };
+
     return {
       ...contentAlignClass,
       ...borderClass,
+      ...stickyClass
     }
   }
 
@@ -114,7 +121,14 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
 
     this.displayedColumns = this.columnConfigs.map(columnConfig => columnConfig.name);
     // this.displayedColumns = [...this.displayedColumns, 'testID']
+    // this.displayedColumns.length = 12;
+    // this.displayedColumns.fill('filler');
 
+    // The first two columns should be position and name; the last two columns: weight, symbol
+    // this.displayedColumns[0] = 'position';
+    // this.displayedColumns[1] = 'name';
+    // this.displayedColumns[10] = 'weight';
+    // this.displayedColumns[11] = 'symbol';
     if (this.showPaginator)
       this.dataSource.paginator = this.paginator;
 
@@ -126,8 +140,6 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
         return data['name'];
       return data[sortHeaderId];
     }
-
-
   }
 
   private checkConfig() {

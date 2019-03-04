@@ -1,3 +1,10 @@
+<app-demo-item title="Table With Sticker">
+  <mat-checkbox [(ngModel)]="stickyHeader">Sticky Header</mat-checkbox>
+  <app-awesome-table class="height-limitation" [data$]="data$" [columnConfigs]="columnConfigs" [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]" filterable="true" contentAlign="center" border="horizontal"
+    [stickyHeader]="stickyHeader">
+  </app-awesome-table>
+</app-demo-item>
 <app-demo-item title="Basic Table">
   <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [showPaginator]="false">
   </app-awesome-table>
@@ -23,11 +30,7 @@
     filterPlaceholder="Input your filter value">
   </app-awesome-table>
 </app-demo-item>
-<app-demo-item title="Table With Sticker">
-  <app-awesome-table class="height-limitation" filterable="true" [data$]="data$" [columnConfigs]="columnConfigs"
-    [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
-  </app-awesome-table>
-</app-demo-item>
+
 <app-demo-item title="Table With Content Align & Border">
   <mat-list>
     <mat-list-item>
