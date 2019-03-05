@@ -126,14 +126,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
 
     this.displayedColumns = this.columnConfigs.map(config => config.name);
     // this.displayedColumns = [...this.displayedColumns, 'testID']
-    // this.displayedColumns.length = 12;
-    // this.displayedColumns.fill('filler');
 
-    // The first two columns should be position and name; the last two columns: weight, symbol
-    // this.displayedColumns[0] = 'position';
-    // this.displayedColumns[1] = 'name';
-    // this.displayedColumns[10] = 'weight';
-    // this.displayedColumns[11] = 'symbol';
     if (this.showPaginator)
       this.dataSource.paginator = this.paginator;
 

@@ -1,8 +1,20 @@
-<app-demo-item title="Table With Sticker">
-  <mat-checkbox [(ngModel)]="stickyHeader">Sticky Header</mat-checkbox>
+<app-demo-item title="Table With Sticky Header & Column">
+  <div class="sticky-selector ">
+    <span>Header</span>
+    <mat-checkbox [(ngModel)]="stickyHeaderDisabled">Disabled</mat-checkbox>
+  </div>
+  <div class="sticky-selector ">
+    <span>Column Start</span>
+    <mat-checkbox [(ngModel)]="columnConfigs[0].stickyStart">ID</mat-checkbox>
+    <mat-checkbox [(ngModel)]="columnConfigs[1].stickyStart">Name</mat-checkbox>
+  </div>
+  <div class="sticky-selector ">
+    <span>Column End</span>
+    <mat-checkbox [(ngModel)]="columnConfigs[columnConfigs.length - 2].stickyEnd">Symbol</mat-checkbox>
+    <mat-checkbox [(ngModel)]="columnConfigs[columnConfigs.length - 1].stickyEnd">Discoverer</mat-checkbox>
+  </div>
   <app-awesome-table class="size-limitation" [data$]="data$" [columnConfigs]="columnConfigs" [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 20]" filterable="true" contentAlign="center" border="horizontal"
-    [stickyHeader]="stickyHeader">
+    [pageSizeOptions]="[5, 10, 20]" filterable="true" contentAlign="center" [stickyHeader]="!stickyHeaderDisabled">
   </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Basic Table">

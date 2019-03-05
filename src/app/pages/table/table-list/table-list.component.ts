@@ -16,8 +16,8 @@ export class TableListComponent implements OnInit {
   columnConfigs: TableColumnConfig[] = [
     { name: 'position', header: 'ID', sortable: true, filterable: true, stickyStart: true },
     { name: 'name', header: 'Name', sortable: true, filterable: true, stickyStart: false },
-    { name: 'zh', header: 'ZH', sortable: true, filterable: true, stickyStart: false },
-    { name: 'weight', header: 'Weight', sortable: true, filterable: true, stickyEnd: false },
+    { name: 'zh', header: 'ZH', sortable: true, filterable: true },
+    { name: 'weight', header: 'Weight', sortable: true, filterable: true },
     { name: 'symbol', header: 'Symbol', sortable: false, filterable: false, stickyEnd: false },
     { name: 'discoverer', header: 'Discoverer', sortable: false, filterable: false, stickyEnd: false }
   ];
@@ -26,7 +26,7 @@ export class TableListComponent implements OnInit {
   contentAlign = 'center';
   border = 'all';
   elevation = 8;
-  stickyHeader = true;
+  stickyHeaderDisabled = false;
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.pipe(map(p => p))

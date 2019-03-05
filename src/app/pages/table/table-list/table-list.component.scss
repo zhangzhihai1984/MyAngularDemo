@@ -24,7 +24,7 @@ mat-slider {
     margin-bottom: 15px;
 }
 
-.sort-column-selector {
+.sort-column-selector, .sticky-selector {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,6 +32,12 @@ mat-slider {
 
     mat-checkbox:not(:first-child) {
         margin-left: 25px;
+    }
+}
+
+.sticky-selector {
+    span {
+        width: 100px;
     }
 }
 
