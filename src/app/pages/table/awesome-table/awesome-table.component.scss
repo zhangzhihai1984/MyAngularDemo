@@ -55,7 +55,7 @@ table {
 
 @mixin content-align($align, $justify) {
     ::ng-deep .mat-sort-header-container { justify-content: $justify; }
-    .mat-cell { text-align: $align; }
+    .mat-cell:not(.detail-td) { text-align: $align; }
 }
 
 .content-align-start {
@@ -91,9 +91,14 @@ table {
     }
 }
 
+.detail-tr {
+    height: 0;
+}
+
 // ::ng-deep .mat-table-sticky {
 //     background: cadetblue !important;
 // }
+
 
 .mat-header-cell, .mat-footer-cell, .mat-cell {
     // min-width: 180px;

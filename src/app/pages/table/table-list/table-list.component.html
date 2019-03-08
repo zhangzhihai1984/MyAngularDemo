@@ -1,20 +1,25 @@
 <app-demo-item title="Table With Sticky Header & Column">
-  <div class="sticky-selector ">
+  <div class="sticky-selector">
     <span>Header</span>
     <mat-checkbox [(ngModel)]="stickyHeaderDisabled">Disabled</mat-checkbox>
   </div>
-  <div class="sticky-selector ">
+  <div class="sticky-selector">
+    <span>Column Border</span>
+    <mat-checkbox [(ngModel)]="stickyColumnBorderDisabled">Disabled</mat-checkbox>
+  </div>
+  <div class="sticky-selector">
     <span>Column Start</span>
     <mat-checkbox [(ngModel)]="columnConfigs[0].stickyStart">ID</mat-checkbox>
     <mat-checkbox [(ngModel)]="columnConfigs[1].stickyStart">Name</mat-checkbox>
   </div>
-  <div class="sticky-selector ">
+  <div class="sticky-selector">
     <span>Column End</span>
     <mat-checkbox [(ngModel)]="columnConfigs[columnConfigs.length - 2].stickyEnd">Symbol</mat-checkbox>
     <mat-checkbox [(ngModel)]="columnConfigs[columnConfigs.length - 1].stickyEnd">Discoverer</mat-checkbox>
   </div>
   <app-awesome-table class="size-limitation" [data$]="data$" [columnConfigs]="columnConfigs" [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 20]" filterable="true" contentAlign="center" [stickyHeader]="!stickyHeaderDisabled">
+    [pageSizeOptions]="[5, 10, 20]" filterable="true" contentAlign="center" [stickyHeader]="!stickyHeaderDisabled"
+    [stickyColumnBorder]="!stickyColumnBorderDisabled">
   </app-awesome-table>
 </app-demo-item>
 <app-demo-item title="Basic Table">

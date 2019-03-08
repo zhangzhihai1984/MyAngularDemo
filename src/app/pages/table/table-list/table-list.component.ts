@@ -27,6 +27,7 @@ export class TableListComponent implements OnInit {
   border = 'all';
   elevation = 8;
   stickyHeaderDisabled = false;
+  stickyColumnBorderDisabled = false;
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.pipe(map(p => p))

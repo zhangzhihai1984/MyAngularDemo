@@ -17,11 +17,13 @@ import {
 import { TableCellModel } from '../table.model';
 import { Observable, Subscription, of } from 'rxjs';
 import { TableColumnConfig } from '../table.config';
+import { detailRowAnimation } from './awesome-table.animation';
 
 @Component({
   selector: 'app-awesome-table',
   templateUrl: './awesome-table.component.html',
-  styleUrls: ['./awesome-table.component.scss']
+  styleUrls: ['./awesome-table.component.scss'],
+  animations: [detailRowAnimation]
 })
 export class AwesomeTableComponent implements OnInit, OnDestroy {
 
@@ -37,6 +39,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @Input() border: 'none' | 'vertical' | 'horizontal' | 'all' = 'horizontal';
 
   @Input() stickyHeader = false;
+  @Input() stickyColumnBorder = false;
 
   @Input() sortable = false;
   @Input() filterable = false;
@@ -102,6 +105,9 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   }
 
   get stickyColumnClass(): string {
+    if (!this.stickyColumnBorder)
+      return '';
+
     const start = this.columnConfigs.map(config => config.stickyStart).lastIndexOf(true);
     const end = this.columnConfigs.map(config => config.stickyEnd).indexOf(true);
 
@@ -112,6 +118,12 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   }
 
   constructor() { }
+
+  state = 'collapsed';
+
+  onClick() {
+    this.state = this.state == 'collapsed' ? 'expanded' : 'collapsed';
+  }
 
   ngOnInit() {
     this.checkConfig();
@@ -175,4 +187,79 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
  * if a complex data property accessor is required, then a custom
  * sortingDataAccessor function can be set to override the default
  * data accessor on the MatTableDataSource.
+ */
+
+ /**
+ * Access the `ViewContainerRef` of an element by placing a `Directive` injected
+ * with `ViewContainerRef` on the element, or use a `ViewChild` query.
+ *
+ * ```
+ * <div myDirective>Get ViewContainerRef</div>
+ *
+ * @Directive({
+ *  selector: '[myDirective]'
+ * })
+ * export class MyDirective {
+ *    constructor(viewContainerRef: ViewContrainerRef) {}
+ * }
+ * ```
+ *
+ * ```
+ * <div #ref>Get ViewContainerRef</div>
+ *
+ * @Component({...})
+ * export class MyComponent {
+ *    @ViewChild('ref', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef
+ * }
+ * ```
+ *
+ * Access a `TemplateRef` instance by placing a directive on an `<ng-template>`
+ * element (or directive prefixed with `*`). The `TemplateRef` for the embeded view
+ * is injected into the consturctor of the directive, using the `TemplateRef` token.
+ *
+ * You can also use a `Query` to find a `TemplateRef` associated with
+ * a component or a directive.
+ *
+ * ```
+ * <div *myDirective>Get TemplateRef</div>
+ *
+ * <ng-template myDirective>
+ *    <div>Get TemplateRef</div>
+ * </ng-template>
+ *
+ * @Directive({
+ *  selector: '[myDirective]'
+ * })
+ * export class MyDirective {
+ *    constructor(viewContainerRef: ViewContrainerRef, templateRef: TemplateRef) {}
+ * }
+ * ```
+ *
+ * ```
+ * <ng-template #ref>
+ *    <div>Get TemplateRef</div>
+ * </ng-template>
+ *
+ * @Component({...})
+ * export class MyComponent {
+ *    @ViewChild('ref') templateRef: TemplateRef
+ * }
+ * ```
+ *
+ * ```
+ * <div *ngIf="condition then ref"></div>
+ *
+ * <ng-template #ref>
+ *    <div>Get TemplateRef</div>
+ * </ng-template>
+ * ```
+ *
+ */
+
+/**
+ * The selector is a CSS selector.
+ * - `foo` means elements with name `foo`
+ * - `[foo]` means elements with an attribute named `foo`
+ * - `.foo` means elements with a CSS class named `foo`
+ * - `foo[bar]` means elements named foo with an attribute named `bar`
  */
