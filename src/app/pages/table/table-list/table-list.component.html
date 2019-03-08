@@ -19,8 +19,11 @@
   </div>
   <app-awesome-table class="size-limitation" [data$]="data$" [columnConfigs]="columnConfigs" [pageSize]="10"
     [pageSizeOptions]="[5, 10, 20]" filterable="true" contentAlign="center" [stickyHeader]="!stickyHeaderDisabled"
-    [stickyColumnBorder]="!stickyColumnBorderDisabled">
+    [stickyColumnBorder]="!stickyColumnBorderDisabled" [detailRowTpl]="ref">
   </app-awesome-table>
+  <ng-template #ref let-row>
+    <app-demo-item title={{row.name}}></app-demo-item>
+  </ng-template>
 </app-demo-item>
 <app-demo-item title="Basic Table">
   <app-awesome-table [data$]="data$" [columnConfigs]="columnConfigs" [showPaginator]="false">

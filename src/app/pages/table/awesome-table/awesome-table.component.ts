@@ -5,7 +5,8 @@ import {
   OnDestroy,
   ViewChild,
   Output,
-  EventEmitter
+  EventEmitter,
+  TemplateRef
 } from '@angular/core';
 import {
   MatTableDataSource,
@@ -44,6 +45,8 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
   @Input() sortable = false;
   @Input() filterable = false;
   @Input() filterPlaceholder: string;
+
+  @Input() detailRowTpl: TemplateRef<any>;
 
   @Output() pageChanaged = new EventEmitter<PageEvent>();
   @Output() sortChanged = new EventEmitter<Sort>();
@@ -189,72 +192,72 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
  * data accessor on the MatTableDataSource.
  */
 
- /**
- * Access the `ViewContainerRef` of an element by placing a `Directive` injected
- * with `ViewContainerRef` on the element, or use a `ViewChild` query.
- *
- * ```
- * <div myDirective>Get ViewContainerRef</div>
- *
- * @Directive({
- *  selector: '[myDirective]'
- * })
- * export class MyDirective {
- *    constructor(viewContainerRef: ViewContrainerRef) {}
- * }
- * ```
- *
- * ```
- * <div #ref>Get ViewContainerRef</div>
- *
- * @Component({...})
- * export class MyComponent {
- *    @ViewChild('ref', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef
- * }
- * ```
- *
- * Access a `TemplateRef` instance by placing a directive on an `<ng-template>`
- * element (or directive prefixed with `*`). The `TemplateRef` for the embeded view
- * is injected into the consturctor of the directive, using the `TemplateRef` token.
- *
- * You can also use a `Query` to find a `TemplateRef` associated with
- * a component or a directive.
- *
- * ```
- * <div *myDirective>Get TemplateRef</div>
- *
- * <ng-template myDirective>
- *    <div>Get TemplateRef</div>
- * </ng-template>
- *
- * @Directive({
- *  selector: '[myDirective]'
- * })
- * export class MyDirective {
- *    constructor(viewContainerRef: ViewContrainerRef, templateRef: TemplateRef) {}
- * }
- * ```
- *
- * ```
- * <ng-template #ref>
- *    <div>Get TemplateRef</div>
- * </ng-template>
- *
- * @Component({...})
- * export class MyComponent {
- *    @ViewChild('ref') templateRef: TemplateRef
- * }
- * ```
- *
- * ```
- * <div *ngIf="condition then ref"></div>
- *
- * <ng-template #ref>
- *    <div>Get TemplateRef</div>
- * </ng-template>
- * ```
- *
- */
+/**
+* Access the `ViewContainerRef` of an element by placing a `Directive` injected
+* with `ViewContainerRef` on the element, or use a `ViewChild` query.
+*
+* ```
+* <div myDirective>Get ViewContainerRef</div>
+*
+* @Directive({
+*  selector: '[myDirective]'
+* })
+* export class MyDirective {
+*    constructor(viewContainerRef: ViewContrainerRef) {}
+* }
+* ```
+*
+* ```
+* <div #ref>Get ViewContainerRef</div>
+*
+* @Component({...})
+* export class MyComponent {
+*    @ViewChild('ref', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef
+* }
+* ```
+*
+* Access a `TemplateRef` instance by placing a directive on an `<ng-template>`
+* element (or directive prefixed with `*`). The `TemplateRef` for the embeded view
+* is injected into the consturctor of the directive, using the `TemplateRef` token.
+*
+* You can also use a `Query` to find a `TemplateRef` associated with
+* a component or a directive.
+*
+* ```
+* <div *myDirective>Get TemplateRef</div>
+*
+* <ng-template myDirective>
+*    <div>Get TemplateRef</div>
+* </ng-template>
+*
+* @Directive({
+*  selector: '[myDirective]'
+* })
+* export class MyDirective {
+*    constructor(viewContainerRef: ViewContrainerRef, templateRef: TemplateRef) {}
+* }
+* ```
+*
+* ```
+* <ng-template #ref>
+*    <div>Get TemplateRef</div>
+* </ng-template>
+*
+* @Component({...})
+* export class MyComponent {
+*    @ViewChild('ref') templateRef: TemplateRef
+* }
+* ```
+*
+* ```
+* <div *ngIf="condition then ref"></div>
+*
+* <ng-template #ref>
+*    <div>Get TemplateRef</div>
+* </ng-template>
+* ```
+*
+*/
 
 /**
  * The selector is a CSS selector.
