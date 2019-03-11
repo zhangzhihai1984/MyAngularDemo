@@ -19,12 +19,13 @@
         <td class="detail-cell" [class.detail-cell-border-none]="state == 'collapsed'" mat-cell *matCellDef="let row"
           [attr.colspan]="displayedColumns.length">
           <div [@detailRowAnimation]="state" style="overflow: hidden">
-            <ng-container *ngTemplateOutlet="detailRowTpl; context: { $implicit: row }"></ng-container>
+            <app-awesome-detail-row [row]="row" [detailRowTpl]="detailRowTpl"></app-awesome-detail-row>
+            <!-- <ng-container *ngTemplateOutlet="detailRowTpl; context: { $implicit: row }"></ng-container> -->
           </div>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: [stickyHeader]"></tr>
-      <tr (click)="onClick()" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr (click)="onClick(row, i)" mat-row *matRowDef="let row; let i=dataIndex; columns: displayedColumns;"></tr>
       <tr class="detail-row" mat-row *matRowDef="let row; columns: ['detailRow']"></tr>
     </table>
   </div>

@@ -6,7 +6,9 @@ import {
   ViewChild,
   Output,
   EventEmitter,
-  TemplateRef
+  TemplateRef,
+  ViewChildren,
+  QueryList
 } from '@angular/core';
 import {
   MatTableDataSource,
@@ -19,6 +21,7 @@ import { TableCellModel } from '../table.model';
 import { Observable, Subscription, of } from 'rxjs';
 import { TableColumnConfig } from '../table.config';
 import { detailRowAnimation } from './awesome-table.animation';
+import { AwesomeDetailRowComponent } from '../awesome-detail-row/awesome-detail-row.component';
 
 @Component({
   selector: 'app-awesome-table',
@@ -58,6 +61,7 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
 
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChildren(AwesomeDetailRowComponent) detailRows: QueryList<AwesomeDetailRowComponent>;
 
   private subscription = new Subscription();
 
@@ -124,7 +128,16 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
 
   state = 'collapsed';
 
-  onClick() {
+  onClick(row, i) {
+    console.log('<Row>', row, i);
+    console.log('<Row>', this.detailRows.length);
+    console.log('<Row>', this.detailRows.toArray()[i].state);
+
+    const state = this.detailRows.toArray()[i].state;
+
+    this.detailRows.toArray()[i].state = state == 'collapsed' ? 'expanded' : 'collapsed';
+    
+
     this.state = this.state == 'collapsed' ? 'expanded' : 'collapsed';
   }
 
