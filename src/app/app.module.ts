@@ -12,6 +12,7 @@ import { AnimationModule } from './pages/animation';
 import { GridModule } from './pages/grid';
 import { DialogModule } from './pages/dialog';
 import { MenuModule } from './pages/menu';
+import { RxModule } from './pages/rx/rx.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { MenuModule } from './pages/menu';
     AnimationModule,
     GridModule,
     DialogModule,
-    MenuModule
+    MenuModule,
+    RxModule
   ],
   declarations: [
     AppComponent

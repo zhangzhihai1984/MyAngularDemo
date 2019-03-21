@@ -8,6 +8,7 @@ import { AnimationModule } from './pages/animation';
 import { GridModule } from './pages/grid';
 import { DialogModule } from './pages/dialog';
 import { MenuModule } from './pages/menu';
+import { RxModule } from './pages/rx/rx.module';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => MenuModule,
+    pathMatch: 'full'
+  },
+  {
+    path: 'rx',
+    loadChildren: () => RxModule,
     pathMatch: 'full'
   },
   {

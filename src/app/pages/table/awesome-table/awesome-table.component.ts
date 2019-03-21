@@ -136,7 +136,6 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
     const state = this.detailRows.toArray()[i].state;
 
     this.detailRows.toArray()[i].state = state == 'collapsed' ? 'expanded' : 'collapsed';
-    
 
     this.state = this.state == 'collapsed' ? 'expanded' : 'collapsed';
   }

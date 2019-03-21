@@ -1,0 +1,7 @@
+<div class="content-container">
+  <button mat-flat-button style="width: 40%;"> switchMap</button>
+</div>
+<mat-divider [vertical]="true"></mat-divider>
+<div class="content-container" #console [ngStyle]="{'height': height}">
+  <div *ngFor="let result of results">{{result}}</div>
+</div>
