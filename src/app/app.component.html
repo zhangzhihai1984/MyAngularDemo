@@ -9,18 +9,16 @@
         </a>
         <span class="fill-spacer"></span>
         <theme-picker (themeChoosen)="chooseTheme($event)"></theme-picker>
-        <a mat-mini-fab color="accent" matTooltip="View source code" href="https://github.com/zhangzhihai1984/MyAngularDemo"
-          target="_blank">
+        <a mat-mini-fab color="accent" matTooltip="View source code"
+          href="https://github.com/zhangzhihai1984/MyAngularDemo" target="_blank">
           <mat-icon>code</mat-icon>
         </a>
       </mat-toolbar>
       <div [@routeAnimation]="prepareRoute(outlet)" class="app-outlet-wrapper">
         <router-outlet #outlet="outlet"></router-outlet>
       </div>
-
-
-      <div class="app-footer" [routerLink]="['zzh', 'demo']" routerLinkActive="active" style="width: 100px; height: 100px;"
-        matRipple matRippleCentered=true matRippleRadius=50>Hi</div>
+      <!-- <div class="app-footer" [routerLink]="['zzh', 'demo']" routerLinkActive="active"
+        style="width: 100px; height: 100px;" matRipple matRippleCentered=true matRippleRadius=50>Hi</div> -->
     </div>
 
   </mat-sidenav-container>

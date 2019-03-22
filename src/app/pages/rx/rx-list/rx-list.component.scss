@@ -4,10 +4,26 @@
     height: 100%;
 }
 
-.content-container {
+.area-container {
     flex: 1;
     box-sizing: border-box;
-    padding-left: 10px;
-    padding-top: 10px;
+    // padding-left: 10px;
+    // padding-top: 10px;
     overflow: auto;
+    position: relative;
+}
+
+$console-opeartion-container-height: 40px;
+
+.console-opeartion-container {
+    width: 50%;
+    height: $console-opeartion-container-height;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: fixed;
+}
+
+.operator-container {
+    height: calc(100% - #{$console-opeartion-container-height});
 }

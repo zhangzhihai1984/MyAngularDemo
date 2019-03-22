@@ -1,18 +1,20 @@
-<div class="content-container">
-  <button mat-icon-button (click)="clearLog()">
-    <mat-icon color="warn">block</mat-icon>
-  </button>
-  <button mat-icon-button (click)="stopLogging()">
-    <mat-icon color="warn">cancel</mat-icon>
-  </button>
-  <app-demo-item title="switchMap">
-    <button mat-raised-button (click)="switchMap()">switchMap</button>
-  </app-demo-item>
-  <app-demo-item title="Basic Dialog">
-    <button mat-raised-button (click)="switchMap()">switchMap</button>
-  </app-demo-item>
+<div class="area-container" *ngIf="heightFlag" [style.height]="height">
+  <div class="console-opeartion-container">
+    <button mat-icon-button (click)="clearLog()">
+      <mat-icon color="warn">block</mat-icon>
+    </button>
+    <button mat-icon-button (click)="stopLogging()">
+      <mat-icon color="warn">cancel</mat-icon>
+    </button>
+  </div>
+
+  <div class="operator-container">
+    <app-demo-item title="switchMap">
+      <button mat-raised-button (click)="switchMap()">switchMap</button>
+    </app-demo-item>
+  </div>
 </div>
 <mat-divider [vertical]="true"></mat-divider>
-<div class="content-container" #console [ngStyle]="{'height': height}">
+<div class="area-container" #console [style.height]="height">
   <div *ngFor="let result of results">{{result}}</div>
 </div>

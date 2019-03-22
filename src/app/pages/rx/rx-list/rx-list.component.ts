@@ -38,6 +38,7 @@ import { log } from 'util';
 export class RxListComponent implements OnInit, AfterContentInit, AfterViewChecked, OnDestroy {
   results = [];
   height = '100%';
+  heightFlag = false;
 
   @ViewChild('console') console: ElementRef;
 
@@ -95,6 +96,7 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
   ngAfterContentInit() {
     this.height = `${this.console.nativeElement.offsetHeight}px`;
     console.log('<height>', this.height);
+    this.heightFlag = true;
   }
 
   ngAfterViewChecked() {
