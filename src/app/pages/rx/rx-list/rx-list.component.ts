@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit, AfterContentInit, OnDestroy } from '@angular/core';
 import {
   of,
   throwError,
@@ -8,7 +8,8 @@ import {
   interval,
   range,
   timer,
-  merge
+  merge,
+  Subject
 } from 'rxjs';
 import {
   map,
@@ -34,10 +35,13 @@ import { log } from 'util';
   templateUrl: './rx-list.component.html',
   styleUrls: ['./rx-list.component.scss']
 })
-export class RxListComponent implements OnInit, AfterContentInit, AfterViewChecked {
+export class RxListComponent implements OnInit, AfterContentInit, AfterViewChecked, OnDestroy {
   results = [];
+  height = '100%';
 
   @ViewChild('console') console: ElementRef;
+
+  stopSubject = new Subject<any>();
 
   constructor() { }
 
@@ -83,10 +87,10 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
     // this.reduce();
     // this.merge();
     // this.mergeMap();
-    this.switchMap();
-  }
+    // this.switchMap();
 
-  height = '100%';
+    this.stopSubject.subscribe(v => console.log('<stop>', v))
+  }
 
   ngAfterContentInit() {
     this.height = `${this.console.nativeElement.offsetHeight}px`;
@@ -102,12 +106,33 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
       element.scrollTop = scrollHeight - offsetHeight;
   }
 
+  ngOnDestroy() {
+    this.stopLogging();
+  }
+
+  stopLogging() {
+    this.stopSubject.next();
+  }
+
+  clearLog() {
+    this.results = [];
+  }
+
   switchMap() {
-    interval(5000).pipe(
-      switchMap(() => interval(300))
+    let switchFlag = false;
+    timer(1000, 5000).pipe(
+      tap(() => switchFlag = true),
+      switchMap(
+        () => interval(1000),
+        (oVal, iVal, oIndex, iIndex) => `outer stream: ${oVal} inner stream: ${iVal}`
+      ),
+      takeUntil(this.stopSubject)
     ).subscribe(v => {
-      this.results.push(v);
-      console.log('<switchMap>', v, this.console.nativeElement.scrollHeight, this.console.nativeElement.offsetHeight);
+      if (switchFlag) {
+        switchFlag = false;
+        this.results.push('switch map');
+      }
+      this.results.push(v)
     });
   }
 
@@ -117,8 +142,9 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
     // ).subscribe(v => console.log('<mergeMap/flatMap>', v))
 
     interval(1000).pipe(
-      flatMap(v => interval(3000).pipe(take(10)), 2)
-    ).subscribe(v => console.log('<mergeMap/flatMap>', v))
+      flatMap(v => interval(2000).pipe(take(10)), 2),
+      takeUntil(this.stopSubject)
+    ).subscribe(v => this.results.push(v))
   }
 
   merge() {

@@ -1,5 +1,16 @@
 <div class="content-container">
-  <button mat-flat-button style="width: 40%;"> switchMap</button>
+  <button mat-icon-button (click)="clearLog()">
+    <mat-icon color="warn">block</mat-icon>
+  </button>
+  <button mat-icon-button (click)="stopLogging()">
+    <mat-icon color="warn">cancel</mat-icon>
+  </button>
+  <app-demo-item title="switchMap">
+    <button mat-raised-button (click)="switchMap()">switchMap</button>
+  </app-demo-item>
+  <app-demo-item title="Basic Dialog">
+    <button mat-raised-button (click)="switchMap()">switchMap</button>
+  </app-demo-item>
 </div>
 <mat-divider [vertical]="true"></mat-divider>
 <div class="content-container" #console [ngStyle]="{'height': height}">
