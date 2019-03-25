@@ -9,7 +9,8 @@ import {
   range,
   timer,
   merge,
-  Subject
+  Subject,
+  fromEvent
 } from 'rxjs';
 import {
   map,
@@ -29,6 +30,7 @@ import {
   switchMap
 } from 'rxjs/operators';
 import { log } from 'util';
+import { MatButton } from '@angular/material';
 
 @Component({
   selector: 'app-rx-list',
@@ -120,6 +122,35 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
     this.results = [];
   }
 
+  @ViewChild('start', { read: ElementRef }) startButton: ElementRef
+  @ViewChild('pause', { read: ElementRef }) pauseButton: ElementRef
+  @ViewChild('resume', { read: ElementRef }) resumeButton: ElementRef
+  @ViewChild('stop', { read: ElementRef }) stopButton: ElementRef
+  INIT_COUNTDOWN = 20
+  countdown = this.INIT_COUNTDOWN
+  empty() {
+    const start$ = fromEvent(this.startButton.nativeElement, 'click').pipe(mapTo('start'), tap(() => this.countdown = this.INIT_COUNTDOWN))
+    const pause$ = fromEvent(this.pauseButton.nativeElement, 'click').pipe(mapTo('pause'))
+    const resume$ = fromEvent(this.resumeButton.nativeElement, 'click').pipe(mapTo('resume'))
+    const stop$ = fromEvent(this.stopButton.nativeElement, 'click').pipe(mapTo('stop'), tap(() => this.countdown = 0))
+    const countdown$ = interval(1000).pipe(
+      map(() => this.countdown - 1),
+      takeWhile(v => v >= 0)
+    )
+
+    merge(start$, pause$, resume$, stop$).pipe(
+      switchMap(v => {
+        this.results.push(v)
+        return v == 'start' || v == 'resume' ? countdown$ : empty()
+      }),
+      takeUntil(this.stopSubject)
+    ).subscribe(v => {
+      this.countdown = v
+      this.results.push(v);
+    });
+  }
+
+
   switchMap() {
     let switchFlag = false;
     timer(1000, 5000).pipe(
@@ -139,40 +170,22 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
   }
 
   mergeMap() {
-    // of('hello').pipe(
-    //   flatMap(v => of(`${v} world`))
-    // ).subscribe(v => console.log('<mergeMap/flatMap>', v))
-
+    this.results.push('concurrent is 2');
     interval(1000).pipe(
-      flatMap(v => interval(2000).pipe(take(10)), 2),
+      flatMap(
+        () => interval(2000).pipe(take(5)),
+        (oVal, iVal, oIndex, iIndex) => `outer stream: ${oVal} inner stream: ${iVal}`,
+        2),
       takeUntil(this.stopSubject)
     ).subscribe(v => this.results.push(v))
   }
 
   merge() {
-    const first$ = interval(1000).pipe(mapTo('first'), take(5))
-    const second$ = interval(1300).pipe(mapTo('second'), take(5))
+    const first$ = interval(1500).pipe(map(v => `first stream ${v}`), take(5))
+    const second$ = interval(2000).pipe(map(v => `second stream ${v}`), take(5))
+    const third$ = interval(2500).pipe(map(v => `third stream ${v}`), take(5))
 
-    merge(first$, second$).subscribe(v => console.log('<merge>', v))
-    first$.pipe().subscribe(v => console.log('<merge>', v))
-  }
-
-  interval() {
-    interval(500).pipe(
-      take(10)
-    ).subscribe(v => console.log('<interval>', v)
-    )
-  }
-
-  range() {
-    range(1, 10).subscribe(v => console.log('<range>', v))
-  }
-
-  timer() {
-    // timer(1000).subscribe(v => console.log('<timer>', v))
-    timer(1000, 2000).pipe(
-      take(10)
-    ).subscribe(v => console.log('<timer>', v))
+    merge(first$, second$, third$).pipe(takeUntil(this.stopSubject)).subscribe(v => this.results.push(v))
   }
 
   delayWhen() {

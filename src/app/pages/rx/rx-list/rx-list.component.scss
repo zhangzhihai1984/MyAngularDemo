@@ -25,5 +25,22 @@ $console-opeartion-container-height: 40px;
 }
 
 .operator-container {
-    height: calc(100% - #{$console-opeartion-container-height});
+    // height: calc(100% - #{$console-opeartion-container-height});
+}
+
+.button-row {
+    button {
+        margin-right: 10px;
+    }
+    margin-bottom: 10px;
+}
+
+.absolute-wrapper {
+    position: relative;
+}
+
+.absolute-countdown {
+    position: absolute;
+    top: 0;
+    right: 0;
 }

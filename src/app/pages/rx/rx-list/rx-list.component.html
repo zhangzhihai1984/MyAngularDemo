@@ -7,10 +7,27 @@
       <mat-icon color="warn">cancel</mat-icon>
     </button>
   </div>
-
   <div class="operator-container">
+    <app-demo-item title="empty">
+      <div class="button-row absolute-wrapper">
+        <button mat-raised-button (click)="empty()">activate</button>
+        <button class="absolute-countdown" mat-mini-fab>{{countdown}}</button>
+      </div>
+      <div class="button-row">
+        <button mat-stroked-button #start>start</button>
+        <button mat-stroked-button #stop>stop</button>
+        <button mat-stroked-button #pause>pause</button>
+        <button mat-stroked-button #resume>resume</button>
+      </div>
+    </app-demo-item>
+    <app-demo-item title="mergeMap">
+      <button mat-raised-button (click)="mergeMap()">mergeMap</button>
+    </app-demo-item>
     <app-demo-item title="switchMap">
       <button mat-raised-button (click)="switchMap()">switchMap</button>
+    </app-demo-item>
+    <app-demo-item title="merge">
+      <button mat-raised-button (click)="merge()">merge</button>
     </app-demo-item>
   </div>
 </div>
