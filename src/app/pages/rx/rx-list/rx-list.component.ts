@@ -10,7 +10,8 @@ import {
   timer,
   merge,
   Subject,
-  fromEvent
+  fromEvent,
+  combineLatest
 } from 'rxjs';
 import {
   map,
@@ -122,13 +123,55 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
     this.results = [];
   }
 
+  @ViewChild('combineLatest1', { read: ElementRef }) combineLatest1: ElementRef;
+  @ViewChild('combineLatest2', { read: ElementRef }) combineLatest2: ElementRef;
+  INIT_COMBINELATEST_VALUE = 0;
+  combineLatestValue = this.INIT_COMBINELATEST_VALUE;
+  combineLatestFirstValue
+  combineLatestSecondValue
+  combineLatest() {
+    this.combineLatestFirstValue = 0;
+    this.combineLatestSecondValue = 0;
+    const first$ = fromEvent(this.combineLatest1.nativeElement, 'click').pipe(
+      mapTo(1),
+      startWith(0),
+      scan((acc, curr) => acc + curr),
+      tap(v => this.combineLatestFirstValue = v)
+    )
+
+    const second$ = fromEvent(this.combineLatest2.nativeElement, 'click').pipe(
+      mapTo(1),
+      startWith(0),
+      scan((acc, curr) => acc + curr),
+      tap(v => this.combineLatestSecondValue = v)
+    )
+
+    combineLatest(
+      first$,
+      second$,
+      (first, second) => {
+        return {
+          val: first + second,
+          des: `${first} + ${second} = ${first + second}`
+        }
+      }
+    ).pipe(
+      // map(([val1, val2]) => val1 + val2),
+      takeUntil(this.stopSubject)
+    ).subscribe(v => {
+      this.combineLatestValue = v.val;
+      this.results.push(v.des)
+    })
+  }
+
   @ViewChild('start', { read: ElementRef }) startButton: ElementRef
   @ViewChild('pause', { read: ElementRef }) pauseButton: ElementRef
   @ViewChild('resume', { read: ElementRef }) resumeButton: ElementRef
   @ViewChild('stop', { read: ElementRef }) stopButton: ElementRef
   INIT_COUNTDOWN = 20
-  countdown = this.INIT_COUNTDOWN
+  countdown
   empty() {
+    this.countdown = this.INIT_COUNTDOWN
     const start$ = fromEvent(this.startButton.nativeElement, 'click').pipe(mapTo('start'), tap(() => this.countdown = this.INIT_COUNTDOWN))
     const pause$ = fromEvent(this.pauseButton.nativeElement, 'click').pipe(mapTo('pause'))
     const resume$ = fromEvent(this.resumeButton.nativeElement, 'click').pipe(mapTo('resume'))
@@ -149,7 +192,6 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
       this.results.push(v);
     });
   }
-
 
   switchMap() {
     let switchFlag = false;

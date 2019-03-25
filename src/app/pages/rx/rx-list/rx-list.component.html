@@ -8,6 +8,16 @@
     </button>
   </div>
   <div class="operator-container">
+    <app-demo-item title="combineLatest">
+      <div class="button-row absolute-wrapper">
+        <button mat-raised-button (click)="combineLatest()">activate</button>
+        <button class="absolute-countdown" mat-mini-fab>{{combineLatestValue}}</button>
+      </div>
+      <div class="button-row">
+        <button mat-stroked-button #combineLatest1>First {{combineLatestFirstValue}}</button>
+        <button mat-stroked-button #combineLatest2>Second {{combineLatestSecondValue}}</button>
+      </div>
+    </app-demo-item>
     <app-demo-item title="empty">
       <div class="button-row absolute-wrapper">
         <button mat-raised-button (click)="empty()">activate</button>
