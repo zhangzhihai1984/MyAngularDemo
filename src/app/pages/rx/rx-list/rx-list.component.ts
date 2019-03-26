@@ -112,10 +112,10 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
   }
 
   ngOnDestroy() {
-    this.stopLogging();
+    this.stopRx();
   }
 
-  stopLogging() {
+  stopRx() {
     this.stopSubject.next();
   }
 
@@ -123,45 +123,48 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
     this.results = [];
   }
 
-  @ViewChild('combineLatest1', { read: ElementRef }) combineLatest1: ElementRef;
-  @ViewChild('combineLatest2', { read: ElementRef }) combineLatest2: ElementRef;
-  INIT_COMBINELATEST_VALUE = 0;
-  combineLatestValue = this.INIT_COMBINELATEST_VALUE;
-  combineLatestFirstValue
-  combineLatestSecondValue
-  combineLatest() {
-    this.combineLatestFirstValue = 0;
-    this.combineLatestSecondValue = 0;
-    const first$ = fromEvent(this.combineLatest1.nativeElement, 'click').pipe(
+  @ViewChild('sumParam1', { read: ElementRef }) sumParam1: ElementRef;
+  @ViewChild('sumParam2', { read: ElementRef }) sumParam2: ElementRef;
+  SUM_INIT_VALUE = '--';
+  sumValue: string | number = this.SUM_INIT_VALUE;
+  sumParamValue1: string | number = this.SUM_INIT_VALUE;
+  sumParamValue2: string | number = this.SUM_INIT_VALUE;
+  sum() {
+    const param1$ = fromEvent(this.sumParam1.nativeElement, 'click').pipe(
       mapTo(1),
-      startWith(0),
-      scan((acc, curr) => acc + curr),
-      tap(v => this.combineLatestFirstValue = v)
+      scan((acc, curr) => acc + curr, 0),
+      tap(v => this.sumParamValue1 = v)
     )
 
-    const second$ = fromEvent(this.combineLatest2.nativeElement, 'click').pipe(
+    const param2$ = fromEvent(this.sumParam2.nativeElement, 'click').pipe(
       mapTo(1),
-      startWith(0),
-      scan((acc, curr) => acc + curr),
-      tap(v => this.combineLatestSecondValue = v)
+      scan((acc, curr) => acc + curr, 0),
+      tap(v => this.sumParamValue2 = v)
     )
 
     combineLatest(
-      first$,
-      second$,
-      (first, second) => {
-        return {
-          val: first + second,
-          des: `${first} + ${second} = ${first + second}`
-        }
-      }
+      param1$,
+      param2$,
+      (first, second) => ({
+        val: first + second,
+        des: `${first} + ${second} = ${first + second}`
+      })
+
     ).pipe(
       // map(([val1, val2]) => val1 + val2),
       takeUntil(this.stopSubject)
-    ).subscribe(v => {
-      this.combineLatestValue = v.val;
-      this.results.push(v.des)
-    })
+    ).subscribe(
+      v => {
+        this.sumValue = v.val;
+        this.results.push(v.des)
+      },
+      () => { },
+      () => {
+        this.sumParamValue1 = this.SUM_INIT_VALUE;
+        this.sumParamValue2 = this.SUM_INIT_VALUE;
+        this.sumValue = this.SUM_INIT_VALUE;
+      }
+    )
   }
 
   @ViewChild('start', { read: ElementRef }) startButton: ElementRef

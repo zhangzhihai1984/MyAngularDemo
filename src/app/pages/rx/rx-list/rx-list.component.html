@@ -3,19 +3,27 @@
     <button mat-icon-button (click)="clearLog()">
       <mat-icon color="warn">block</mat-icon>
     </button>
-    <button mat-icon-button (click)="stopLogging()">
+    <button mat-icon-button (click)="stopRx()">
       <mat-icon color="warn">cancel</mat-icon>
     </button>
   </div>
   <div class="operator-container">
-    <app-demo-item title="combineLatest">
-      <div class="button-row absolute-wrapper">
-        <button mat-raised-button (click)="combineLatest()">activate</button>
-        <button class="absolute-countdown" mat-mini-fab>{{combineLatestValue}}</button>
+    <app-demo-item title="sum (combineLatest)">
+      <div class="button-row">
+        <button mat-icon-button (click)="sum()">
+          <mat-icon>lock_open</mat-icon>
+        </button>
       </div>
       <div class="button-row">
-        <button mat-stroked-button #combineLatest1>First {{combineLatestFirstValue}}</button>
-        <button mat-stroked-button #combineLatest2>Second {{combineLatestSecondValue}}</button>
+        <button mat-mini-fab #sumParam1>{{sumParamValue1}}</button>
+        <button mat-icon-button>
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-mini-fab #sumParam2>{{sumParamValue2}}</button>
+        <button mat-icon-button>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+        <button mat-mini-fab>{{sumValue}}</button>
       </div>
     </app-demo-item>
     <app-demo-item title="empty">
