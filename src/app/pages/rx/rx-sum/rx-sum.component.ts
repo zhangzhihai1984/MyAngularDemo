@@ -1,4 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import {
   Subject,
   fromEvent,
@@ -21,13 +29,13 @@ export class RxSumComponent implements OnInit {
   @Input() stopSubject: Subject<any>;
   @Output() logAdded = new EventEmitter<any>();
 
-  @ViewChild('sumParam1', { read: ElementRef }) sumParam1: ElementRef;
-  @ViewChild('sumParam2', { read: ElementRef }) sumParam2: ElementRef;
+  @ViewChild('param1', { read: ElementRef }) param1: ElementRef;
+  @ViewChild('param2', { read: ElementRef }) param2: ElementRef;
 
-  SUM_INIT_VALUE = '--';
-  sumValue: string | number = this.SUM_INIT_VALUE;
-  sumParamValue1: string | number = this.SUM_INIT_VALUE;
-  sumParamValue2: string | number = this.SUM_INIT_VALUE;
+  INIT_VALUE = '--';
+  sumValue: string | number = this.INIT_VALUE;
+  paramValue1: string | number = this.INIT_VALUE;
+  paramValue2: string | number = this.INIT_VALUE;
   sumActivated = false;
 
   constructor() { }
@@ -38,16 +46,16 @@ export class RxSumComponent implements OnInit {
   sum() {
     this.sumActivated = true;
 
-    const param1$ = fromEvent(this.sumParam1.nativeElement, 'click').pipe(
+    const param1$ = fromEvent(this.param1.nativeElement, 'click').pipe(
       mapTo(1),
       scan((acc, curr) => acc + curr, 0),
-      tap(v => this.sumParamValue1 = v)
+      tap(v => this.paramValue1 = v)
     )
 
-    const param2$ = fromEvent(this.sumParam2.nativeElement, 'click').pipe(
+    const param2$ = fromEvent(this.param2.nativeElement, 'click').pipe(
       mapTo(1),
       scan((acc, curr) => acc + curr, 0),
-      tap(v => this.sumParamValue2 = v)
+      tap(v => this.paramValue2 = v)
     )
 
     combineLatest(
@@ -69,9 +77,9 @@ export class RxSumComponent implements OnInit {
       () => { },
       () => {
         this.sumActivated = false;
-        this.sumParamValue1 = this.SUM_INIT_VALUE;
-        this.sumParamValue2 = this.SUM_INIT_VALUE;
-        this.sumValue = this.SUM_INIT_VALUE;
+        this.paramValue1 = this.INIT_VALUE;
+        this.paramValue2 = this.INIT_VALUE;
+        this.sumValue = this.INIT_VALUE;
       }
     )
   }
