@@ -36,15 +36,15 @@ export class RxSumComponent implements OnInit {
   sumValue: string | number = this.INIT_VALUE;
   paramValue1: string | number = this.INIT_VALUE;
   paramValue2: string | number = this.INIT_VALUE;
-  sumActivated = false;
+  activated = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  sum() {
-    this.sumActivated = true;
+  activate() {
+    this.activated = true;
 
     const param1$ = fromEvent(this.param1.nativeElement, 'click').pipe(
       mapTo(1),
@@ -65,7 +65,6 @@ export class RxSumComponent implements OnInit {
         val: first + second,
         des: `${first} + ${second} = ${first + second}`
       })
-
     ).pipe(
       // map(([val1, val2]) => val1 + val2),
       takeUntil(this.stopSubject)
@@ -76,7 +75,7 @@ export class RxSumComponent implements OnInit {
       },
       () => { },
       () => {
-        this.sumActivated = false;
+        this.activated = false;
         this.paramValue1 = this.INIT_VALUE;
         this.paramValue2 = this.INIT_VALUE;
         this.sumValue = this.INIT_VALUE;

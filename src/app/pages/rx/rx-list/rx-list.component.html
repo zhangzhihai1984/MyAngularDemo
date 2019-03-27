@@ -8,6 +8,9 @@
     </button>
   </div>
   <div class="operator-container">
+    <app-demo-item title="exit (timeInterval)">
+      <app-rx-exit [stopSubject]="stopSubject" (logAdded)="addLog($event)"></app-rx-exit>
+    </app-demo-item>
     <app-demo-item title="sum (combineLatest)">
       <app-rx-sum [stopSubject]="stopSubject" (logAdded)="addLog($event)"></app-rx-sum>
     </app-demo-item>

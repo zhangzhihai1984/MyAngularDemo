@@ -1,0 +1,6 @@
+<div class="button-row">
+  <button mat-icon-button (click)="activate()" [disabled]="activated">
+    <mat-icon>{{activated ? 'lock_open' : 'lock'}}</mat-icon>
+  </button>
+  <button mat-mini-fab #exit [disabled]="!activated">Exit</button>
+</div>
