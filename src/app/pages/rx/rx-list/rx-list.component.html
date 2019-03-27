@@ -8,7 +8,10 @@
     </button>
   </div>
   <div class="operator-container">
-    <app-demo-item title="exit (timeInterval)">
+    <app-demo-item title="count click number within 0.5s">
+      <app-rx-counter [stopSubject]="stopSubject" (logAdded)="addLog($event)"></app-rx-counter>
+    </app-demo-item>
+    <app-demo-item title="double click to exit within 0.5s">
       <app-rx-exit [stopSubject]="stopSubject" (logAdded)="addLog($event)"></app-rx-exit>
     </app-demo-item>
     <app-demo-item title="sum (combineLatest)">

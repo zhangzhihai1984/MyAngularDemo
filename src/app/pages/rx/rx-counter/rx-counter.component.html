@@ -1,0 +1,7 @@
+<div class="button-row">
+  <button mat-icon-button (click)="activate()" [disabled]="activated">
+    <mat-icon>{{activated ? 'lock_open' : 'lock'}}</mat-icon>
+  </button>
+  <button mat-mini-fab #totalRef [disabled]="!activated">{{total$ | async}}</button>
+  <button mat-mini-fab disabled>{{remaining$ | async}}</button>
+</div>
