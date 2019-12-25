@@ -59,8 +59,8 @@ export class AwesomeTableComponent implements OnInit, OnDestroy {
 
   awesomeTable: AwesomeTableComponent;
 
-  @ViewChild('paginator') paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('paginator', { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChildren(AwesomeDetailRowComponent) detailRows: QueryList<AwesomeDetailRowComponent>;
 
   private subscription = new Subscription();

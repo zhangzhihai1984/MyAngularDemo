@@ -52,12 +52,12 @@ const MATERIAL_MODULES = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ThemePickerModule,
-    DemoItemModule,
-    ...MATERIAL_MODULES,
+    // CommonModule,
+    // FormsModule,
+    // ReactiveFormsModule,
+    // ThemePickerModule,
+    // DemoItemModule,
+    // ...MATERIAL_MODULES,
   ],
   exports: [
     CommonModule,

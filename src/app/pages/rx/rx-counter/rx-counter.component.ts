@@ -37,7 +37,7 @@ export class RxCounterComponent implements OnInit {
   @Input() stopSubject: Subject<any>;
   @Output() logAdded = new EventEmitter<any>();
 
-  @ViewChild('totalRef', { read: ElementRef }) totalRef: ElementRef;
+  @ViewChild('totalRef', { static: false }) totalRef: ElementRef;
 
   INIT_REMAINING = 10;
   activated = false;

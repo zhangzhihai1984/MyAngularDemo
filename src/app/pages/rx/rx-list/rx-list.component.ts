@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit, AfterContentInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit, OnDestroy } from '@angular/core';
 import {
   of,
   throwError,
@@ -36,12 +36,12 @@ import {
   templateUrl: './rx-list.component.html',
   styleUrls: ['./rx-list.component.scss']
 })
-export class RxListComponent implements OnInit, AfterContentInit, AfterViewChecked, OnDestroy {
+export class RxListComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
   results = [];
   height = '100%';
   heightFlag = false;
 
-  @ViewChild('console') console: ElementRef;
+  @ViewChild('console', { static: false }) console: ElementRef;
 
   stopSubject = new Subject<any>();
 
@@ -94,10 +94,13 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
     this.stopSubject.subscribe(v => console.log('<stop>', v))
   }
 
-  ngAfterContentInit() {
-    this.height = `${this.console.nativeElement.offsetHeight}px`;
-    console.log('<height>', this.height);
-    this.heightFlag = true;
+  ngAfterViewInit() {
+    timer(2000)
+      .subscribe(_ => {
+        this.heightFlag = true
+        this.height = `${this.console.nativeElement.offsetHeight}px`
+        console.log('<height>', this.height);
+      })
   }
 
   ngAfterViewChecked() {
@@ -125,10 +128,10 @@ export class RxListComponent implements OnInit, AfterContentInit, AfterViewCheck
     this.results.push(v);
   }
 
-  @ViewChild('start', { read: ElementRef }) startButton: ElementRef
-  @ViewChild('pause', { read: ElementRef }) pauseButton: ElementRef
-  @ViewChild('resume', { read: ElementRef }) resumeButton: ElementRef
-  @ViewChild('stop', { read: ElementRef }) stopButton: ElementRef
+  @ViewChild('start', { static: false }) startButton: ElementRef
+  @ViewChild('pause', { static: false }) pauseButton: ElementRef
+  @ViewChild('resume', { static: false }) resumeButton: ElementRef
+  @ViewChild('stop', { static: false }) stopButton: ElementRef
   INIT_COUNTDOWN = 20
   countdown
   empty() {

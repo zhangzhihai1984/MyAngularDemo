@@ -29,8 +29,8 @@ export class RxSumComponent implements OnInit {
   @Input() stopSubject: Subject<any>;
   @Output() logAdded = new EventEmitter<any>();
 
-  @ViewChild('param1', { read: ElementRef }) param1: ElementRef;
-  @ViewChild('param2', { read: ElementRef }) param2: ElementRef;
+  @ViewChild('param1', { static: false }) param1: ElementRef;
+  @ViewChild('param2', { static: false }) param2: ElementRef;
 
   INIT_VALUE = '--';
   sumValue: string | number = this.INIT_VALUE;

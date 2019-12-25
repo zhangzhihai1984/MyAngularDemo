@@ -13,7 +13,7 @@ export class RxExitComponent implements OnInit {
   @Input() stopSubject: Subject<any>;
   @Output() logAdded = new EventEmitter<any>();
 
-  @ViewChild('exit', { read: ElementRef }) exit: ElementRef;
+  @ViewChild('exit', { static: false }) exit: ElementRef;
 
   EXIT_DURATION = 500;
   activated = false;

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { Subject, fromEvent, from, Observable } from 'rxjs';
+import { Subject, fromEvent, from, Observable, timer } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, switchMap, filter, reduce, startWith } from 'rxjs/operators';
 import { city_data } from './address.data';
 
@@ -13,7 +13,7 @@ export class RxSearchComponent implements OnInit {
   @Input() stopSubject: Subject<any>;
   @Output() logAdded = new EventEmitter<any>();
 
-  @ViewChild('inputRef', { read: ElementRef }) inputRef: ElementRef;
+  @ViewChild('inputRef', { static: false }) inputRef: ElementRef;
 
   activated = false;
 
@@ -25,16 +25,19 @@ export class RxSearchComponent implements OnInit {
   ngOnInit() {
     this.activated = true;
 
-    this.$searchResults = fromEvent(this.inputRef.nativeElement, 'keyup').pipe(
-      debounceTime(500),
-      map((ev: any) => ev.target.value.trim()),
-      distinctUntilChanged(),
-      switchMap(v => from(this.cities).pipe(
-        filter(city => city.includes(v)),
-        reduce((acc: string[], curr: string) => [...acc, curr], [])
-      )),
-      startWith(this.cities)
-    )
+    this.$searchResults = timer(0)
+      .pipe(
+        switchMap(_ => fromEvent(this.inputRef.nativeElement, 'keyup').pipe(
+          debounceTime(500),
+          map((ev: any) => ev.target.value.trim()),
+          distinctUntilChanged(),
+          switchMap(v => from(this.cities).pipe(
+            filter(city => city.includes(v)),
+            reduce((acc, curr) => [...acc, curr], [])
+          )),
+          startWith(this.cities)
+        ))
+      )
   }
 
   getCities(): string[] {
