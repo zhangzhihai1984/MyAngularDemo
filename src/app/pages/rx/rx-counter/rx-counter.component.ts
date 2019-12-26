@@ -9,23 +9,22 @@ import {
 } from '@angular/core';
 import {
   Subject,
-  interval,
   timer,
   fromEvent,
   Observable
 } from 'rxjs';
 import {
   map,
-  tap,
   takeUntil,
   take,
-  takeWhile,
   mapTo,
   scan,
   withLatestFrom,
   startWith,
   filter
 } from 'rxjs/operators';
+
+const INIT_REMAINING = 10;
 
 @Component({
   selector: 'app-rx-counter',
@@ -39,7 +38,6 @@ export class RxCounterComponent implements OnInit {
 
   @ViewChild('totalRef', { read: ElementRef, static: false }) totalRef: ElementRef;
 
-  INIT_REMAINING = 10;
   activated = false;
 
   total$: Observable<number>;
@@ -54,8 +52,8 @@ export class RxCounterComponent implements OnInit {
     this.activated = true;
 
     this.remaining$ = timer(0, 1000).pipe(
-      take(this.INIT_REMAINING + 1),
-      map(v => this.INIT_REMAINING - v),
+      take(INIT_REMAINING + 1),
+      map(v => INIT_REMAINING - v),
       takeUntil(this.stopSubject)
     )
 
