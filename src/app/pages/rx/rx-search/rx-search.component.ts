@@ -14,7 +14,7 @@ export class RxSearchComponent implements OnInit {
 
   @ViewChild('inputRef', { read: ElementRef, static: false }) inputRef: ElementRef;
 
-  $searchResults: Observable<string[]>;
+  searchResults$: Observable<string[]>;
 
   get cities(): string[] {
     const cities = [];
@@ -30,7 +30,7 @@ export class RxSearchComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.$searchResults = timer(0)
+    this.searchResults$ = timer(0)
       .pipe(
         switchMap(_ => fromEvent(this.inputRef.nativeElement, 'keyup').pipe(
           debounceTime(500),

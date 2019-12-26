@@ -3,6 +3,6 @@
     <input matInput #inputRef>
   </mat-form-field>
   <mat-list>
-    <mat-list-item *ngFor="let city of ($searchResults | async)">{{city}}</mat-list-item>
+    <mat-list-item *ngFor="let city of (searchResults$ | async)">{{city}}</mat-list-item>
   </mat-list>
 </div>

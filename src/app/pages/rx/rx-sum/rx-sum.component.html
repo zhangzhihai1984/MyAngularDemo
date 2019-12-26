@@ -1,14 +1,14 @@
 <div class="button-row">
-  <button mat-icon-button (click)="activate()" [disabled]="activated">
-    <mat-icon>{{activated ? 'lock_open' : 'lock'}}</mat-icon>
+  <button mat-icon-button (click)="activate()" [disabled]="activated$ | async ">
+    <mat-icon>{{(activated$ | async) ? 'lock_open' : 'lock'}}</mat-icon>
   </button>
-  <button mat-mini-fab #param1 [disabled]="!activated">{{paramValue1}}</button>
+  <button mat-mini-fab #param1 [disabled]="!(activated$ | async)">{{param1$ | async}}</button>
   <button mat-icon-button disabled>
     <mat-icon>add</mat-icon>
   </button>
-  <button mat-mini-fab #param2 [disabled]="!activated">{{paramValue2}}</button>
+  <button mat-mini-fab #param2 [disabled]="!(activated$ | async)">{{param2$ | async}}</button>
   <button mat-icon-button disabled>
     <mat-icon>arrow_forward</mat-icon>
   </button>
-  <button mat-mini-fab disabled>{{sumValue}}</button>
+  <button mat-mini-fab disabled>{{sum$ | async}}</button>
 </div>

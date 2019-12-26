@@ -6,18 +6,24 @@ import {
   Input,
   Output,
   EventEmitter
-} from '@angular/core';
+} from '@angular/core'
 import {
   Subject,
   fromEvent,
-  combineLatest
-} from 'rxjs';
+  combineLatest,
+  Observable,
+  merge,
+} from 'rxjs'
 import {
-  tap,
   scan,
   mapTo,
   takeUntil,
-} from 'rxjs/operators';
+  startWith,
+  map,
+  filter,
+} from 'rxjs/operators'
+
+const INIT_VALUE = '--'
 
 @Component({
   selector: 'app-rx-sum',
@@ -26,61 +32,54 @@ import {
 })
 export class RxSumComponent implements OnInit {
 
-  @Input() stopSubject: Subject<any>;
-  @Output() logAdded = new EventEmitter<any>();
+  @Input() stopSubject: Subject<any>
+  @Output() logAdded = new EventEmitter<any>()
 
-  @ViewChild('param1', { read: ElementRef, static: false }) param1: ElementRef;
-  @ViewChild('param2', { read: ElementRef, static: false }) param2: ElementRef;
+  @ViewChild('param1', { read: ElementRef, static: false }) param1: ElementRef
+  @ViewChild('param2', { read: ElementRef, static: false }) param2: ElementRef
 
-  INIT_VALUE = '--';
-  sumValue: string | number = this.INIT_VALUE;
-  paramValue1: string | number = this.INIT_VALUE;
-  paramValue2: string | number = this.INIT_VALUE;
-  activated = false;
+  activateSubject = new Subject<void>()
+  activated$: Observable<boolean>
+  param1$: Observable<string>
+  param2$: Observable<string>
+  sum$: Observable<string>
 
   constructor() { }
 
   ngOnInit() {
+    this.activated$ = merge(
+      this.stopSubject.pipe(mapTo(false)),
+      this.activateSubject.pipe(mapTo(true))
+    ).pipe(startWith(false))
   }
 
   activate() {
-    this.activated = true;
+    this.activateSubject.next()
 
-    const param1$ = fromEvent(this.param1.nativeElement, 'click').pipe(
+    this.param1$ = fromEvent(this.param1.nativeElement, 'click').pipe(
       mapTo(1),
       scan((acc, curr) => acc + curr, 0),
-      tap(v => this.paramValue1 = v)
+      startWith(INIT_VALUE),
+      map(v => `${v}`)
     )
 
-    const param2$ = fromEvent(this.param2.nativeElement, 'click').pipe(
+    this.param2$ = fromEvent(this.param2.nativeElement, 'click').pipe(
       mapTo(1),
       scan((acc, curr) => acc + curr, 0),
-      tap(v => this.paramValue2 = v)
+      startWith(INIT_VALUE),
+      map(v => `${v}`)
     )
 
-    combineLatest(
-      param1$,
-      param2$,
-      (first, second) => ({
-        val: first + second,
-        des: `${first} + ${second} = ${first + second}`
-      })
-    ).pipe(
-      // map(([val1, val2]) => val1 + val2),
-      takeUntil(this.stopSubject)
-    ).subscribe(
-      v => {
-        this.sumValue = v.val;
-        this.logAdded.emit(v.des);
-      },
-      () => { },
-      () => {
-        this.activated = false;
-        this.paramValue1 = this.INIT_VALUE;
-        this.paramValue2 = this.INIT_VALUE;
-        this.sumValue = this.INIT_VALUE;
-      }
-    )
+    this.sum$ = combineLatest(
+      this.param1$.pipe(filter(v => v != INIT_VALUE), map(v => parseInt(v))),
+      this.param2$.pipe(filter(v => v != INIT_VALUE), map(v => parseInt(v))),
+      (first, second) => {
+        const sum = `${first + second}`
+        this.logAdded.emit(`${first} + ${second} = ${sum}`)
+        return sum
+      }).pipe(
+        startWith(INIT_VALUE),
+        takeUntil(this.stopSubject)
+      )
   }
-
 }
