@@ -10,37 +10,13 @@ import { city_data } from './address.data';
 })
 export class RxSearchComponent implements OnInit {
 
-  @Input() stopSubject: Subject<any>;
   @Output() logAdded = new EventEmitter<any>();
 
   @ViewChild('inputRef', { read: ElementRef, static: false }) inputRef: ElementRef;
 
-  activated = false;
-
   $searchResults: Observable<string[]>;
-  cities = this.getCities();
 
-  constructor() { }
-
-  ngOnInit() {
-    this.activated = true;
-
-    this.$searchResults = timer(0)
-      .pipe(
-        switchMap(_ => fromEvent(this.inputRef.nativeElement, 'keyup').pipe(
-          debounceTime(500),
-          map((ev: any) => ev.target.value.trim()),
-          distinctUntilChanged(),
-          switchMap(v => from(this.cities).pipe(
-            filter(city => city.includes(v)),
-            reduce((acc, curr) => [...acc, curr], [])
-          )),
-          startWith(this.cities)
-        ))
-      )
-  }
-
-  getCities(): string[] {
+  get cities(): string[] {
     const cities = [];
     for (const provinceName in city_data) {
       for (const cityName in city_data[provinceName]) {
@@ -49,5 +25,24 @@ export class RxSearchComponent implements OnInit {
     }
 
     return cities;
+  }
+
+  constructor() { }
+
+  ngOnInit() {
+    this.$searchResults = timer(0)
+      .pipe(
+        switchMap(_ => fromEvent(this.inputRef.nativeElement, 'keyup').pipe(
+          debounceTime(500),
+          map((ev: any) => ev.target.value.trim()),
+          distinctUntilChanged(),
+          map(v => this.cities.filter(city => city.includes(v))),
+          // switchMap(v => from(this.cities).pipe(
+          //   filter(city => city.includes(v)),
+          //   reduce((acc, curr) => [...acc, curr], [])
+          // )),
+          startWith(this.cities)
+        ))
+      )
   }
 }
