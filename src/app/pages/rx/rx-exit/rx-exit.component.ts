@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Subject, fromEvent } from 'rxjs';
-import { takeUntil, timeInterval } from 'rxjs/operators';
+import { takeUntil, timeInterval, map, skip, filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+
+const EXIT_DURATION = 500;
 
 @Component({
   selector: 'app-rx-exit',
@@ -13,9 +15,8 @@ export class RxExitComponent implements OnInit {
   @Input() stopSubject: Subject<any>;
   @Output() logAdded = new EventEmitter<any>();
 
-  @ViewChild('exit', { read: ElementRef, static: false }) exit: ElementRef;
+  @ViewChild('exitRef', { read: ElementRef, static: false }) exitRef: ElementRef;
 
-  EXIT_DURATION = 500;
   activated = false;
 
   constructor(private snackBar: MatSnackBar) { }
@@ -26,21 +27,28 @@ export class RxExitComponent implements OnInit {
   activate() {
     this.activated = true;
 
-    fromEvent(this.exit.nativeElement, 'click').pipe(
+    const interval$ = fromEvent(this.exitRef.nativeElement, 'click').pipe(
       timeInterval(),
-      takeUntil(this.stopSubject)
+      map(v => v.interval)
+    )
+
+    const exit$ = interval$.pipe(
+      skip(1),
+      filter(v => v < EXIT_DURATION)
+    )
+
+    interval$.pipe(
+      takeUntil(exit$)
     ).subscribe(
       v => {
-        if (v.interval > this.EXIT_DURATION) {
-          this.logAdded.emit(`${v.interval}ms > 500ms`)
-          this.snackBar.open('click once more to exit', null, { duration: 1000 })
-        } else {
-          this.logAdded.emit(`${v.interval}ms Exit!!!`)
-        }
+        this.snackBar.open('click once more to exit', null, { duration: 1000 })
+        this.logAdded.emit(`${v}ms`)
       },
       () => { },
-      () => this.activated = false
+      () => {
+        this.activated = false
+        this.logAdded.emit('Exit!!!')
+      }
     )
   }
-
 }
