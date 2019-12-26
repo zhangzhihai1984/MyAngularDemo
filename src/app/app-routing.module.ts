@@ -8,7 +8,6 @@ import { AnimationModule } from './pages/animation';
 import { GridModule } from './pages/grid';
 import { DialogModule } from './pages/dialog';
 import { MenuModule } from './pages/menu';
-import { RxModule } from './pages/rx/rx.module';
 
 const routes: Routes = [
   {
@@ -45,9 +44,13 @@ const routes: Routes = [
   },
   {
     path: 'rx',
-    loadChildren: () => RxModule,
-    pathMatch: 'full'
+    loadChildren: () => import('./pages/rx').then(m => m.RxModule)
   },
+  // {
+  //   path: 'rx',
+  //   loadChildren: () => RxModule,
+  //   pathMatch: 'full'
+  // },
   {
     path: ':haha/demo',
     canActivate: [TableGuard],
