@@ -13,7 +13,7 @@ export class RxSearchComponent implements OnInit {
   @Input() stopSubject: Subject<any>;
   @Output() logAdded = new EventEmitter<any>();
 
-  @ViewChild('inputRef', { static: false }) inputRef: ElementRef;
+  @ViewChild('inputRef', { read: ElementRef, static: false }) inputRef: ElementRef;
 
   activated = false;
 

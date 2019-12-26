@@ -95,7 +95,7 @@ export class RxListComponent implements OnInit, AfterViewInit, AfterViewChecked,
   }
 
   ngAfterViewInit() {
-    timer(2000)
+    timer(0)
       .subscribe(_ => {
         this.heightFlag = true
         this.height = `${this.console.nativeElement.offsetHeight}px`
