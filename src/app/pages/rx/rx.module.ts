@@ -18,7 +18,6 @@ import { RxSearchComponent } from './rx-search/rx-search.component';
     RxSearchComponent
   ],
   imports: [
-    CommonModule,
     RxRoutingModule,
     SharedModule
   ]

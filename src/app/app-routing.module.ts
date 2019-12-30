@@ -52,6 +52,10 @@ const routes: Routes = [
   //   pathMatch: 'full'
   // },
   {
+    path: 'other',
+    loadChildren: () => import('./pages/other').then(m => m.OtherModule)
+  },
+  {
     path: ':haha/demo',
     canActivate: [TableGuard],
     component: TableListComponent,

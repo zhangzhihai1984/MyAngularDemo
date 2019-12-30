@@ -27,7 +27,7 @@ import { RxModule } from './pages/rx/rx.module';
     GridModule,
     DialogModule,
     MenuModule,
-    RxModule
+    // RxModule
   ],
   declarations: [
     AppComponent
