@@ -1,1 +1,97 @@
-<p>other works!</p>
+<!-------------------------------  ------------------------------->
+<!----------------------------- ngIf ----------------------------->
+<!-------------------------------  ------------------------------->
+<app-demo-item title="ngIf">
+    <mat-slide-toggle [checked]="ngIfCondition" (change)="ngIfCondition = !ngIfCondition">{{ngIfCondition}}
+    </mat-slide-toggle>
+    <!------------------- ngIf  ------------------->
+    <!-- sugared -->
+    <div *ngIf="ngIfCondition">If</div>
+
+    <!-- desugared -->
+    <ng-template [ngIf]="ngIfCondition">
+        <div>If</div>
+    </ng-template>
+
+    <!----------------- ngIf else ----------------->
+    <!-- sugared -->
+    <ng-container *ngIf="ngIfCondition; else elseTemplate">
+        <div>If</div>
+    </ng-container>
+
+    <!-- desugared -->
+    <ng-template [ngIf]="ngIfCondition" [ngIfElse]="elseTemplate">
+        <div>If</div>
+    </ng-template>
+
+    <!--------------- ngIf then else --------------->
+    <!-- sugared -->
+    <ng-container *ngIf="ngIfCondition; then thenTemplate; else elseTemplate"></ng-container>
+
+    <!-- desugared -->
+    <ng-template [ngIf]="ngIfCondition" [ngIfThen]="thenTemplate" [ngIfElse]="elseTemplate"></ng-template>
+</app-demo-item>
+
+<ng-template #thenTemplate>
+    <div>Then</div>
+</ng-template>
+<ng-template #elseTemplate>
+    <div>Else</div>
+</ng-template>
+
+<!-------------------------------  ------------------------------->
+<!---------------------------- ngFor ----------------------------->
+<!-------------------------------  ------------------------------->
+<app-demo-item title="ngFor">
+    <!-- sugared -->
+    <div *ngFor="let item of items; index as i; let odd=odd; trackBy: trackById"
+        [ngStyle]="{'color': odd?'red':'blue'}">{{i}} -
+        {{item.name}}</div>
+
+    <!-- desugared -->
+    <ng-template ngFor [ngForOf]="items" [ngForTrackBy]="trackById" let-item let-i="index" let-odd="odd">
+        <div [ngStyle]="{'color': odd?'red':'blue'}">{{i}} - {{item.name}}</div>
+    </ng-template>
+</app-demo-item>
+
+<!-------------------------------  ------------------------------->
+<!----------------------- ngTemplateOutlet------------------------>
+<!-------------------------------  ------------------------------->
+<app-demo-item title="ngTemplateOutlet">
+    <!-- sugared -->
+    <ng-container *ngTemplateOutlet="templateOutletRef; context: {$implicit: '1st', second: '2rd'}">
+    </ng-container>
+
+    <!-- desugared -->
+    <ng-template [ngTemplateOutlet]="templateOutletRef" [ngTemplateOutletContext]="{$implicit: '1st', second: '2rd'}">
+    </ng-template>
+</app-demo-item>
+
+<ng-template #templateOutletRef let-first let-second="second">
+    <div>{{first}} {{second}}</div>
+</ng-template>
+
+<!-------------------------------  ------------------------------->
+<!---------------------------- Mine ----------------------------->
+<!-------------------------------  ------------------------------->
+<app-demo-item title="MyDirective">
+    <div highlight #highlightRef>Highlight</div>
+    <div [highlight]="'#00ff00'" #highlightRef>Highlight</div>
+
+    <div *myIf="ngIfCondition; ref: myIfRef; let a; let b=another; fn: fn">MyIf Context $implicit:{{a}}; another:{{b}}
+    </div>
+    <!-- desugared -->
+    <ng-template [myIf]="ngIfCondition" [myIfRef]="myIfRef" let-a let-b="another" [myIfFn]="fn">
+        <div>MyIf Context $implicit:{{a}}; another:{{b}}</div>
+    </ng-template>
+
+    <div *myIf2="let result condition: ngIfCondition">MyIf2 {{result}}</div>
+    <!-- desugared -->
+    <ng-template myIf2 [myIf2Condition]="ngIfCondition" let-result>
+        <div>MyIf2 {{result}}</div>
+    </ng-template>
+</app-demo-item>
+
+<ng-template #myIfRef let-a let-b="another">
+    <div>MyIfRef Context $implicit:{{a}}; another:{{b}}</div>
+</ng-template>

@@ -21,7 +21,8 @@ import {
   MatRadioModule,
   MatCheckboxModule,
   MatSliderModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSlideToggleModule
 } from '@angular/material';
 import { DemoItemModule } from './demo-item';
 import { ThemePickerModule } from './theme-picker';
@@ -47,7 +48,8 @@ const MATERIAL_MODULES = [
   MatRadioModule,
   MatCheckboxModule,
   MatSliderModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSlideToggleModule,
 ]
 
 @NgModule({
