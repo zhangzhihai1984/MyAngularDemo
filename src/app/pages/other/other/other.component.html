@@ -76,7 +76,8 @@
 <!-------------------------------  ------------------------------->
 <app-demo-item title="MyDirective">
     <div highlight #highlightRef>Highlight</div>
-    <div [highlight]="'#00ff00'" #highlightRef>Highlight</div>
+    <div [highlight]="'#00ff00'" #highlightRef #h=highlight>Highlight</div>
+    <button mat-stroked-button (click)="h.showAlert()">Highlight exportAs</button>
 
     <div *myIf="ngIfCondition; ref: myIfRef; let a; let b=another; fn: fn">MyIf Context $implicit:{{a}}; another:{{b}}
     </div>
