@@ -18,7 +18,10 @@ export class HomePageComponent implements OnInit {
   @HostBinding('@pageAnimation') animatePage = true;
 
   onItemClicked(path: string) {
-    this.router.navigate([path]);
+    if (path.includes('other'))
+      this.router.navigate([path, Math.round(Math.random() * 100)])
+    else
+      this.router.navigate([path])
   }
 
 }

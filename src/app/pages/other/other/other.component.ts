@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HighlightDirective } from '../directives/highlight.directive';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-other',
@@ -23,7 +24,10 @@ export class OtherComponent implements OnInit {
 
   fn = () => console.log('Fn');
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {
+    this.route.paramMap.pipe()
+      .subscribe(v => console.log('<Route>', '<Param>', v.get('id')))
+  }
 
   ngOnInit() {
     setTimeout(() => {
