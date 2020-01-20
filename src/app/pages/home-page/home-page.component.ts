@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
 
   onItemClicked(path: string) {
     if (path.includes('other'))
-      this.router.navigate([path, Math.round(Math.random() * 100)])
+      this.router.navigate([path, Math.round(Math.random() * 100), {foo: 'foo'}])
     else
       this.router.navigate([path])
   }

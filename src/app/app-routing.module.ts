@@ -42,12 +42,20 @@ const routes: Routes = [
     path: 'other/:id',
     loadChildren: () => import('./pages/other').then(m => m.OtherModule)
   },
+  {
+    path: 'other/:id/:id2',
+    loadChildren: () => import('./pages/other').then(m => m.OtherModule)
+  },
   // {
   //   path: ':haha/:demo',
   //   canActivate: [TableGuard],
   //   component: TableListComponent,
   //   data: { key: 'value' }
   // },
+  {
+    path: 'router',
+    loadChildren: () => import('./pages/router').then(m => m.RouterModule)
+  },
   {
     path: '**',
     redirectTo: ''

@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { OtherComponent } from './other/other.component';
+import { RouterComponent } from './router/router.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: OtherComponent,
-    data: {
-      animState: 'OtherPage',
-      key: 'value'
-    }
+    component: RouterComponent
   }
 ];
 
@@ -17,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class OtherRoutingModule { }
+export class RouterRoutingModule { }
