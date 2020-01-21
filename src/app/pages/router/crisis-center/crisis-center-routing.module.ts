@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CrisisCenterComponent } from './crisis-center/crisis-center.component';
-import { CrisisListComponent } from '../crisis-list/crisis-list.component';
+import { CrisisListComponent } from './crisis-list/crisis-list.component';
 
 
 const routes: Routes = [
