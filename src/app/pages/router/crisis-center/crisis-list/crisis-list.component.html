@@ -1,1 +1,7 @@
-<mat-card *ngFor="let crisis of crises$ | async" (click)="goToDetail(crisis.id)">{{crisis.name}}</mat-card>
+<mat-card *ngFor="let crisis of crises$ | async" (click)="goToDetail(crisis.id)">
+    <div style="display: flex; flex-direction: row; align-items: center;">
+        <mat-icon>done</mat-icon>
+        <div mat-line>{{crisis.name}}</div>
+    </div>
+</mat-card>
+<router-outlet></router-outlet>
