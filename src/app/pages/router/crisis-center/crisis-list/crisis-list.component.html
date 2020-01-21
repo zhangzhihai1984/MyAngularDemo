@@ -1,1 +1,1 @@
-<p>crisis-list works!</p>
+<mat-card *ngFor="let crisis of crises$ | async" (click)="goToDetail(crisis.id)">{{crisis.name}}</mat-card>
