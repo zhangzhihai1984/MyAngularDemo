@@ -1,1 +1,8 @@
-<p>hero-list works!</p>
+<h2 style="text-align: center; margin-top: 12px;">HEROES</h2>
+<mat-card *ngFor="let hero of heroes$ | async" (click)="goToDetail(hero.id)">
+    <div style="display: flex; flex-direction: row; align-items: center;">
+        <button mat-mini-fab>{{hero.id}}</button>
+        <div style="flex-grow: 1; margin-left: 12px;">{{hero.name}}</div>
+        <mat-icon>done</mat-icon>
+    </div>
+</mat-card>
