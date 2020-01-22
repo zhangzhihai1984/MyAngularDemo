@@ -25,4 +25,8 @@ export class HeroDetailComponent implements OnInit {
     )
   }
 
+  goToHeroes(hero: Hero) {
+    let heroId = hero ? hero.id : null
+    this.router.navigate(['../', { id: heroId, foo: 'foo' }], { relativeTo: this.route })
+  }
 }

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-hero-list',
@@ -11,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeroListComponent implements OnInit {
   heroes$: Observable<Hero[]>
+  selectedId: number
 
   constructor(
     private service: HeroService,
@@ -19,10 +21,15 @@ export class HeroListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.heroes$ = this.service.getHeroes()
+    this.heroes$ = this.route.paramMap.pipe(
+      switchMap(param => {
+        this.selectedId = +param.get('id')
+        return this.service.getHeroes()
+      })
+    )
   }
 
   goToDetail(id: string) {
-    this.router.navigate([id], {relativeTo: this.route})
+    this.router.navigate([id], { relativeTo: this.route })
   }
 }
