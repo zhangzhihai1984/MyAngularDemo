@@ -6,7 +6,7 @@
     </mat-slide-toggle>
     <!------------------- ngIf  ------------------->
     <!-- sugared -->
-    <div *ngIf="ngIfCondition">If</div>
+    <div *ngIf="ngIfCondition" (click)="navigate()">If</div>
 
     <!-- desugared -->
     <ng-template [ngIf]="ngIfCondition">

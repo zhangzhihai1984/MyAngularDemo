@@ -4,8 +4,16 @@ import { OtherComponent } from './other/other.component';
 
 const routes: Routes = [
   {
+    path: ':id',
+    component: OtherComponent
+  },
+  {
+    path: ':id/:id2',
+    component: OtherComponent
+  },
+  {
     path: '',
-    component: OtherComponent,
+    redirectTo: '100',
     data: {
       animState: 'OtherPage',
       key: 'value'

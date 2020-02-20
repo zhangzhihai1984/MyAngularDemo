@@ -30,8 +30,14 @@ export class TableListComponent implements OnInit {
   stickyColumnBorderDisabled = false;
 
   constructor(private route: ActivatedRoute) {
+    this.route.url.pipe(map(p => p))
+      .subscribe(v => console.log('<Route>', '<Url>', v));
+
     this.route.paramMap.pipe(map(p => p))
-      .subscribe(v => console.log('<Route>', '<Param>', v));
+      .subscribe(v => console.log('<Route>', '<Param>', v.get('haha'), v.get('demo')));
+
+      this.route.queryParamMap.pipe(map(p => p))
+      .subscribe(v => console.log('<Route>', '<Query>', v))
 
     this.route.data.pipe(map(v => v))
       .subscribe(v => console.log('<Route>', '<Data>', v));

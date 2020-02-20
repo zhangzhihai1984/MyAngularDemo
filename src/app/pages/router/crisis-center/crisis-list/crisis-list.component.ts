@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CrisisListComponent implements OnInit {
   crises$: Observable<Crisis[]>
+  selectedId: number
 
   constructor(
     private service: CrisisService,

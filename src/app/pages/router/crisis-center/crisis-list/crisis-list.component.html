@@ -1,8 +1,7 @@
 <mat-card *ngFor="let crisis of crises$ | async" (click)="goToDetail(crisis.id)">
     <div style="display: flex; flex-direction: row; align-items: center;">
-        <button mat-mini-fab>{{crisis.id}}</button>
+        <button mat-mini-fab [color]="selectedId === crisis.id ? 'accent' :'primary'">{{crisis.id}}</button>
         <div style="flex-grow: 1; margin-left: 12px;">{{crisis.name}}</div>
-        <mat-icon>done</mat-icon>
     </div>
 </mat-card>
 <router-outlet></router-outlet>

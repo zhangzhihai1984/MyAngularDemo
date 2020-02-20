@@ -39,11 +39,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/rx').then(m => m.RxModule)
   },
   {
-    path: 'other/:id',
-    loadChildren: () => import('./pages/other').then(m => m.OtherModule)
-  },
-  {
-    path: 'other/:id/:id2',
+    path: 'other',
     loadChildren: () => import('./pages/other').then(m => m.OtherModule)
   },
   // {
@@ -60,7 +56,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: ''
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
