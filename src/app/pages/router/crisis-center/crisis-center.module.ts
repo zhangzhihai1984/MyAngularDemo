@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 
 import { CrisisCenterRoutingModule } from './crisis-center-routing.module';
-import { CrisisCenterComponent } from './crisis-center/crisis-center.component';
+import { CrisisCenterComponent } from './crisis-center';
 import { SharedModule } from 'src/app/shared';
-import { CrisisListComponent } from './crisis-list/crisis-list.component';
-import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
+import { CrisisListComponent } from './crisis-list';
+import { CrisisDetailComponent } from './crisis-detail';
+import { CrisisDefaultComponent } from './crisis-default';
 
 
 @NgModule({
   declarations: [
     CrisisCenterComponent,
     CrisisListComponent,
-    CrisisDetailComponent
+    CrisisDetailComponent,
+    CrisisDefaultComponent
   ],
   imports: [
     SharedModule,
