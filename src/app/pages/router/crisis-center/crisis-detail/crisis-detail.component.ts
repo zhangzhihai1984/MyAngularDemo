@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Crisis } from '../crisis';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -12,6 +12,7 @@ export class CrisisDetailComponent implements OnInit {
   editName: string
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute
   ) { }
 
@@ -20,5 +21,15 @@ export class CrisisDetailComponent implements OnInit {
       this.crisis = data.crisis
       this.editName = data.crisis.name
     })
+  }
+
+  save() {
+    this.crisis.name = this.editName
+    this.goToCrises()
+  }
+
+  goToCrises() {
+    let crisisId = this.crisis ? this.crisis.id : null
+    this.router.navigate(['../', { id: crisisId, foo: 'foo' }], { relativeTo: this.route })
   }
 }
