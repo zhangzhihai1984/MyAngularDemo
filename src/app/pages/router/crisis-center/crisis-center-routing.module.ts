@@ -4,6 +4,7 @@ import { CrisisCenterComponent } from './crisis-center/crisis-center.component';
 import { CrisisListComponent } from './crisis-list/crisis-list.component';
 import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
 import { CrisisDefaultComponent } from './crisis-default/crisis-default.component';
+import { CrisisDetailResolverService } from './crisis-detail-resolver.service';
 
 
 const routes: Routes = [
@@ -17,7 +18,10 @@ const routes: Routes = [
         children: [
           {
             path: ':id',
-            component: CrisisDetailComponent
+            component: CrisisDetailComponent,
+            resolve: {
+              crisis: CrisisDetailResolverService
+            }
           },
           {
             path: '',

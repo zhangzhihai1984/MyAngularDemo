@@ -1,1 +1,11 @@
-<p>crisis-detail works!</p>
+<ng-container *ngIf="crisis$ | async as crisis">
+    <h2 style="margin-top: 12px;">{{crisis.name}}</h2>
+    <div>id: {{crisis.id}}</div>
+    <mat-form-field>
+        <input matInput [(ngModel)]="crisis.name" style="text-align: center;">
+    </mat-form-field>
+    <div class="button-wrapper">
+        <button mat-raised-button>Save</button>
+        <button mat-raised-button>Cancel</button>
+    </div>
+</ng-container>

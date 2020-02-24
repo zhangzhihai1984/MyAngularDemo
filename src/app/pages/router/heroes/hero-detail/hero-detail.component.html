@@ -1,8 +1,6 @@
 <ng-container *ngIf="hero$ | async as hero">
     <h2 style="margin-top: 12px;">{{hero.name}}</h2>
-    <div>
-        id: {{hero.id}}
-    </div>
+    <div>id: {{hero.id}}</div>
     <mat-form-field>
         <input matInput [(ngModel)]="hero.name" style="text-align: center;">
     </mat-form-field>
