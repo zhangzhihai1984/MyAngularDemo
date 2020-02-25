@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Crisis } from '../crisis';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from 'src/app/shared/dialog';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -25,8 +26,14 @@ export class CrisisDetailComponent implements OnInit {
     })
   }
 
+  canDeactivate(): Observable<boolean> | boolean {
+    if (!this.crisis || this.crisis.name === this.editName)
+      return true
+    return this.dialogService.confirm('Discard changes?')
+  }
+
   cancel() {
-    this.dialogService.confirm('Discard changes?').subscribe(v=> console.log(`<> ${v}`))
+    this.goToCrises()
   }
 
   save() {

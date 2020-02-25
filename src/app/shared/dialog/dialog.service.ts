@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from './dialog.component';
-import { take, map } from 'rxjs/operators';
+import { take, map, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,8 @@ export class DialogService {
       data: { title: msg || 'Is it OK?' }
     }).afterClosed().pipe(
       take(1),
-      map(v => {
-        if (v)
-          return true
-        return false
-      })
+      // delay(2000),
+      map(v => v ? true : false)
     )
   }
 }
