@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Crisis } from '../crisis';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogService } from 'src/app/shared/dialog';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -12,6 +13,7 @@ export class CrisisDetailComponent implements OnInit {
   editName: string
 
   constructor(
+    private dialogService: DialogService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -21,6 +23,10 @@ export class CrisisDetailComponent implements OnInit {
       this.crisis = data.crisis
       this.editName = data.crisis.name
     })
+  }
+
+  cancel() {
+    this.dialogService.confirm()
   }
 
   save() {

@@ -26,6 +26,7 @@ import {
 } from '@angular/material';
 import { DemoItemModule } from './demo-item';
 import { ThemePickerModule } from './theme-picker';
+import { DialogModule } from './dialog';
 
 const MATERIAL_MODULES = [
   MatButtonModule,
@@ -67,6 +68,7 @@ const MATERIAL_MODULES = [
     ReactiveFormsModule,
     ThemePickerModule,
     DemoItemModule,
+    DialogModule,
     ...MATERIAL_MODULES,
   ],
 })
