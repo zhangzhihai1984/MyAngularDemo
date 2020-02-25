@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-dialog',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
+  title: string
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) data: { title: string }) {
+    this.title = data.title
+  }
 
   ngOnInit() {
   }

@@ -26,7 +26,7 @@ export class CrisisDetailComponent implements OnInit {
   }
 
   cancel() {
-    this.dialogService.confirm()
+    this.dialogService.confirm('Discard changes?').subscribe(v=> console.log(`<> ${v}`))
   }
 
   save() {
