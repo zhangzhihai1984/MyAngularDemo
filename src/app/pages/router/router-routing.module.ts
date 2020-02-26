@@ -10,11 +10,6 @@ const routes: Routes = [
     component: RouterComponent,
     children: [
       {
-        path: 'compose',
-        component: ComposeMessageComponent,
-        outlet: 'popup'
-      },
-      {
         path: 'crisis-center',
         loadChildren: () => import('./crisis-center').then(m => m.CrisisCenterModule)
       },
@@ -29,6 +24,11 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'compose',
+    component: ComposeMessageComponent,
+    outlet: 'popup'
+  }
 ];
 
 @NgModule({
