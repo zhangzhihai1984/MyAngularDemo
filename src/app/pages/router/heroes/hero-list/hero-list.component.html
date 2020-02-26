@@ -1,4 +1,4 @@
-<h2 style="text-align: center; margin-top: 12px;">HEROES</h2>
+<h2 style="margin-top: 12px;">HEROES</h2>
 <mat-card *ngFor="let hero of heroes$ | async" (click)="goToDetail(hero.id)">
     <div style="display: flex; flex-direction: row; align-items: center;">
         <button mat-mini-fab [color]="selectedId === hero.id ? 'accent' :'primary'">{{hero.id}}</button>

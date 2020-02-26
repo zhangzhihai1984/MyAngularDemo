@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-wrapper {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+
+    a:not(:first-child) {
+        margin-left: -1px;
+    }
+}

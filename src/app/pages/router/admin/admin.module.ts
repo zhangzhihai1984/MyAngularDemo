@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ManageHeroesComponent } from './manage-heroes/manage-heroes.component';
 import { ManageCrisesComponent } from './manage-crises/manage-crises.component';
+import { SharedModule } from 'src/app/shared';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { ManageCrisesComponent } from './manage-crises/manage-crises.component';
     ManageCrisesComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     AdminRoutingModule
   ]
 })
