@@ -1,1 +1,4 @@
-<p>login works!</p>
+<h2 style="margin-top: 12px;">LOGIN</h2>
+<button mat-stroked-button disabled>{{message}}</button>
+<button *ngIf="!authService.isLoggedIn" mat-raised-button style="margin-top: 12px;" (click)="login()">Login</button>
+<button *ngIf="authService.isLoggedIn" mat-raised-button style="margin-top: 12px;" (click)="logout()">Logout</button>

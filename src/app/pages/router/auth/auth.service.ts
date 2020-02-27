@@ -21,5 +21,6 @@ export class AuthService {
 
   logout() {
     this.isLoggedIn = false
+    this.redirectUrl = ''
   }
 }
