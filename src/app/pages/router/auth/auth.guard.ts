@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    return this.canActivate(next, state);
   }
   canLoad(
     route: Route,
@@ -33,7 +33,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     // console.log(`<> ${url.substring(0, url.lastIndexOf('/'))} /login`);
     // console.log(`<> ${url.replace('admin', 'login')}`)
 
-    this.router.navigateByUrl(url.replace('admin', 'login'))
+    this.router.navigateByUrl('/router/login')
+    // this.router.navigateByUrl(url.replace('admin', 'login'))
     return false
   }
 }
