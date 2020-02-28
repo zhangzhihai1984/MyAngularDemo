@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import {
+  CanActivate,
+  CanActivateChild,
+  CanLoad,
+  Route,
+  UrlSegment,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+  Router
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -33,7 +43,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     // console.log(`<> ${url.substring(0, url.lastIndexOf('/'))} /login`);
     // console.log(`<> ${url.replace('admin', 'login')}`)
 
-    this.router.navigateByUrl('/router/login')
+    let sessionId = 123456789
+
+    this.router.navigate(['/router/login'], {
+      queryParams: { 'session_id': sessionId },
+      fragment: 'anchor'
+    })
     // this.router.navigateByUrl(url.replace('admin', 'login'))
     return false
   }

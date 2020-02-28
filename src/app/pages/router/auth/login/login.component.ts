@@ -27,7 +27,11 @@ export class LoginComponent implements OnInit {
 
       let url = this.authService.redirectUrl
       if (url)
-        this.router.navigateByUrl(url)
+        // this.router.navigateByUrl(url)
+        this.router.navigate([url], {
+          queryParamsHandling: 'preserve',
+          preserveFragment: true
+        })
     })
   }
 
