@@ -1,29 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatTableModule,
-  MatListModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatTooltipModule,
-  MatButtonModule,
-  MatMenuModule,
-  MatRippleModule,
-  MatGridListModule,
-  MatSidenavModule,
-  MatCardModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatInputModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatRadioModule,
-  MatCheckboxModule,
-  MatSliderModule,
-  MatSnackBarModule,
-  MatSlideToggleModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DemoItemModule } from './demo-item';
 import { ThemePickerModule } from './theme-picker';
 import { DialogModule } from './dialog';

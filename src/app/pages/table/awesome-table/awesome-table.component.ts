@@ -10,13 +10,9 @@ import {
   ViewChildren,
   QueryList
 } from '@angular/core';
-import {
-  MatTableDataSource,
-  MatPaginator,
-  PageEvent,
-  MatSort,
-  Sort
-} from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { TableCellModel } from '../table.model';
 import { Observable, Subscription, of } from 'rxjs';
 import { TableColumnConfig } from '../table.config';

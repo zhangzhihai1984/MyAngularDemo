@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Subject, fromEvent } from 'rxjs';
 import { takeUntil, timeInterval, map, skip, filter } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const EXIT_DURATION = 500;
 

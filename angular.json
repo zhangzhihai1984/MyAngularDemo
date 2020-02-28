@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "MyAngularDemo"
+  "defaultProject": "MyAngularDemo",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { take, filter } from 'rxjs/operators';
 
 import { Dialog1Component } from '../dialog1/dialog1.component';
