@@ -1,1 +1,18 @@
-<p>material-form works!</p>
+<app-demo-item title="Basic Input">
+    <form>
+        <mat-form-field>
+            <mat-label>Favorite food</mat-label>
+            <input matInput placeholder="Pizza" [formControl]="foodControl">
+        </mat-form-field>
+    </form>
+</app-demo-item>
+<app-demo-item title="Basic Input">
+    <form>
+        <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Email</mat-label>
+            <input matInput [formControl]="emailControl">
+            <mat-hint>Errors appear instantly!</mat-hint>
+            <mat-error>{{emailControl.errors | json}}</mat-error>
+        </mat-form-field>
+    </form>
+</app-demo-item>
