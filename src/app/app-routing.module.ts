@@ -53,6 +53,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/router').then(m => m.RouterModule)
   },
   {
+    path: 'form',
+    loadChildren: () => import('./pages/form').then(m => m.FormModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
