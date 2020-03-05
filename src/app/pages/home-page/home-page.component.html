@@ -1,54 +1,6 @@
-<mat-card (click)="onItemClicked('/rx')">
-  <mat-card-header>
-    <mat-card-title>Rx</mat-card-title>
-    <mat-card-subtitle>Rx</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card (click)="onItemClicked('/animation')">
-  <mat-card-header>
-    <mat-card-title>Animation</mat-card-title>
-    <mat-card-subtitle>Animation</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card (click)="onItemClicked('/grid')">
-  <mat-card-header>
-    <mat-card-title>Grid Lists</mat-card-title>
-    <mat-card-subtitle>Grid List</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card (click)="onItemClicked('/dialog')">
-  <mat-card-header>
-    <mat-card-title>Dialog</mat-card-title>
-    <mat-card-subtitle>Dialog</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card (click)="onItemClicked('/menu')">
-  <mat-card-header>
-    <mat-card-title>Menu</mat-card-title>
-    <mat-card-subtitle>Menu</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card (click)="onItemClicked('/table')">
-  <mat-card-header>
-    <mat-card-title>Table</mat-card-title>
-    <mat-card-subtitle>Table</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card (click)="onItemClicked('/other')">
-  <mat-card-header>
-    <mat-card-title>Other</mat-card-title>
-    <mat-card-subtitle>Other</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card (click)="onItemClicked('/router')">
-  <mat-card-header>
-    <mat-card-title>Router</mat-card-title>
-    <mat-card-subtitle>Router</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
-<mat-card (click)="onItemClicked('/form')">
-  <mat-card-header>
-    <mat-card-title>Form</mat-card-title>
-    <mat-card-subtitle>Form</mat-card-subtitle>
+<mat-card *ngFor="let config of pageConfigs">
+  <mat-card-header (click)="onItemClicked(config.path)">
+    <mat-card-title>{{config.title}}</mat-card-title>
+    <mat-card-subtitle>{{config.title}}</mat-card-subtitle>
   </mat-card-header>
 </mat-card>

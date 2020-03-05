@@ -9,10 +9,22 @@ import { pageAnimation } from './home-page.animation';
   animations: [pageAnimation]
 })
 export class HomePageComponent implements OnInit {
+  pageConfigs: PageConfig[]
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.pageConfigs = [
+      new PageConfig('Rx', '/rx'),
+      new PageConfig('Animation', '/animation'),
+      new PageConfig('Grid Lists', '/grid'),
+      new PageConfig('Dialog', '/dialog'),
+      new PageConfig('Menu', '/menu'),
+      new PageConfig('Table', '/table'),
+      new PageConfig('Other', '/other'),
+      new PageConfig('Router', '/router'),
+      new PageConfig('Form', '/form')
+    ]
   }
 
   @HostBinding('@pageAnimation') animatePage = true;
@@ -23,5 +35,8 @@ export class HomePageComponent implements OnInit {
     else
       this.router.navigate([path])
   }
+}
 
+class PageConfig {
+  constructor(public title: string, public path: string) {}
 }
