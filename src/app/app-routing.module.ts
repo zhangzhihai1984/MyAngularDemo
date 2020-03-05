@@ -60,7 +60,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    enableTracing: false
+    enableTracing: false,
+    // scrollPositionRestoration: 'enabled',
+    // scrollOffset: [0, 200],
+    anchorScrolling: 'enabled'
+    // https://stackoverflow.com/questions/52725394/router-anchorscrolling-does-not-work-with-materials-mat-sidenav-containerfulls
   })],
   exports: [RouterModule]
 })
