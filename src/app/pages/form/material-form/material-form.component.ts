@@ -21,8 +21,6 @@ export class MaterialFormComponent implements OnInit {
     disabled: false
   }]
 
-  foodControl: FormControl
-
   appearanceControl: FormControl
   floatingControl: FormControl
   emailControl: FormControl
@@ -32,10 +30,6 @@ export class MaterialFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.foodControl = new FormControl('Suchi')
-    this.foodControl.valueChanges.subscribe(v => console.log(`<> ${v}`)
-    )
-
     this.appearanceControl = new FormControl('outline')
     this.floatingControl = new FormControl('auto')
     this.emailControl = new FormControl('13911112222@139.com', [Validators.required, Validators.email])
