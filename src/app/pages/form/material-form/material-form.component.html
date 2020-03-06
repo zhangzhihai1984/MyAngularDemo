@@ -6,12 +6,33 @@
         </mat-form-field>
     </form>
 </app-demo-item>
-<app-demo-item title="Basic Input">
+<app-demo-item title="Input with validator">
     <form>
-        <mat-form-field appearance="outline" floatLabel="always">
+        <div>
+            <strong>Appearance:</strong>
+            <mat-radio-group [formControl]="appearanceControl" (change)="appearanceChanges($event)">
+                <mat-radio-button *ngFor="let appearance of appearances" [value]=appearance>{{appearance}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div>
+            <strong>Label Floating:</strong>
+            <mat-radio-group [formControl]="floatingControl">
+                <mat-radio-button *ngFor="let floating of floatings" [value]=floating.name
+                    [disabled]="floating.disabled">{{floating.name}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-form-field [appearance]="appearanceControl.value" [floatLabel]="floatingControl.value">
             <mat-label>Email</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
             <input matInput [formControl]="emailControl">
-            <mat-hint>Errors appear instantly!</mat-hint>
+            <button mat-icon-button matSuffix *ngIf="emailControl.value" (click)="emailControl.setValue('')">
+                <mat-icon>close</mat-icon>
+            </button>
+            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
             <mat-error>{{emailControl.errors | json}}</mat-error>
         </mat-form-field>
     </form>
