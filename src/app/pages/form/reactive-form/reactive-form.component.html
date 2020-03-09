@@ -1,1 +1,16 @@
-<p>reactive-form works!</p>
+<app-demo-item>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <span class="app-primary-color"><strong>First Name:</strong></span>
+        <mat-form-field>
+            <input matInput formControlName="firstName">
+        </mat-form-field>
+
+        <span class="app-primary-color"><strong>Second Name:</strong></span>
+        <mat-form-field>
+            <input matInput formControlName="lastName">
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" color="primary" [disabled]="!profileForm.valid">Submit</button>
+
+    </form>
+</app-demo-item>

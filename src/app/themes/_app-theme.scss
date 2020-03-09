@@ -15,6 +15,10 @@
         background: map-get($map: $background, $key: background);
     }
 
+    .app-primary-color {
+        color: mat-color($primary)
+    }
+
     @include demo-item-theme($theme);
     @include grid-demo-theme($theme);
     @include table-demo-theme($theme);
