@@ -1,6 +1,7 @@
 @import './demo-item-theme';
 @import './grid-demo-theme';
 @import './table-demo-theme';
+@import './home-theme';
 
 @mixin app-theme($theme) {
     $primary: map-get($theme, primary);
@@ -17,4 +18,5 @@
     @include demo-item-theme($theme);
     @include grid-demo-theme($theme);
     @include table-demo-theme($theme);
+    @include home-theme($theme);
 }

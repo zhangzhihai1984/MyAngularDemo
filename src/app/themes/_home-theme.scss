@@ -1,0 +1,7 @@
+@mixin home-theme($theme) {
+    $primary: map-get($map: $theme, $key: primary);
+
+    .app-home-card {
+        border-left: 10px solid mat-color($primary);
+    }
+}

@@ -1,4 +1,4 @@
-<mat-card *ngFor="let config of pageConfigs">
+<mat-card class="app-home-card" *ngFor="let config of pageConfigs">
   <mat-card-header (click)="onItemClicked(config.path)">
     <mat-card-title>{{config.title}}</mat-card-title>
     <mat-card-subtitle>{{config.title}}</mat-card-subtitle>
