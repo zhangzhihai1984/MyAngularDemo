@@ -27,7 +27,13 @@
     .app-outline {
         border: 1px solid $primaryColor;
         border-radius: 5px;
-        padding: 20px;
+        padding: 16px;
+    }
+
+    .app-notice {
+        border-left: 8px solid $primaryColor;
+        background: linear-gradient(to right, rgba($primaryColor, 0.2), transparent);
+        padding: 16px;
     }
 
     @include demo-item-theme($theme);

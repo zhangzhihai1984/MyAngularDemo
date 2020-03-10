@@ -1,16 +1,33 @@
 <app-demo-item>
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <span class="app-primary-color"><strong>First Name:</strong></span>
+        <div class="app-notice">Name</div>
+        <div class="app-primary-color"><strong>First Name:</strong></div>
         <mat-form-field>
             <input matInput formControlName="firstName">
         </mat-form-field>
-
-        <span class="app-primary-color"><strong>Second Name:</strong></span>
+        <div class="app-primary-color"><strong>Second Name:</strong></div>
         <mat-form-field>
             <input matInput formControlName="lastName">
         </mat-form-field>
 
+        <div class="app-notice">Address</div>
+        <div class="app-primary-color"><strong>Province</strong></div>
+        <ng-container formGroupName="address">
+            <mat-form-field>
+                <input matInput formControlName="province">
+            </mat-form-field>
+            <div class="app-primary-color"><strong>City</strong></div>
+            <mat-form-field>
+                <input matInput formControlName="city">
+            </mat-form-field>
+        </ng-container>
+
         <button mat-raised-button type="submit" color="primary" [disabled]="!profileForm.valid">Submit</button>
+
+        <div class="app-outline">
+            <p>Form Values: {{profileForm.value | json}}</p>
+            <p>Form Status: {{profileForm.status}}</p>
+        </div>
 
     </form>
 </app-demo-item>

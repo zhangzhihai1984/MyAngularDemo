@@ -13,7 +13,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class ReactiveFormComponent implements OnInit {
   profileForm = new FormGroup({
     firstName: new FormControl(''),
-    lastName: new FormControl('')
+    lastName: new FormControl(''),
+    address: new FormGroup({
+      province: new FormControl(''),
+      city: new FormControl('')
+    })
   })
 
   constructor() { }
