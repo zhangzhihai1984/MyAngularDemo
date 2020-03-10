@@ -1,7 +1,6 @@
 @import './demo-item-theme';
 @import './grid-demo-theme';
 @import './table-demo-theme';
-@import './home-theme';
 
 @mixin app-theme($theme) {
     $primary: map-get($theme, primary);
@@ -10,17 +9,28 @@
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
+    $primaryColor: mat-color($primary);
+
     .app-background {
         // background: mat-color($background, background);
         background: map-get($map: $background, $key: background);
     }
 
     .app-primary-color {
-        color: mat-color($primary)
+        color: $primaryColor
+    }
+
+    .app-card-decoration {
+        border-left: 10px solid $primaryColor;
+    }
+
+    .app-outline {
+        border: 1px solid $primaryColor;
+        border-radius: 5px;
+        padding: 20px;
     }
 
     @include demo-item-theme($theme);
     @include grid-demo-theme($theme);
     @include table-demo-theme($theme);
-    @include home-theme($theme);
 }
