@@ -22,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 import { DemoItemModule } from './demo-item';
 import { ThemePickerModule } from './theme-picker';
 import { DialogModule } from './dialog';
@@ -49,6 +50,7 @@ const MATERIAL_MODULES = [
   MatSliderModule,
   MatSnackBarModule,
   MatSlideToggleModule,
+  MatSelectModule,
 ]
 
 @NgModule({

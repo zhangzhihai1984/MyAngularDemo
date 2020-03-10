@@ -14,11 +14,17 @@
         <div class="app-primary-color"><strong>Province</strong></div>
         <ng-container formGroupName="address">
             <mat-form-field>
-                <input matInput formControlName="province">
+                <!-- <input matInput formControlName="province"> -->
+                <mat-select formControlName="province" (selectionChange)=onProvinceChanges($event)>
+                    <mat-option *ngFor="let province of provinces" [value]="province">{{province}}</mat-option>
+                </mat-select>
             </mat-form-field>
             <div class="app-primary-color"><strong>City</strong></div>
             <mat-form-field>
-                <input matInput formControlName="city">
+                <!-- <input matInput formControlName="city"> -->
+                <mat-select formControlName="city">
+                    <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+                </mat-select>
             </mat-form-field>
         </ng-container>
 
@@ -27,6 +33,7 @@
         <div class="app-outline">
             <p>Form Values: {{profileForm.value | json}}</p>
             <p>Form Status: {{profileForm.status}}</p>
+            <button mat-raised-button (click)="patchValue($event)">Patch Value</button>
         </div>
 
     </form>
