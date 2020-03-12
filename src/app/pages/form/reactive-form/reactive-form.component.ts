@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { city_data } from '../../rx/rx-search/address.data';
 import { MatSelectChange } from '@angular/material/select';
 
@@ -13,19 +13,35 @@ import { MatSelectChange } from '@angular/material/select';
   ]
 })
 export class ReactiveFormComponent implements OnInit {
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    address: new FormGroup({
-      province: new FormControl(''),
-      city: new FormControl('')
-    })
+  // profileForm = new FormGroup({
+  //   firstName: new FormControl(''),
+  //   lastName: new FormControl(''),
+  //   address: new FormGroup({
+  //     province: new FormControl(''),
+  //     city: new FormControl('')
+  //   })
+  // })
+
+  profileForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: [''],
+    address: this.fb.group({
+      province: [''],
+      city: ['']
+    }),
+    aliases: this.fb.array([
+      this.fb.control('')
+    ])
   })
 
   provinces: string[] = []
   cities: string[] = []
 
-  constructor() { }
+  get aliases() {
+    return this.profileForm.get('aliases') as FormArray
+  }
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.profileForm.valueChanges.subscribe(v => console.log(`${JSON.stringify(v)}`))
@@ -33,6 +49,8 @@ export class ReactiveFormComponent implements OnInit {
     for (const province in city_data) {
       this.provinces.push(province)
     }
+
+    this.profileForm.get('aliases.0').valueChanges.subscribe(v => console.log(`>>> ${JSON.stringify(v)}`))
   }
 
   onProvinceChanges(selection: MatSelectChange) {
@@ -41,6 +59,10 @@ export class ReactiveFormComponent implements OnInit {
     for (const city in city_data[province]) {
       this.cities.push(city)
     }
+  }
+
+  addAlias() {
+    this.aliases.push(this.fb.control(''))
   }
 
   onSubmit() {

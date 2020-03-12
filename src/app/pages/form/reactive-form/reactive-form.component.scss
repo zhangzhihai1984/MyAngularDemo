@@ -1,21 +1,45 @@
-
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 mat-form-field {
-    width: 100%;
+  width: 100%;
 }
 
 .app-outline {
-    margin-top: 20px;
-    align-self: stretch;
+  margin-top: 20px;
+  align-self: stretch;
 }
 
 .app-notice {
-    align-self: stretch;
-    border-radius: 5px;
-    margin-bottom: 20px;
+  align-self: stretch;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+$noticeHeight: 52px;
+$addAliasBorder: 60px;
+$addAliasIconSide: 40px;
+
+.add-alias-wrapper {
+  align-self: stretch;
+//   width: 100%;
+  height: $noticeHeight;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.add-alias-notice {
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  border-width: $addAliasBorder;
+}
+
+.add-alias-icon {
+  position: absolute;
+  top: ($noticeHeight - $addAliasIconSide) / 2;
+  left: ($addAliasBorder - $addAliasIconSide) / 2;
 }
