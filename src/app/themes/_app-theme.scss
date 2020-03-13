@@ -29,9 +29,15 @@
     border-left: 10px solid $primaryColor;
   }
 
-  .app-outline {
+  .app-primary-outline {
     border: 1px solid $primaryColor;
     border-radius: 5px;
+    padding: 16px;
+  }
+
+  .app-warn-fill {
+    border-radius: 5px;
+    background: linear-gradient(to right, rgba($warnColor, 0.2), transparent);
     padding: 16px;
   }
 

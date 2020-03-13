@@ -1,20 +1,9 @@
 form {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-}
-
-mat-form-field {
-  width: 100%;
-}
-
-.app-outline {
-  margin-top: 20px;
-  align-self: stretch;
 }
 
 .app-notice {
-  align-self: stretch;
   border-radius: 5px;
   margin-bottom: 20px;
 }
@@ -24,8 +13,6 @@ $addAliasBorder: 60px;
 $addAliasIconSide: 40px;
 
 .add-alias-wrapper {
-  align-self: stretch;
-//   width: 100%;
   height: $noticeHeight;
   position: relative;
   margin-bottom: 20px;
@@ -47,3 +34,11 @@ $addAliasIconSide: 40px;
 // ::ng-deep .mat-form-field-wrapper {
 //     padding-bottom: 0;
 // }
+
+.flex-start {
+  align-self: flex-start;
+}
+
+.app-primary-outline {
+    margin-top: 20px;
+  }

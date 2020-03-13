@@ -61,6 +61,10 @@ export class ReactiveFormComponent implements OnInit {
     return !control.errors
   }
 
+  needShowError(control: AbstractControl): boolean {
+    return control.errors && (control.dirty || control.touched)
+  }
+
   onProvinceChanges(selection: MatSelectChange) {
     this.cities = []
     const province = selection.value

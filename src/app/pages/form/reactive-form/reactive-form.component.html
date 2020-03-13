@@ -2,6 +2,8 @@
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div class="app-notice">ID</div>
         <div [class]="isControlValid(name)?'app-primary-color':'app-warn-color'"><strong>Name:</strong></div>
+        <div *ngIf="needShowError(name)" class="app-warn-fill app-warn-color"><strong>{{name.errors | json}}</strong>
+        </div>
         <mat-form-field>
             <input matInput formControlName="name">
         </mat-form-field>
@@ -11,8 +13,6 @@
                 <mat-icon>phone</mat-icon>
                 <div>+86</div>
             </div>
-            <!-- <div matPrefix>+86</div> -->
-
             <input matInput formControlName="phone">
         </mat-form-field>
 
@@ -48,9 +48,10 @@
             </ng-container>
         </ng-container>
 
-        <button mat-raised-button type="submit" color="primary" [disabled]="!profileForm.valid">Submit</button>
+        <button class="flex-start" mat-raised-button type="submit" color="primary"
+            [disabled]="!profileForm.valid">Submit</button>
 
-        <div class="app-outline">
+        <div class="app-primary-outline">
             <p>Form Values: {{profileForm.value | json}}</p>
             <p>Form Status: {{profileForm.status}}</p>
             <p>Form Touched: {{profileForm.touched}}</p>
