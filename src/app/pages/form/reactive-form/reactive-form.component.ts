@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { city_data } from '../../rx/rx-search/address.data';
 import { MatSelectChange } from '@angular/material/select';
 
@@ -23,8 +23,8 @@ export class ReactiveFormComponent implements OnInit {
   // })
 
   profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: [''],
+    name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+    phone: [''],
     address: this.fb.group({
       province: [''],
       city: ['']
@@ -36,6 +36,10 @@ export class ReactiveFormComponent implements OnInit {
 
   provinces: string[] = []
   cities: string[] = []
+
+  get name() {
+    return this.profileForm.get('name')
+  }
 
   get aliases() {
     return this.profileForm.get('aliases') as FormArray
@@ -51,6 +55,10 @@ export class ReactiveFormComponent implements OnInit {
     }
 
     this.profileForm.get('aliases.0').valueChanges.subscribe(v => console.log(`>>> ${JSON.stringify(v)}`))
+  }
+
+  isControlValid(control: AbstractControl): boolean {
+    return !control.errors
   }
 
   onProvinceChanges(selection: MatSelectChange) {
@@ -74,7 +82,7 @@ export class ReactiveFormComponent implements OnInit {
     ev.preventDefault()
     // ev.stopPropagation()
     this.profileForm.patchValue({
-      firstName: 'John',
+      name: 'John Zhang',
       address: {
         province: '辽宁省',
         city: '沈阳市'

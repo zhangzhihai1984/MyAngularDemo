@@ -43,3 +43,7 @@ $addAliasIconSide: 40px;
   top: ($noticeHeight - $addAliasIconSide) / 2;
   left: ($addAliasBorder - $addAliasIconSide) / 2;
 }
+
+// ::ng-deep .mat-form-field-wrapper {
+//     padding-bottom: 0;
+// }

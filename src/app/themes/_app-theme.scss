@@ -1,42 +1,47 @@
-@import './demo-item-theme';
-@import './grid-demo-theme';
-@import './table-demo-theme';
+@import "./demo-item-theme";
+@import "./grid-demo-theme";
+@import "./table-demo-theme";
 
 @mixin app-theme($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
 
-    $primaryColor: mat-color($primary);
+  $primaryColor: mat-color($primary);
+  $warnColor: mat-color($warn);
 
-    .app-background {
-        // background: mat-color($background, background);
-        background: map-get($map: $background, $key: background);
-    }
+  .app-background {
+    // background: mat-color($background, background);
+    background: map-get($map: $background, $key: background);
+  }
 
-    .app-primary-color {
-        color: $primaryColor
-    }
+  .app-primary-color {
+    color: $primaryColor;
+  }
 
-    .app-card-decoration {
-        border-left: 10px solid $primaryColor;
-    }
+  .app-warn-color {
+    color: $warnColor;
+  }
 
-    .app-outline {
-        border: 1px solid $primaryColor;
-        border-radius: 5px;
-        padding: 16px;
-    }
+  .app-card-decoration {
+    border-left: 10px solid $primaryColor;
+  }
 
-    .app-notice {
-        border-left: 8px solid $primaryColor;
-        background: linear-gradient(to right, rgba($primaryColor, 0.2), transparent);
-        padding: 16px;
-    }
+  .app-outline {
+    border: 1px solid $primaryColor;
+    border-radius: 5px;
+    padding: 16px;
+  }
 
-    @include demo-item-theme($theme);
-    @include grid-demo-theme($theme);
-    @include table-demo-theme($theme);
+  .app-notice {
+    border-left: 8px solid $primaryColor;
+    background: linear-gradient(to right, rgba($primaryColor, 0.2), transparent);
+    padding: 16px;
+  }
+
+  @include demo-item-theme($theme);
+  @include grid-demo-theme($theme);
+  @include table-demo-theme($theme);
 }
