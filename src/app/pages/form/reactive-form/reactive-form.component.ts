@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { FormGroup, FormControl, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, FormArray, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { city_data } from '../../rx/rx-search/address.data';
 import { MatSelectChange } from '@angular/material/select';
 
@@ -13,18 +13,10 @@ import { MatSelectChange } from '@angular/material/select';
   ]
 })
 export class ReactiveFormComponent implements OnInit {
-  // profileForm = new FormGroup({
-  //   firstName: new FormControl(''),
-  //   lastName: new FormControl(''),
-  //   address: new FormGroup({
-  //     province: new FormControl(''),
-  //     city: new FormControl('')
-  //   })
-  // })
 
   profileForm = this.fb.group({
     name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-    phone: [''],
+    phone: ['', Validators.compose([Validators.required, phoneValidator, Validators.minLength(11), Validators.maxLength(11)])],
     address: this.fb.group({
       province: [''],
       city: ['']
@@ -39,6 +31,10 @@ export class ReactiveFormComponent implements OnInit {
 
   get name() {
     return this.profileForm.get('name')
+  }
+
+  get phone() {
+    return this.profileForm.get('phone')
   }
 
   get aliases() {
@@ -63,6 +59,11 @@ export class ReactiveFormComponent implements OnInit {
 
   needShowError(control: AbstractControl): boolean {
     return control.errors && (control.dirty || control.touched)
+  }
+
+  clearPhone(ev: Event) {
+    ev.preventDefault()
+    this.phone.setValue("")
   }
 
   onProvinceChanges(selection: MatSelectChange) {
@@ -93,4 +94,10 @@ export class ReactiveFormComponent implements OnInit {
       }
     })
   }
+}
+
+export const phoneValidator = (control: AbstractControl): ValidationErrors | null => {
+  if (control.value.startsWith('139'))
+    return { 'format': 'begin with 139' }
+  return null
 }

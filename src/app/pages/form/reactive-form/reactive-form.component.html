@@ -8,12 +8,17 @@
             <input matInput formControlName="name">
         </mat-form-field>
         <div class="app-primary-color"><strong>Phone:</strong></div>
+        <div *ngIf="needShowError(phone)" class="app-warn-fill app-warn-color"><strong>{{phone.errors | json}}</strong>
+        </div>
         <mat-form-field>
             <div matPrefix style="display: flex; flex-direction: row; align-items: center;">
                 <mat-icon>phone</mat-icon>
-                <div>+86</div>
+                <div style="padding: 5px 5px 0 0;">+86</div>
             </div>
             <input matInput formControlName="phone">
+            <button *ngIf="!!phone.value" mat-icon-button matSuffix (click)="clearPhone($event)">
+                <mat-icon>close</mat-icon>
+            </button>
         </mat-form-field>
 
         <ng-container formGroupName="address">
