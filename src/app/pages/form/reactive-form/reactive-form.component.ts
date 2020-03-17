@@ -1,8 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { FormBuilder, Validators, FormArray, AbstractControl, ValidatorFn, ValidationErrors, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormArray,
+  AbstractControl,
+  ValidationErrors,
+  FormControl
+} from '@angular/forms';
 import { city_data } from '../../rx/rx-search/address.data';
 import { MatSelectChange } from '@angular/material/select';
+import { Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-reactive-form',
@@ -15,7 +24,12 @@ import { MatSelectChange } from '@angular/material/select';
 export class ReactiveFormComponent implements OnInit {
 
   profileForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
+    // name: ['', [Validators.required, Validators.minLength(2)], nameValidator],
+    name: ['', {
+      validators: [Validators.required, Validators.minLength(2)],
+      asyncValidators: nameValidator,
+      updateOn: 'blur'
+    }],
     phone: ['', Validators.compose([Validators.required, phoneValidator, Validators.minLength(11), Validators.maxLength(11)])],
     address: this.fb.group({
       province: [''],
@@ -44,12 +58,11 @@ export class ReactiveFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.profileForm.valueChanges.subscribe(v => console.log(`${JSON.stringify(v)}`))
-
     for (const province in city_data) {
       this.provinces.push(province)
     }
 
+    // this.profileForm.valueChanges.subscribe(v => console.log(`${JSON.stringify(v)}`))
     // this.profileForm.get('aliases.0').valueChanges.subscribe(v => console.log(`>>> ${JSON.stringify(v)}`))
   }
 
@@ -79,8 +92,8 @@ export class ReactiveFormComponent implements OnInit {
     this.aliases.push(this.fb.control('', Validators.required))
   }
 
-  onSubmit() {
-    console.log(`<> ${this.profileForm.valid}`)
+  onSubmit(e: any) {
+    console.log(`<> ${JSON.stringify(e)}`)
   }
 
   patchValue(ev: Event) {
@@ -105,9 +118,18 @@ export const phoneValidator = (control: FormControl): ValidationErrors | null =>
 
 export const aliasesValidator = (control: FormArray): ValidationErrors | null => {
   if (control.length >= 2) {
-    if (control.controls[0].value && control.controls[0].value == control.controls[1].value)
+    const value1 = control.controls[0].value
+    const value2 = control.controls[1].value
+    if (value1 && value2 && value1 === value2)
       return { 'name': 'duplicated' }
   }
   // return { 'length': 'more than 2' }
   return null
+}
+
+export const nameValidator = (control: FormControl): Observable<ValidationErrors | null> => {
+  return of((control.value as string).toLowerCase().includes("zhang")).pipe(
+    delay(500),
+    map(v => v ? { 'name': "include 'zhang'" } : null)
+  )
 }

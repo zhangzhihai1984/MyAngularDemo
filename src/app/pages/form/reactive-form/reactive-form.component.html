@@ -1,11 +1,12 @@
 <app-demo-item>
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit($event)">
         <div class="app-notice">ID</div>
         <div [class]="isControlValid(name)?'app-primary-color':'app-warn-color'"><strong>Name:</strong></div>
         <div *ngIf="needShowError(name)" class="app-warn-fill app-warn-color"><strong>{{name.errors | json}}</strong>
         </div>
         <mat-form-field>
             <input matInput formControlName="name">
+            <mat-hint *ngIf="name.pending">Validating...</mat-hint>
         </mat-form-field>
         <div class="app-primary-color"><strong>Phone:</strong></div>
         <div *ngIf="needShowError(phone)" class="app-warn-fill app-warn-color"><strong>{{phone.errors | json}}</strong>
