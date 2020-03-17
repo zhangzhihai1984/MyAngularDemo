@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { FormBuilder, Validators, FormArray, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { FormBuilder, Validators, FormArray, AbstractControl, ValidatorFn, ValidationErrors, FormControl } from '@angular/forms';
 import { city_data } from '../../rx/rx-search/address.data';
 import { MatSelectChange } from '@angular/material/select';
 
@@ -15,15 +15,15 @@ import { MatSelectChange } from '@angular/material/select';
 export class ReactiveFormComponent implements OnInit {
 
   profileForm = this.fb.group({
-    name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+    name: ['', [Validators.required, Validators.minLength(2)]],
     phone: ['', Validators.compose([Validators.required, phoneValidator, Validators.minLength(11), Validators.maxLength(11)])],
     address: this.fb.group({
       province: [''],
       city: ['']
     }),
     aliases: this.fb.array([
-      this.fb.control('')
-    ])
+      // this.fb.control('')
+    ], aliasesValidator)
   })
 
   provinces: string[] = []
@@ -50,7 +50,7 @@ export class ReactiveFormComponent implements OnInit {
       this.provinces.push(province)
     }
 
-    this.profileForm.get('aliases.0').valueChanges.subscribe(v => console.log(`>>> ${JSON.stringify(v)}`))
+    // this.profileForm.get('aliases.0').valueChanges.subscribe(v => console.log(`>>> ${JSON.stringify(v)}`))
   }
 
   isControlValid(control: AbstractControl): boolean {
@@ -74,8 +74,9 @@ export class ReactiveFormComponent implements OnInit {
     }
   }
 
-  addAlias() {
-    this.aliases.push(this.fb.control(''))
+  addAlias(ev: Event) {
+    ev.preventDefault()
+    this.aliases.push(this.fb.control('', Validators.required))
   }
 
   onSubmit() {
@@ -96,8 +97,17 @@ export class ReactiveFormComponent implements OnInit {
   }
 }
 
-export const phoneValidator = (control: AbstractControl): ValidationErrors | null => {
+export const phoneValidator = (control: FormControl): ValidationErrors | null => {
   if (control.value.startsWith('139'))
     return { 'format': 'begin with 139' }
+  return null
+}
+
+export const aliasesValidator = (control: FormArray): ValidationErrors | null => {
+  if (control.length >= 2) {
+    if (control.controls[0].value && control.controls[0].value == control.controls[1].value)
+      return { 'name': 'duplicated' }
+  }
+  // return { 'length': 'more than 2' }
   return null
 }
