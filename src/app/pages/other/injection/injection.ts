@@ -1,4 +1,4 @@
-import { InjectionToken, Provider, forwardRef } from '@angular/core'
+import { InjectionToken, Provider, forwardRef, Type } from '@angular/core'
 
 export class DI {
     content: string = 'default'
@@ -27,3 +27,28 @@ export const DI_EXISTING_PROVIDER: Provider = {
 }
 
 export const CLASS_NAME_TOKEN = new InjectionToken<string[]>('scss class')
+
+interface ValueAccessor {
+    id: string
+    writeValue1(value: any): void
+    writeValue2: (value: any) => void
+    writeValue3?: (value: any) => void
+    registerOnChange: (fn: (_: any) => void) => void
+}
+
+class ValueAccessorImpl implements ValueAccessor {
+    id: ''
+    writeValue1(value: any) { }
+    writeValue2 = (value: any) => { }
+    registerOnChange = (fn: (_: any) => void) => { fn('') }
+}
+
+interface IForwardRefFn {
+    (): any
+}
+
+const forwardRefFnImpl = (fn: IForwardRefFn): Type<any> => fn()
+export const forwardRefDI = (): DI => {
+    let type = forwardRefFnImpl(() => DI)
+    return new type
+}
