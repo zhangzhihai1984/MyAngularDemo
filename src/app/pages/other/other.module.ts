@@ -6,9 +6,16 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { MyIfDirective } from './directives/my-if.directive';
 import { SharedModule } from 'src/app/shared';
 import { MyIf2Directive } from './directives/my-if2.directive';
+import { InjectionComponent } from './injection/injection.component';
 
 @NgModule({
-  declarations: [OtherComponent, HighlightDirective, MyIfDirective, MyIf2Directive],
+  declarations: [
+    OtherComponent,
+    HighlightDirective,
+    MyIfDirective,
+    MyIf2Directive,
+    InjectionComponent
+  ],
   imports: [
     SharedModule,
     OtherRoutingModule
