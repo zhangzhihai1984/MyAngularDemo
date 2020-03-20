@@ -7,6 +7,7 @@ import {
   DI_CLASS_TOKEN,
   DI_EXISTING_PROVIDER,
   DI_EXISTING_TOKEN,
+  CLASS_NAME_TOKEN,
 } from './injection';
 
 @Component({
@@ -18,6 +19,10 @@ import {
     DI_VALUE_PROVIDER,
     DI_CLASS_PROVIDER,
     DI_EXISTING_PROVIDER,
+    {
+      provide: CLASS_NAME_TOKEN,
+      useValue: ['app-primary-color', 'app-primary-outline']
+    },
   ]
 })
 export class InjectionComponent implements OnInit {

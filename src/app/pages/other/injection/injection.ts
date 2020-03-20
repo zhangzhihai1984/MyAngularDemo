@@ -25,3 +25,5 @@ export const DI_EXISTING_PROVIDER: Provider = {
     provide: DI_EXISTING_TOKEN,
     useExisting: DI
 }
+
+export const CLASS_NAME_TOKEN = new InjectionToken<string[]>('scss class')
