@@ -39,6 +39,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/rx').then(m => m.RxModule)
   },
   {
+    path: 'di',
+    loadChildren: () => import('./pages/di').then(m => m.DIModule)
+  },
+  {
     path: 'other',
     loadChildren: () => import('./pages/other').then(m => m.OtherModule)
   },

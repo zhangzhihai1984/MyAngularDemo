@@ -21,6 +21,7 @@ export class HomePageComponent implements OnInit {
       new PageConfig('Dialog', '/dialog'),
       new PageConfig('Menu', '/menu'),
       new PageConfig('Table', '/table'),
+      new PageConfig('Dependency Injection', '/di'),
       new PageConfig('Other', '/other'),
       new PageConfig('Router', '/router'),
       new PageConfig('Form', '/form')
@@ -31,12 +32,12 @@ export class HomePageComponent implements OnInit {
 
   onItemClicked(path: string) {
     if (path.includes('other'))
-      this.router.navigate([path, Math.round(Math.random() * 100), {foo: 'foo'}])
+      this.router.navigate([path, Math.round(Math.random() * 100), { foo: 'foo' }])
     else
       this.router.navigate([path])
   }
 }
 
 class PageConfig {
-  constructor(public title: string, public path: string) {}
+  constructor(public title: string, public path: string) { }
 }

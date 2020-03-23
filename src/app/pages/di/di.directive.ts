@@ -7,7 +7,7 @@ import {
   Self,
   SkipSelf
 } from '@angular/core';
-import { CLASS_NAME_TOKEN } from './injection';
+import { CLASS_NAME_TOKEN } from './di';
 
 @Directive({
   selector: '[classInjection]',
@@ -19,7 +19,7 @@ import { CLASS_NAME_TOKEN } from './injection';
     }
   ]
 })
-export class InjectionDirective {
+export class DIDirective {
 
   constructor(
     private el: ElementRef,
