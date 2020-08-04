@@ -16,6 +16,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
     this.pageConfigs = [
       new PageConfig('Rx', '/rx'),
+      new PageConfig('Konva', '/konva'),
       new PageConfig('Animation', '/animation'),
       new PageConfig('Grid Lists', '/grid'),
       new PageConfig('Dialog', '/dialog'),

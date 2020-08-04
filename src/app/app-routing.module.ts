@@ -43,6 +43,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/di').then(m => m.DIModule)
   },
   {
+    path: 'konva',
+    loadChildren: () => import('./pages/konva').then(m => m.KonvaRoutingModule),
+    pathMatch: 'full'
+  },
+  {
     path: 'other',
     loadChildren: () => import('./pages/other').then(m => m.OtherModule)
   },
