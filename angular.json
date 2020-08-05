@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "konva"
+            ],
             "outputPath": "dist/MyAngularDemo",
             "index": "src/index.html",
             "main": "src/main.ts",
