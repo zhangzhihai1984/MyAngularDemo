@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Konva1Component } from './konva1/konva1.component';
+import { KonvaListComponent } from './konva-list/konva-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: Konva1Component
+    component: KonvaListComponent
   }
 ];
 
