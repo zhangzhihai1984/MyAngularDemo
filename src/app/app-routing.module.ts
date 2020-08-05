@@ -44,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'konva',
-    loadChildren: () => import('./pages/konva').then(m => m.KonvaRoutingModule),
+    loadChildren: () => import('./pages/konva').then(m => m.KonvaModule),
     pathMatch: 'full'
   },
   {

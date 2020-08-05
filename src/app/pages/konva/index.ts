@@ -1,1 +1,1 @@
-export * from './konva-routing.module'
+export * from './konva.module'
