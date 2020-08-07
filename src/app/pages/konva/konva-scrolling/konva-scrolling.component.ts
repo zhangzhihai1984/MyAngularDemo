@@ -27,7 +27,10 @@ export class KonvaScrollingComponent implements OnInit, AfterViewInit {
   private WIDTH = 2000
   private HEIGHT = 500
   private COUNT = 200
-  private PADDING = 0
+  /**
+   * PADDING增加了stage的尺寸, 这样滑动会更流畅.
+   */
+  private PADDING = 500
 
   @ViewChild('scrollContainerRef', { read: ElementRef, static: false }) scrollContainerRef: ElementRef
 
@@ -49,6 +52,10 @@ export class KonvaScrollingComponent implements OnInit, AfterViewInit {
 
     stage.add(layer)
     Array.from(Array(this.COUNT).keys()).forEach(_ => layer.add(this.makeNode()))
+    layer.add(this.makeNodeTest(50, 50))
+    layer.add(this.makeNodeTest(50, this.HEIGHT - 50))
+    layer.add(this.makeNodeTest(this.WIDTH - 50, 50))
+    layer.add(this.makeNodeTest(this.WIDTH - 50, this.HEIGHT - 50))
     layer.draw()
 
     // const scrollContainer = document.getElementById('scroll-container')
@@ -56,16 +63,15 @@ export class KonvaScrollingComponent implements OnInit, AfterViewInit {
 
     fromEvent(scrollContainer, 'scroll')
       .subscribe(_ => {
+        /**
+         * 当用户滑动时, 对"container"这个div向相反方向移动相应的距离, 这样用户看到的效果就是无论怎样滑动,
+         * 绘制的内容都一动不动.
+         * 接下来, 我们通过移动整个stage的方式产生出滑动的效果.
+         */
         const dx = scrollContainer.scrollLeft - this.PADDING
         const dy = scrollContainer.scrollTop - this.PADDING
         console.log(`dx: ${dx} dy: ${dy}`)
 
-        /**
-         
-         *
-         * 当用户滑动时, 对"container"这个div向相反方向移动对应的距离
-         * 注: scrollTop大于等于0,
-         */
         // stage.container().style.transform = 'translate(' + dx + 'px, ' + dy + 'px)'
         this.render.setStyle(stage.container(), 'transform', `translate(${dx}px, ${dy}px)`)
 
@@ -79,6 +85,15 @@ export class KonvaScrollingComponent implements OnInit, AfterViewInit {
     new Konva.Circle({
       x: this.WIDTH * Math.random(),
       y: this.HEIGHT * Math.random(),
+      radius: 50,
+      fill: 'red',
+      stroke: 'black'
+    })
+
+  private makeNodeTest = (x: number, y: number): Konva.Circle =>
+    new Konva.Circle({
+      x: x,
+      y: y,
       radius: 50,
       fill: 'red',
       stroke: 'black'
