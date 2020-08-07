@@ -24,6 +24,33 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
    */
   private PADDING = 500
 
+  private IO_CIRCLE_RADIUS = 25
+  private IO_CIRCLE_STROKE_COLOR = 'black'
+  private IO_CIRCLE_STROKE_WIDTH = 2
+
+  private SERIES_RECT_WIDTH = 100
+  private SERIES_RECT_HEIGHT = 60
+  private SERIES_RECT_STROKE_COLOR = 'black'
+  private SERIES_RECT_STROKE_WIDTH = 2
+  private SERIES_LINE_LENGTH = 50
+  private SERIES_LINE_STROKE_COLOR = 'black'
+  private SERIES_LINE_STROKE_WIDTH = 2
+
+  private PARALLEL_RECT_WIDTH = 50
+  private PARALLEL_RECT_HEIGHT = 100
+  private PARALLEL_RECT_STROKE_COLOR = 'black'
+  private PARALLEL_RECT_STROKE_WIDTH = 2
+  private PARALLEL_LINE_LENGTH = 50
+  private PARALLEL_LINE_STROKE_COLOR = 'black'
+  private PARALLEL_LINE_STROKE_WIDTH = 2
+
+  private STAGE_PADDING_START = 20
+  private STAGE_PADDING_END = 20
+  private STAGE_PADDING_TOP = 20
+  private STAGE_PADDING_BOTTOM = 20
+
+  private MOCK_DATA = "psppss"
+
   @ViewChild('circuitScrollContainerRef', { read: ElementRef, static: false }) scrollContainerRef: ElementRef
 
   constructor(private render: Renderer2) { }
@@ -36,16 +63,14 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       container: 'circuit-container',
       width: this.WIDTH + this.PADDING * 2,
       height: this.HEIGHT + this.PADDING * 2,
-      draggable: false
+      draggable: true
     })
 
     const layer = new Konva.Layer()
 
     stage.add(layer)
-    layer.add(this.makeNodeTest(50, 50))
-    layer.add(this.makeNodeTest(50, this.HEIGHT - 50))
-    layer.add(this.makeNodeTest(this.WIDTH - 50, 50))
-    layer.add(this.makeNodeTest(this.WIDTH - 50, this.HEIGHT - 50))
+    this.makeInput(layer)
+    this.makeSeries(layer, 0)
     layer.draw()
 
     const scrollContainer = this.scrollContainerRef.nativeElement
@@ -64,12 +89,57 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       })
   }
 
-  private makeNodeTest = (x: number, y: number): Konva.Circle =>
-    new Konva.Circle({
-      x: x,
-      y: y,
-      radius: 50,
-      fill: 'red',
-      stroke: 'black'
+  private makeInput(layer: Konva.Layer) {
+    const inputCircle = new Konva.Circle({
+      x: this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS,
+      y: this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS,
+      radius: this.IO_CIRCLE_RADIUS,
+      stroke: this.IO_CIRCLE_STROKE_COLOR,
+      strokeWidth: this.IO_CIRCLE_STROKE_WIDTH
     })
+
+    const x1 = this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS * 2
+    const y1 = this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS
+    const x2 = x1 + this.SERIES_LINE_LENGTH
+    const y2 = y1
+    const inputLine = new Konva.Line({
+      points: [x1, y1, x2, y2],
+      stroke: this.SERIES_LINE_STROKE_COLOR,
+      strokeWidth: this.SERIES_LINE_STROKE_WIDTH
+    })
+
+    layer.add(inputCircle)
+    layer.add(inputLine)
+  }
+
+  /**
+   * Series Rect
+   * x = stagePaddingStart + ioCircleRaduis*2 + seriesLineLength*2 + (seriesLineLength + seriesRectWidth)*columIndex
+   * y = stagePaddingTop
+   */
+  private makeSeries(layer: Konva.Layer, columnIndex: number) {
+    const lastX = this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS * 2 + this.SERIES_LINE_LENGTH
+
+    const seriesRect = new Konva.Rect({
+      x: lastX + this.SERIES_LINE_LENGTH + (this.SERIES_LINE_LENGTH + this.SERIES_RECT_WIDTH) * columnIndex,
+      y: this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS - this.SERIES_RECT_HEIGHT / 2,
+      width: this.SERIES_RECT_WIDTH,
+      height: this.SERIES_RECT_HEIGHT,
+      stroke: this.SERIES_RECT_STROKE_COLOR,
+      strokeWidth: this.SERIES_RECT_STROKE_WIDTH
+    })
+
+    const x1 = lastX
+    const y1 = this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS
+    const x2 = x1 + this.SERIES_LINE_LENGTH
+    const y2 = y1
+    const seriesLine = new Konva.Line({
+      points: [x1, y1, x2, y2],
+      stroke: this.SERIES_LINE_STROKE_COLOR,
+      strokeWidth: this.SERIES_LINE_STROKE_WIDTH
+    })
+
+    layer.add(seriesRect)
+    layer.add(seriesLine)
+  }
 }
