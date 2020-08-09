@@ -262,5 +262,17 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     })
 
     layer.add(parallelRect)
+
+    const parallelText = new Konva.Text({
+      x: this.lastX,
+      y: lastY + this.PARALLEL_RECT_HEIGHT / 2,
+      text: `p${parallelIndex + 1}`,
+      fontSize: this.PARALLEL_TEXT_SIZE,
+      fill: this.PARALLEL_TEXT_COLOR
+    })
+    parallelText.offsetX(parallelText.width() / 2)
+    parallelText.offsetY(parallelText.height() / 2)
+
+    layer.add(parallelText)
   }
 }
