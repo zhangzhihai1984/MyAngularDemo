@@ -33,6 +33,8 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
   private IO_CIRCLE_RADIUS = 25
   private IO_CIRCLE_STROKE_COLOR = 'black'
   private IO_CIRCLE_STROKE_WIDTH = 2
+  private IO_TEXT_SIZE = 20
+  private IO_TEXT_COLOR = 'black'
 
   private SERIES_RECT_WIDTH = 100
   private SERIES_RECT_HEIGHT = 60
@@ -124,6 +126,18 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     })
 
     layer.add(inputCircle)
+
+    const inputText = new Konva.Text({
+      x: this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS,
+      y: this.INIT_Y,
+      text: "in",
+      fontSize: this.IO_TEXT_SIZE,
+      fill: this.IO_TEXT_COLOR
+    })
+    inputText.offsetX(inputText.width() / 2)
+    inputText.offsetY(inputText.height() / 2)
+
+    layer.add(inputText)
 
     this.lastX = this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS * 2
   }
