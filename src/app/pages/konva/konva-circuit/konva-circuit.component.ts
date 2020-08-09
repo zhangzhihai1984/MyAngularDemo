@@ -43,6 +43,8 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
   private SERIES_LINE_LENGTH = 75
   private SERIES_LINE_STROKE_COLOR = 'black'
   private SERIES_LINE_STROKE_WIDTH = 2
+  private SERIES_TEXT_SIZE = 20
+  private SERIES_TEXT_COLOR = 'black'
 
   private PARALLEL_RECT_WIDTH = 50
   private PARALLEL_RECT_HEIGHT = 100
@@ -51,6 +53,8 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
   private PARALLEL_LINE_LENGTH = 50
   private PARALLEL_LINE_STROKE_COLOR = 'black'
   private PARALLEL_LINE_STROKE_WIDTH = 2
+  private PARALLEL_TEXT_SIZE = 20
+  private PARALLEL_TEXT_COLOR = 'black'
 
   private STAGE_PADDING_START = 20
   private STAGE_PADDING_END = 20
@@ -213,6 +217,18 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     })
 
     layer.add(seriesRect)
+
+    const seriesText = new Konva.Text({
+      x: this.lastX + this.SERIES_RECT_WIDTH / 2,
+      y: this.INIT_Y,
+      text: `s${seriesIndex + 1}`,
+      fontSize: this.SERIES_TEXT_SIZE,
+      fill: this.SERIES_TEXT_COLOR
+    })
+    seriesText.offsetX(seriesText.width() / 2)
+    seriesText.offsetY(seriesText.height() / 2)
+
+    layer.add(seriesText)
 
     this.lastX += this.SERIES_RECT_WIDTH
   }
