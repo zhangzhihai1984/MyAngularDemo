@@ -95,6 +95,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       else
         this.makeParallel(layer, node.parallelIndex)
     })
+    this.makeOutput(layer)
     layer.draw()
 
     const scrollContainer = this.scrollContainerRef.nativeElement
@@ -125,6 +126,22 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     layer.add(inputCircle)
 
     this.lastX = this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS * 2
+  }
+
+  private makeOutput(layer: Konva.Layer) {
+    this.makeSeriesLine(layer)
+
+    const outputCircle = new Konva.Circle({
+      x: this.lastX + this.IO_CIRCLE_RADIUS,
+      y: this.INIT_Y,
+      radius: this.IO_CIRCLE_RADIUS,
+      stroke: this.IO_CIRCLE_STROKE_COLOR,
+      strokeWidth: this.IO_CIRCLE_STROKE_WIDTH
+    })
+
+    layer.add(outputCircle)
+
+    this.lastX += this.SERIES_RECT_WIDTH
   }
 
   private makeSeriesLine(layer: Konva.Layer) {
