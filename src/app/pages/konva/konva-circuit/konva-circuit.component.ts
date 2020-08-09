@@ -58,6 +58,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
   private MOCK_DATA = "ppssppps"
 
   private lastX = 0
+  private INIT_Y = this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS
   private seriesIndex = 0
   private parallelIndex = 0
 
@@ -91,6 +92,8 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     nodes.forEach(node => {
       if (node.isSeries)
         this.makeSeries(layer, node.seriesIndex)
+      else
+        this.makeParallel(layer, node.parallelIndex)
     })
     layer.draw()
 
@@ -113,7 +116,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
   private makeInput(layer: Konva.Layer) {
     const inputCircle = new Konva.Circle({
       x: this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS,
-      y: this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS,
+      y: this.INIT_Y,
       radius: this.IO_CIRCLE_RADIUS,
       stroke: this.IO_CIRCLE_STROKE_COLOR,
       strokeWidth: this.IO_CIRCLE_STROKE_WIDTH
@@ -122,6 +125,22 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     layer.add(inputCircle)
 
     this.lastX = this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS * 2
+  }
+
+  private makeSeriesLine(layer: Konva.Layer) {
+    const x1 = this.lastX
+    const y1 = this.INIT_Y
+    const x2 = this.lastX + this.SERIES_LINE_LENGTH
+    const y2 = y1
+    const seriesLine = new Konva.Line({
+      points: [x1, y1, x2, y2],
+      stroke: this.SERIES_LINE_STROKE_COLOR,
+      strokeWidth: this.SERIES_LINE_STROKE_WIDTH
+    })
+
+    layer.add(seriesLine)
+
+    this.lastX += this.SERIES_LINE_LENGTH
   }
 
   /**
@@ -139,30 +158,50 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
    * y2 = y1
    */
   private makeSeries(layer: Konva.Layer, seriesIndex: number) {
-    const x1 = this.lastX
-    const y1 = this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS
-    const x2 = this.lastX + this.SERIES_LINE_LENGTH
-    const y2 = y1
-    const seriesLine = new Konva.Line({
-      points: [x1, y1, x2, y2],
-      stroke: this.SERIES_LINE_STROKE_COLOR,
-      strokeWidth: this.SERIES_LINE_STROKE_WIDTH
-    })
-
-    this.lastX += this.SERIES_LINE_LENGTH
+    this.makeSeriesLine(layer)
 
     const seriesRect = new Konva.Rect({
       x: this.lastX,
-      y: this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS - this.SERIES_RECT_HEIGHT / 2,
+      y: this.INIT_Y - this.SERIES_RECT_HEIGHT / 2,
       width: this.SERIES_RECT_WIDTH,
       height: this.SERIES_RECT_HEIGHT,
       stroke: this.SERIES_RECT_STROKE_COLOR,
       strokeWidth: this.SERIES_RECT_STROKE_WIDTH
     })
 
-    this.lastX += this.SERIES_RECT_WIDTH
-
-    layer.add(seriesLine)
     layer.add(seriesRect)
+
+    this.lastX += this.SERIES_RECT_WIDTH
+  }
+
+  private makeParallel(layer: Konva.Layer, parallelIndex: number) {
+    if (parallelIndex == 0)
+      this.makeSeriesLine(layer)
+
+    let lastY = this.INIT_Y + (this.PARALLEL_LINE_LENGTH + this.PARALLEL_RECT_HEIGHT) * parallelIndex
+    const x1 = this.lastX
+    const y1 = lastY
+    const x2 = x1
+    const y2 = lastY + this.PARALLEL_LINE_LENGTH
+    const parallelLine = new Konva.Line({
+      points: [x1, y1, x2, y2],
+      stroke: this.PARALLEL_LINE_STROKE_COLOR,
+      strokeWidth: this.PARALLEL_LINE_STROKE_WIDTH
+    })
+
+    layer.add(parallelLine)
+
+    lastY = y2
+
+    const parallelRect = new Konva.Rect({
+      x: this.lastX - this.PARALLEL_RECT_WIDTH / 2,
+      y: lastY,
+      width: this.PARALLEL_RECT_WIDTH,
+      height: this.PARALLEL_RECT_HEIGHT,
+      stroke: this.PARALLEL_RECT_STROKE_COLOR,
+      strokeWidth: this.PARALLEL_RECT_STROKE_WIDTH
+    })
+
+    layer.add(parallelRect)
   }
 }
