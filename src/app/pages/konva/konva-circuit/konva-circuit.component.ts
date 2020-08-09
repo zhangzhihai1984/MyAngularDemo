@@ -155,7 +155,19 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
 
     layer.add(outputCircle)
 
-    this.lastX += this.SERIES_RECT_WIDTH
+    const outputText = new Konva.Text({
+      x: this.lastX + this.IO_CIRCLE_RADIUS,
+      y: this.INIT_Y,
+      text: "out",
+      fontSize: this.IO_TEXT_SIZE,
+      fill: this.IO_TEXT_COLOR
+    })
+    outputText.offsetX(outputText.width() / 2)
+    outputText.offsetY(outputText.height() / 2)
+
+    layer.add(outputText)
+
+    this.lastX += this.IO_CIRCLE_RADIUS * 2
   }
 
   private makeSeriesLine(layer: Konva.Layer) {
