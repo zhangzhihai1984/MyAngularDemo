@@ -24,7 +24,6 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
 
   private WIDTH = 2000
   private HEIGHT = 500
-  private COUNT = 200
   /**
    * PADDING增加了stage的尺寸, 这样滑动会更流畅.
    */
@@ -63,6 +62,17 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
 
   private MOCK_DATA = "ppssppps"
 
+  private ioCircles: Konva.Circle[] = []
+  private ioTexts: Konva.Text[] = []
+
+  private seriesLines: Konva.Line[] = []
+  private seriesRects: Konva.Rect[] = []
+  private seriesTexts: Konva.Text[] = []
+
+  private parallelLines: Konva.Line[] = []
+  private parallelRects: Konva.Rect[] = []
+  private parallelTexts: Konva.Text[] = []
+
   private lastX = 0
   private INIT_Y = this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS
   private seriesIndex = 0
@@ -84,24 +94,36 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       return { isSeries: false, parallelIndex: this.parallelIndex++ }
     })
 
+
+
+    this.makeInput()
+    nodes.forEach(node => {
+      if (node.isSeries)
+        this.makeSeries(node.seriesIndex)
+      else
+        this.makeParallel(node.parallelIndex)
+    })
+    this.makeOutput()
+    console.log(`width: ${this.lastX}`)
+
+    const layer = new Konva.Layer()
+
+    this.ioCircles.forEach(node => layer.add(node))
+    this.ioTexts.forEach(node => layer.add(node))
+    this.seriesLines.forEach(node => layer.add(node))
+    this.seriesRects.forEach(node => layer.add(node))
+    this.seriesTexts.forEach(node => layer.add(node))
+    this.parallelLines.forEach(node => layer.add(node))
+    this.parallelRects.forEach(node => layer.add(node))
+    this.parallelTexts.forEach(node => layer.add(node))
+
     const stage = new Konva.Stage({
       container: 'circuit-container',
       width: this.WIDTH + this.PADDING * 2,
       height: this.HEIGHT + this.PADDING * 2,
       draggable: true
     })
-
-    const layer = new Konva.Layer()
     stage.add(layer)
-
-    this.makeInput(layer)
-    nodes.forEach(node => {
-      if (node.isSeries)
-        this.makeSeries(layer, node.seriesIndex)
-      else
-        this.makeParallel(layer, node.parallelIndex)
-    })
-    this.makeOutput(layer)
     layer.draw()
 
     const scrollContainer = this.scrollContainerRef.nativeElement
@@ -120,7 +142,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       })
   }
 
-  private makeInput(layer: Konva.Layer) {
+  private makeInput() {
     const inputCircle = new Konva.Circle({
       x: this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS,
       y: this.INIT_Y,
@@ -129,7 +151,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       strokeWidth: this.IO_CIRCLE_STROKE_WIDTH
     })
 
-    layer.add(inputCircle)
+    this.ioCircles.push(inputCircle)
 
     const inputText = new Konva.Text({
       x: this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS,
@@ -141,13 +163,13 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     inputText.offsetX(inputText.width() / 2)
     inputText.offsetY(inputText.height() / 2)
 
-    layer.add(inputText)
+    this.ioTexts.push(inputText)
 
     this.lastX = this.STAGE_PADDING_START + this.IO_CIRCLE_RADIUS * 2
   }
 
-  private makeOutput(layer: Konva.Layer) {
-    this.makeSeriesLine(layer)
+  private makeOutput() {
+    this.makeSeriesLine()
 
     const outputCircle = new Konva.Circle({
       x: this.lastX + this.IO_CIRCLE_RADIUS,
@@ -157,7 +179,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       strokeWidth: this.IO_CIRCLE_STROKE_WIDTH
     })
 
-    layer.add(outputCircle)
+    this.ioCircles.push(outputCircle)
 
     const outputText = new Konva.Text({
       x: this.lastX + this.IO_CIRCLE_RADIUS,
@@ -169,12 +191,12 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     outputText.offsetX(outputText.width() / 2)
     outputText.offsetY(outputText.height() / 2)
 
-    layer.add(outputText)
+    this.ioTexts.push(outputText)
 
     this.lastX += this.IO_CIRCLE_RADIUS * 2
   }
 
-  private makeSeriesLine(layer: Konva.Layer) {
+  private makeSeriesLine() {
     const x1 = this.lastX
     const y1 = this.INIT_Y
     const x2 = this.lastX + this.SERIES_LINE_LENGTH
@@ -185,7 +207,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       strokeWidth: this.SERIES_LINE_STROKE_WIDTH
     })
 
-    layer.add(seriesLine)
+    this.seriesLines.push(seriesLine)
 
     this.lastX += this.SERIES_LINE_LENGTH
   }
@@ -204,8 +226,8 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
    * x2 = x1 + seriesLineLength
    * y2 = y1
    */
-  private makeSeries(layer: Konva.Layer, seriesIndex: number) {
-    this.makeSeriesLine(layer)
+  private makeSeries(seriesIndex: number) {
+    this.makeSeriesLine()
 
     const seriesRect = new Konva.Rect({
       x: this.lastX,
@@ -216,7 +238,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       strokeWidth: this.SERIES_RECT_STROKE_WIDTH
     })
 
-    layer.add(seriesRect)
+    this.seriesRects.push(seriesRect)
 
     const seriesText = new Konva.Text({
       x: this.lastX + this.SERIES_RECT_WIDTH / 2,
@@ -228,14 +250,14 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     seriesText.offsetX(seriesText.width() / 2)
     seriesText.offsetY(seriesText.height() / 2)
 
-    layer.add(seriesText)
+    this.seriesTexts.push(seriesText)
 
     this.lastX += this.SERIES_RECT_WIDTH
   }
 
-  private makeParallel(layer: Konva.Layer, parallelIndex: number) {
+  private makeParallel(parallelIndex: number) {
     if (parallelIndex == 0)
-      this.makeSeriesLine(layer)
+      this.makeSeriesLine()
 
     let lastY = this.INIT_Y + (this.PARALLEL_LINE_LENGTH + this.PARALLEL_RECT_HEIGHT) * parallelIndex
     const x1 = this.lastX
@@ -248,7 +270,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       strokeWidth: this.PARALLEL_LINE_STROKE_WIDTH
     })
 
-    layer.add(parallelLine)
+    this.parallelLines.push(parallelLine)
 
     lastY = y2
 
@@ -261,7 +283,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       strokeWidth: this.PARALLEL_RECT_STROKE_WIDTH
     })
 
-    layer.add(parallelRect)
+    this.parallelRects.push(parallelRect)
 
     const parallelText = new Konva.Text({
       x: this.lastX,
@@ -273,6 +295,6 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     parallelText.offsetX(parallelText.width() / 2)
     parallelText.offsetY(parallelText.height() / 2)
 
-    layer.add(parallelText)
+    this.parallelTexts.push(parallelText)
   }
 }
