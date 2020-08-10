@@ -7,7 +7,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import Konva from 'konva';
-import { fromEvent } from 'rxjs';
+import { fromEvent, timer } from 'rxjs';
 
 class Node {
   isSeries: boolean
@@ -60,7 +60,7 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
   private STAGE_PADDING_TOP = 20
   private STAGE_PADDING_BOTTOM = 20
 
-  private MOCK_DATA = "ppssppps"
+  private MOCK_DATA = "ppsspppppppssspps"
 
   private ioCircles: Konva.Circle[] = []
   private ioTexts: Konva.Text[] = []
@@ -73,7 +73,10 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
   private parallelRects: Konva.Rect[] = []
   private parallelTexts: Konva.Text[] = []
 
+  stageWidth = '100%'
+  stageHeight = '100%'
   private lastX = 0
+  private lastYMax = this.STAGE_PADDING_TOP + this.SERIES_RECT_HEIGHT
   private INIT_Y = this.STAGE_PADDING_TOP + this.IO_CIRCLE_RADIUS
   private seriesIndex = 0
   private parallelIndex = 0
@@ -94,8 +97,6 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
       return { isSeries: false, parallelIndex: this.parallelIndex++ }
     })
 
-
-
     this.makeInput()
     nodes.forEach(node => {
       if (node.isSeries)
@@ -104,7 +105,6 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
         this.makeParallel(node.parallelIndex)
     })
     this.makeOutput()
-    console.log(`width: ${this.lastX}`)
 
     const layer = new Konva.Layer()
 
@@ -119,12 +119,18 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
 
     const stage = new Konva.Stage({
       container: 'circuit-container',
-      width: this.WIDTH + this.PADDING * 2,
-      height: this.HEIGHT + this.PADDING * 2,
+      width: this.lastX + this.STAGE_PADDING_END + this.PADDING * 2,
+      height: this.lastYMax + this.STAGE_PADDING_BOTTOM + this.PADDING * 2,
       draggable: true
     })
     stage.add(layer)
     layer.draw()
+
+    timer(0)
+      .subscribe(_ => {
+        this.stageWidth = `${this.lastX + this.STAGE_PADDING_END}px`
+        this.stageHeight = `${this.lastYMax + this.STAGE_PADDING_BOTTOM}px`
+      })
 
     const scrollContainer = this.scrollContainerRef.nativeElement
 
@@ -296,5 +302,10 @@ export class KonvaCircuitComponent implements OnInit, AfterViewInit {
     parallelText.offsetY(parallelText.height() / 2)
 
     this.parallelTexts.push(parallelText)
+
+    lastY += this.PARALLEL_RECT_HEIGHT
+
+    if (this.lastYMax < lastY)
+      this.lastYMax = lastY
   }
 }
